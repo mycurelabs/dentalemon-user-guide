@@ -102,7 +102,7 @@ You should see: **End Encounter · *time* early?** with the reason list and your
 If you started an encounter for the wrong patient, or by accident, and nothing has been recorded in it, you can archive it.
 
 1. Tap **⌄** beside **Finish encounter**, then **Archive…**.
-2. The reason **Opened by mistake** is chosen for you. Add a note if you want.
+2. Choose the reason **Opened by mistake**. Add a note if you want.
 3. Tap **Archive encounter**, or tap **Keep** to leave it.
 
 You should see: **Archive encounter** with the reason and the **Archive encounter** button.

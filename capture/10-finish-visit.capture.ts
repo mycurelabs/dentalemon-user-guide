@@ -97,7 +97,7 @@ test('finish the visit', async ({ page }) => {
   const step = page.getByTestId('reason-step');
   await expect(step).toBeVisible();
   await step.getByRole('radio', { name: 'Left before being seen' }).tap();
-  await shot(page, P, '06-end-early');
+  await shot(page, P, '06-end-early', { el: step });
   await step.getByTestId('reason-confirm').tap();
   await expect(step).toBeHidden({ timeout: 30_000 });
 
@@ -122,7 +122,7 @@ test('finish the visit', async ({ page }) => {
   await page.getByTestId('lifecycle-archive').tap();
   await expect(step).toBeVisible();
   await step.getByRole('radio', { name: 'Opened by mistake' }).tap();
-  await shot(page, P, '07-archive');
+  await shot(page, P, '07-archive', { el: step });
   await page.getByTestId('reason-keep').tap();
   await expect(step).toBeHidden();
 

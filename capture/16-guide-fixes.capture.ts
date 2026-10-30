@@ -71,3 +71,33 @@ test('allergy warning when prescribing', async ({ page }) => {
   await settle(page);
   await shot(page, 'notes-prescriptions-orders-attachments', '05a-allergy-warning', { el: dialog() });
 });
+
+// End early and Archive: just the sheet, so the chart behind it isn't in the picture.
+for (const [name, testId, who] of [
+  ['06-end-early', 'lifecycle-early', { firstName: 'Danilo', lastName: 'Abella', sex: 'male', dateOfBirth: '1992-08-23', mobileNo: '0917 000 0027' }],
+  ['07-archive', 'lifecycle-archive', { firstName: 'Teresita', lastName: 'Abella', sex: 'female', dateOfBirth: '1990-01-12', mobileNo: '0917 000 0028' }],
+] as const) {
+  test(`finish the visit: ${name} sheet`, async ({ page }) => {
+    await signIn(page);
+    const visit = await patientWithEncounter(page, { ...who }, { fresh: true });
+    await page.goto(visit.url);
+    const split = page.getByTestId('encounter-actions-split').filter({ visible: true }).first();
+    await expect(split.getByTestId('bill-button')).toContainText('Finish encounter', { timeout: 60_000 });
+    const more = split.getByTestId('encounter-actions-more');
+    await expect
+      .poll(async () => {
+        await more.tap();
+        const has = await page.getByTestId(testId).isVisible().catch(() => false);
+        if (!has) await page.keyboard.press('Escape');
+        return has;
+      }, { timeout: 30_000 })
+      .toBe(true);
+    await page.getByTestId(testId).tap();
+    const step = page.getByTestId('reason-step');
+    await expect(step).toBeVisible();
+    if (name === '06-end-early') await step.getByRole('radio', { name: 'Left before being seen' }).tap();
+    if (name === '07-archive') await step.getByRole('radio', { name: 'Opened by mistake' }).tap();
+    await settle(page);
+    await shot(page, 'finish-the-visit', name, { el: step });
+  });
+}
