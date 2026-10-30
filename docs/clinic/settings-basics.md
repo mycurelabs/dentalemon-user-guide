@@ -31,7 +31,7 @@ In **Profile**, fill in your **Title** (for example *Dr.*), your name, **Profess
 You should see: your name and email. Your **Display name** is how your name appears to patients.
 { .see }
 
-![The Profile settings: Profile photo with Add photo, Title, First name Ana, Last name Santos, Display name, Professional role, Email](../assets/settings-basics/02-profile.webp)
+![The Profile settings: Title, First name Ana, Last name Santos, Suffix, Display name, Professional role, Email](../assets/settings-basics/02-profile.webp)
 
 ### 3. Your clinic and opening hours
 
@@ -39,7 +39,7 @@ Tap **Clinic**. Fill in the **Clinic name**, **Address**, **Phone** and **Email*
 
 Under **Operating hours**, switch each day on or off and set its opening and closing times. Appointments can only be booked inside these hours.
 
-![The Clinic settings: Clinic name, Address, Phone, Email, and Operating hours from Monday 09:00 AM to 05:00 PM](../assets/settings-basics/03-clinic.webp)
+![The Clinic settings: Clinic name, Address, Phone, Email, and Operating hours from Monday 9:00 AM to 5:00 PM](../assets/settings-basics/03-clinic.webp)
 
 ### 4. Tooth notation and start page
 

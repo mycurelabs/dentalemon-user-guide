@@ -25,13 +25,13 @@ Tap it.
 You should see: the **Finish encounter** sheet. Under **Charges** are the visit itself (for example **Consultation**, from the encounter type) and each piece of work marked **Done today**, with its price. Nothing is ticked yet, and **Total charges** is ₱0.
 { .see }
 
-![The Finish encounter sheet with Consultation ₱500 and Extraction · 36 ₱2,500 listed, both unticked, Total charges ₱0](../assets/charges-and-cashier/02-charges-unticked.webp)
+![The Finish encounter sheet with Consultation ₱500 and Extraction · 46 ₱2,500 listed, both unticked, Total charges ₱0](../assets/charges-and-cashier/02-charges-unticked.webp)
 
 ### 2. Tick what you're charging
 
 Tap the box next to each line you want on the bill.
 
-You should see: a tick on each line, a short note such as **Extraction · 36 added to the invoice** (with **Undo**), and the new **Total charges**. The yellow button now reads **End and send to cashier · ₱3,000**.
+You should see: a tick on each line, a short note such as **Extraction · 46 added to the invoice** (with **Undo**), and the new **Total charges**. The yellow button now reads **End and send to cashier · ₱3,000**.
 { .see }
 
 ![Both charge lines ticked, Total charges ₱3,000, and buttons End encounter and End and send to cashier · ₱3,000](../assets/charges-and-cashier/03-charges-ticked.webp)
@@ -63,7 +63,7 @@ Tap **Cashier** in the sidebar.
 You should see: the **Waiting** list. Each row shows the patient, the visit type, how many charges and when the bill was ready, and the amount. The number next to **Cashier** in the sidebar counts the bills waiting.
 { .see }
 
-![The Cashier page with five bills Waiting, including Ledesma, Mario, 2 charges, ₱3,000](../assets/charges-and-cashier/05-cashier-waiting.webp)
+![The Cashier page with the bills Waiting, including Ledesma, Mario, 2 charges, ₱3,000](../assets/charges-and-cashier/05-cashier-waiting.webp)
 
 Tap the **List** menu (it shows **Waiting**) to switch to the other lists: **In consultation**, **In progress** and **Paid today**.
 
@@ -74,7 +74,7 @@ Tap the patient's row.
 You should see: the invoice. **Items on this invoice** is in the middle, the totals are on the right, and **Collect · ₱X** is at the bottom. On the left, **Add to invoice** lets the cashier add more items from the price list.
 { .see }
 
-![The invoice for Ledesma, Mario: Consultation ₱500 and Extraction · 36 ₱2,500, Discount Apply, Coverage Apply, Balance due ₱3,000, Collect · ₱3,000](../assets/charges-and-cashier/06-invoice.webp)
+![The invoice for Ledesma, Mario: Consultation ₱500 and Extraction · 46 ₱2,500, Discount Apply, Coverage Apply, Balance due ₱3,000, Collect · ₱3,000](../assets/charges-and-cashier/06-invoice.webp)
 
 ### 7. Apply a Senior Citizen or PWD discount
 

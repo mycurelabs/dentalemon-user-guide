@@ -1,17 +1,19 @@
-import { expect, test } from '@playwright/test';
-import { settle, shot, signIn } from './helpers';
-import {
-  addItems,
-  facilityOf,
-  get,
-  openChart,
-  openEncounter,
-  patient,
-  recordDoneToday,
-  serviceByKey,
-} from './payments-fixtures';
+import { expect, test, type Page } from '@playwright/test';
+import { fixtures, settle, shot, signIn, toothEntry } from './helpers';
+import { facilityOf, openEncounter, patient } from './payments-fixtures';
+
+const { addItems, get, openChart, serviceByKey } = fixtures;
 
 const P = 'charges-and-cashier';
+
+// Back teeth, in the order re-runs extract them (FDI).
+const MOLARS_AND_PREMOLARS = ['46', '36', '47', '37', '26', '16', '45', '35', '44', '34', '25', '15', '24', '14', '17', '27'];
+
+/** The patient's chart record as text ('' before the first chart). */
+async function fetchChart(page: Page, patientId: string) {
+  const res = await page.request.get(`/api/medical-records/dlchart-${patientId}`);
+  return res.ok() ? res.text() : '';
+}
 
 // Made-up patients for this page only.
 const MARIO = {
@@ -34,25 +36,36 @@ const PILAR = {
 };
 
 test('charges and the cashier', async ({ page }) => {
+  test.setTimeout(1_200_000); // Many steps; the demo backend is slow while other pages capture.
   await signIn(page);
   const facility = await facilityOf(page);
   const dialog = page.getByRole('dialog');
 
   // ── Charges: Mario's visit, an extraction done today on 46.
   const marioId = await patient(page, facility, MARIO);
+  // Earlier runs left Mario's older bills waiting; open them at the desk (the app's own
+  // fixture) so the Waiting list pictures him once.
+  const older = await fixtures.get(page, `billing-invoices?facility=${facility}&subject=${marioId}&$limit=50`);
+  for (const inv of older.data ?? []) {
+    if (inv?.metadata?.cashier?.readyAt && !inv?.metadata?.cashier?.openedAt) await fixtures.openAtDesk(page, inv.id);
+  }
   const { encounterId, invoiceId } = await openEncounter(page, facility, marioId);
   const url = `/patients/${marioId}/encounters/${encounterId}`;
   await openChart(page, url);
   const inv0 = await get(page, `billing-invoices/${invoiceId}?$expand=items`);
-  // Each run is a new visit; extract a different tooth so a re-run never repeats one.
-  const visits = await get(page, `medical-encounters?facility=${facility}&patient=${marioId}&$limit=0`);
-  const tooth = ['46', '36', '47', '37', '26', '16'][Math.max(0, Number(visits.total ?? 1) - 1) % 6];
+  // Each run is a new visit: extract a tooth his chart doesn't already show as extracted
+  // (an extracted tooth can't take an abscess, so the wizard would refuse it).
+  const chart = await fetchChart(page, marioId);
+  const extracted = new Set([...chart.matchAll(/"state":\s*"extracted",\s*"tooth":\s*(\d+)/g)].map(m => m[1]));
+  const tooth = MOLARS_AND_PREMOLARS.find(t => !extracted.has(t));
+  expect(tooth, 'Mario still has a tooth to extract; reset his chart in the demo data').toBeTruthy();
   if (!(inv0.items ?? []).length) {
     await page.goto(`${url}?tooth=${tooth}`);
     await expect(page.getByTestId('tooth-create-record').filter({ visible: true }).last()).toBeVisible({
       timeout: 60_000,
     });
-    await recordDoneToday(page, 'extraction');
+    // An abscess with its extraction done today, as the app's own tooth-entry helper records it.
+    await toothEntry.recordTreatment(page, 'extraction', 'done');
   }
 
   await page.goto(url);
@@ -87,7 +100,7 @@ test('charges and the cashier', async ({ page }) => {
   if (await sheet.isVisible().catch(() => false)) {
     await expect(send).toBeEnabled();
     await send.click();
-    await expect(sheet).toBeHidden({ timeout: 30_000 });
+    await expect(sheet).toBeHidden({ timeout: 120_000 });
   }
 
   // ── The Cashier: Waiting list.
@@ -98,7 +111,7 @@ test('charges and the cashier', async ({ page }) => {
 
   // The invoice.
   await row.click();
-  await expect(page.getByTestId('invoice-title')).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByTestId('invoice-title')).toBeVisible({ timeout: 180_000 });
   await shot(page, P, '06-invoice');
 
   // Senior Citizen discount (the ID on file fills in).

@@ -1,5 +1,5 @@
 import { expect, test, type Locator } from '@playwright/test';
-import { shot, signIn } from './helpers';
+import { fixtures, shot, signIn } from './helpers';
 
 const P = 'find-or-add-a-patient';
 
@@ -16,10 +16,24 @@ async function pickDate(scope: Locator, label: string, iso: string) {
   await page.getByTestId('date-apply').click();
 }
 
+/** Re-runnable: archive the Tomas Ignacio an earlier run added, so the list and search show one. */
+async function archiveEarlierTomas(page: Parameters<typeof fixtures.get>[0]) {
+  const found = await fixtures.get(page, 'personal-details?type=medical-patients&name.firstName=Tomas&name.lastName=Ignacio');
+  for (const p of found?.data ?? found ?? []) {
+    if (!p.pxArchived) await fixtures.patch(page, `medical-patients/${p.id}`, { archive: true });
+  }
+}
+
 test('find or add a patient', async ({ page }) => {
+  test.setTimeout(600_000); // slow when several captures share the machine
   await signIn(page);
-  await page.getByRole('link', { name: 'Patients', exact: true }).first().click();
-  await expect(page).toHaveURL(/\/patients/);
+  await archiveEarlierTomas(page);
+  // A tap, as on the iPad. Right after sign-in the shell can still be settling and drop
+  // the first tap, so tap again until the page changes.
+  await expect(async () => {
+    await page.getByRole('link', { name: 'Patients', exact: true }).first().tap();
+    await expect(page).toHaveURL(/\/patients/, { timeout: 15_000 });
+  }).toPass({ timeout: 120_000 });
   await shot(page, P, '01-patients-list');
 
   const search = page.getByPlaceholder('Name or patient number');
@@ -48,8 +62,12 @@ test('find or add a patient', async ({ page }) => {
   await dialog.getByLabel('Email', { exact: true }).fill('tomas.ignacio@dl.test');
   await shot(page, P, '05-contact');
 
+  // The toast only stays a few seconds: wait for it from the moment of the tap, then capture at once.
+  const toast = page.getByText('Patient added').waitFor({ timeout: 30_000 });
   await dialog.getByRole('button', { name: 'Add patient', exact: true }).click();
   await page.waitForURL(/\/patients\/[^/?]+/, { timeout: 30_000 });
-  await expect(page.getByText('Patient added')).toBeVisible();
+  await toast;
+  // Let Record logs finish loading (placeholders gone) while the toast is still up.
+  await page.locator('.animate-pulse').first().waitFor({ state: 'hidden', timeout: 4_000 }).catch(() => {});
   await shot(page, P, '06-patient-added');
 });

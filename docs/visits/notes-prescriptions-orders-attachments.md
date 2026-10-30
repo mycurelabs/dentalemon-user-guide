@@ -49,7 +49,7 @@ A message says **Added chief complaint**, and the note appears as a card under *
 
 Tap **Prescription** in the row of views, then **Add prescription**.
 
-Type part of the name in **Search medicines by name, brand or strength**, for example *amox*, then tap the medicine and strength you want.
+Type part of the name in **Search name, brand or strength**, for example *amox*, then tap the medicine and strength you want.
 
 You should see: a list of matching medicines under **Medicines**.
 { .see }
@@ -146,9 +146,9 @@ You should see: **1 order selected** with **Send** and **Discontinue…**.
 
 ![Clinic orders filtered to Draft for one patient, with one order ticked and the Send and Discontinue buttons](../assets/notes-prescriptions-orders-attachments/10b-orders-send.webp)
 
-The order's status changes to **Requested**, and **Order sent** appears with **Undo**.
+**Order sent** appears with **Undo**. The order is now **Requested**, so it leaves the **Draft** list.
 
-![Clinic orders after sending: the message Order sent with Undo, and the order now Requested](../assets/notes-prescriptions-orders-attachments/10c-orders-sent.webp)
+![Clinic orders after sending: the message Order sent with Undo, and only the prescription still listed as Draft](../assets/notes-prescriptions-orders-attachments/10c-orders-sent.webp)
 
 ## Attach photos and documents
 

@@ -17,6 +17,13 @@ test('settings basics', async ({ page }) => {
 
   const dialog = page.getByTestId('settings-dialog');
   await expect(dialog).toBeVisible({ timeout: 30_000 });
+  // Start the picture at Title: the Profile photo hint above it still mentions the removed
+  // AI chat (an app text bug), so it is scrolled out of the frame rather than shown.
+  await page
+    .getByTestId('settings-pane')
+    .getByText('Title', { exact: true })
+    .first()
+    .evaluate(el => el.scrollIntoView({ block: 'start' }));
   await shot(page, P, '02-profile');
 
   const open = async (key: string, name: string, scrollTo?: string) => {

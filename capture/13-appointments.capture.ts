@@ -1,21 +1,17 @@
-// Re-running: earlier runs leave a checked-in "Ferrer, Paula" booking that the app cannot cancel.
-// Delete those rows from the demo database first (see the guide README), or the lists show her twice.
+// Re-running: the app cannot cancel a checked-in booking, so a re-run leaves the previous run's
+// checked-in "Ferrer, Paula" (her patient is archived below, but the booking and its encounter stay).
+// Delete those rows from the private demo database first, or lists show her twice.
 import { expect, test, type Page } from '@playwright/test';
-import { shot, signIn } from './helpers';
+import { fixtures, shot, signIn } from './helpers';
 
 const P = 'appointments';
 
-async function api(page: Page, method: 'get' | 'post', path: string, data?: unknown) {
-  const res = await page.request[method](`/api/${path}`, data ? { data } : undefined);
-  expect(res.ok(), `${method} ${path}`).toBe(true);
-  return res.json();
-}
-
-/** A made-up patient for this run (synthetic data only). */
-async function newPatient(page: Page, first: string, last: string, sex: 'female' | 'male') {
-  const session = await api(page, 'get', 'auth/get-session');
-  const facility = session.session.activeOrganizationId;
-  return api(page, 'post', 'medical-patients', {
+/**
+ * A made-up patient for this run (synthetic data only). Local because
+ * fixtures.patientWithEncounter names patients with test labels and opens an encounter.
+ */
+async function newPatient(page: Page, facility: string, first: string, last: string, sex: 'female' | 'male') {
+  return fixtures.post(page, 'medical-patients', {
     facility,
     personalDetails: { name: { firstName: first, lastName: last }, sex, dateOfBirth: '1985-07-02', mobileNo: '0917 000 0031' },
   });
@@ -24,26 +20,31 @@ async function newPatient(page: Page, first: string, last: string, sex: 'female'
 const toast = (page: Page, text: RegExp) => page.locator('[data-sonner-toast]').filter({ hasText: text }).first();
 
 test('appointments', async ({ page }) => {
+  test.setTimeout(600_000); // slow when several captures share the machine
   await signIn(page);
   // Tidy the previous run: cancel its bookings and archive its patient, so lists show one Paula.
-  const session = await api(page, 'get', 'auth/get-session');
+  const session = await fixtures.get(page, 'auth/get-session');
   const facility = session.session.activeOrganizationId;
-  const old = await api(page, 'get', `personal-details?type=medical-patients&facility=${facility}&name.lastName=Ferrer&$limit=20`);
+  const old = await fixtures.get(page, `personal-details?type=medical-patients&facility=${facility}&name.lastName=Ferrer&$limit=20`);
   for (const p of old.data ?? old) {
-    const bookings = await api(page, 'get', `booking/bookings?organization=${facility}&client=${p.id}&$limit=50`);
+    const bookings = await fixtures.get(page, `booking/bookings?organization=${facility}&client=${p.id}&$limit=50`);
     for (const b of bookings.data ?? []) {
-      if (['pending', 'confirmed'].includes(b.status)) await api(page, 'post', `booking/bookings/${b.id}/cancel`, { reason: 'Guide re-run' });
+      if (['pending', 'confirmed'].includes(b.status)) await fixtures.post(page, `booking/bookings/${b.id}/cancel`, { reason: 'Guide re-run' });
     }
-    await page.request.patch(`/api/medical-patients/${p.id}`, { data: { archive: true } });
+    if (!p.pxArchived) await fixtures.patch(page, `medical-patients/${p.id}`, { archive: true });
   }
-  const paula = await newPatient(page, 'Paula', 'Ferrer', 'female');
+  const paula = await newPatient(page, facility, 'Paula', 'Ferrer', 'female');
 
+  // Wait for the real calendar and list, not a fixed time: under load the skeleton can stay a while.
+  const skeleton = page.getByTestId('appointments-skeleton');
   await page.goto('/appointments?view=week');
-  await page.waitForTimeout(1500);
+  await expect(page.getByTestId('calendar-period')).toBeVisible({ timeout: 60_000 });
+  await expect(skeleton).toHaveCount(0, { timeout: 60_000 });
   await shot(page, P, '01-calendar-week');
 
   await page.goto('/appointments?view=list');
-  await page.waitForTimeout(1500);
+  await expect(page.getByTestId('data-table-row').first()).toBeVisible({ timeout: 60_000 });
+  await expect(skeleton).toHaveCount(0, { timeout: 60_000 });
   await shot(page, P, '02-list');
 
   await page.getByTestId('new-appointment').click();
@@ -65,6 +66,7 @@ test('appointments', async ({ page }) => {
   await page.getByTestId('booking-submit').click();
   const booked = toast(page, /^Booked /);
   await expect(booked).toBeVisible({ timeout: 30_000 });
+  await expect(booking).toBeHidden({ timeout: 30_000 }); // the picture is the list with the toast, not the closing sheet
   await shot(page, P, '04-booked');
   await booked.getByRole('button', { name: 'View', exact: true }).click();
 

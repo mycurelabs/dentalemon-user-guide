@@ -4,3 +4,4 @@ node_modules/
 capture/.auth/
 capture/test-results/
 __pycache__/
+app-e2e/

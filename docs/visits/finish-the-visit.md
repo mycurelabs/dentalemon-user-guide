@@ -46,12 +46,12 @@ You should see: the ticked charges and the total, for example **₱2,300**.
 
 Under **Follow-up**, choose **None**, **1 week**, **2 weeks**, **1 month**, or **Date** to pick a day yourself.
 
-Dentalemon finds the first open time and shows it in a card, for example **Fri, Nov 6 · 9:30 AM · 30 min follow-up**. The booking is made when you end the encounter.
+Dentalemon finds the first open time and shows it in a card with the day, time and length, for example **Fri, Nov 6** and **10:30 AM · 30 min follow-up**. The booking is made when you end the encounter.
 
 You should see: the follow-up card under the choices.
 { .see }
 
-![The Follow-up section with 1 week chosen and a card for Fri, Nov 6 at 9:30 AM, 30 min follow-up; End encounter and End and send to cashier ₱2,300 at the bottom](../assets/finish-the-visit/03-follow-up.webp){ .shot-sm }
+![The Follow-up section with 1 week chosen and a card with the follow-up date and time (30 min follow-up); End encounter and End and send to cashier ₱2,300 at the bottom](../assets/finish-the-visit/03-follow-up.webp){ .shot-sm }
 
 ### 4. End the encounter
 

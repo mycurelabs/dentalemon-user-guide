@@ -1,36 +1,39 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
 const ASSETS = resolve(dirname(fileURLToPath(import.meta.url)), '../docs/assets');
 
-export const EMAIL = process.env.GUIDE_EMAIL || 'dr.ana@dl.test';
-export const PASSWORD = process.env.GUIDE_PASSWORD || '';
+/**
+ * The app's own e2e helpers are reused, not copied: APP_DIR points at the app
+ * inside a monorepo checkout (e.g. <checkout>/apps/dentalemon), and its
+ * e2e/ modules are imported from there. `bun run link` makes this folder use
+ * that checkout's Playwright, so both sides share one Playwright instance.
+ */
+const APP_DIR = process.env.APP_DIR;
+if (!APP_DIR) throw new Error('Set APP_DIR to the app folder in a monorepo checkout (…/apps/dentalemon).');
 
-/** Signs the demo account in through the login page, then puts away What's new. */
-export async function signIn(page: Page, email = EMAIL, password = PASSWORD) {
-  if (!password) throw new Error('Set GUIDE_PASSWORD for the demo account.');
-  await page.goto('/login');
-  await page.fill('#email', email);
-  await page.fill('#password', password);
-  await page.getByRole('button', { name: /^Sign in$/ }).click();
-  await expect(page).not.toHaveURL(/\/login/, { timeout: 60_000 });
-  await dismissWhatsNew(page);
-}
+// The app's e2e.config reads these at import time; set them before importing.
+process.env.E2E_EMAIL ||= process.env.GUIDE_EMAIL || 'dr.ana@dl.test';
+if (!process.env.E2E_PASSWORD && !process.env.GUIDE_PASSWORD) throw new Error('Set GUIDE_PASSWORD for the demo account.');
+process.env.E2E_PASSWORD ||= process.env.GUIDE_PASSWORD;
 
-/** A real sign-in opens What's new once; close it if it shows up. */
-export async function dismissWhatsNew(page: Page) {
-  const reader = page.getByTestId('whats-new');
-  try {
-    await reader.waitFor({ state: 'visible', timeout: 6_000 });
-  } catch {
-    return;
-  }
-  await page.getByTestId('whats-new-done').click();
-  await expect(reader).toBeHidden();
-}
+const e2e = (file: string) => import(join(APP_DIR, 'e2e', file));
+
+/** apps/<app>/e2e/sign-in.ts: signIn, dismissWhatsNew, openSettings. */
+export const signInHelpers: typeof import('./app-e2e/sign-in') = await e2e('sign-in.ts');
+/** apps/<app>/e2e/charges-cashier.fixtures.ts: API helpers, encounters, invoices, the Charges sheet. */
+export const fixtures: typeof import('./app-e2e/charges-cashier.fixtures') = await e2e('charges-cashier.fixtures.ts');
+/** apps/<app>/e2e/tooth-entry.ts: the tooth panel's record wizard. */
+export const toothEntry: typeof import('./app-e2e/tooth-entry') = await e2e('tooth-entry.ts');
+/** apps/<app>/e2e/patient-page.fixtures.ts: date formats and a patient with charted history. */
+export const patientPage: typeof import('./app-e2e/patient-page.fixtures') = await e2e('patient-page.fixtures.ts');
+
+export const { signIn, dismissWhatsNew, openSettings } = signInHelpers;
+export const EMAIL = process.env.E2E_EMAIL;
+export const PASSWORD = process.env.E2E_PASSWORD;
 
 /** Waits for network quiet, running animations and fonts, so a capture never catches a half-drawn screen. */
 export async function settle(page: Page) {
@@ -57,8 +60,9 @@ export async function settle(page: Page) {
 
 /**
  * Replaces on-screen text before a capture (display only, nothing is saved).
- * Used when a run needs a unique value, such as a throwaway sign-up email,
- * but the picture should show the tidy one the page describes.
+ * Used only for values the run must make unique, such as a throwaway sign-up
+ * email, so the picture shows the tidy one the page describes. Never use it
+ * to hide app text: crop instead, and report the app bug.
  */
 export async function showText(page: Page, from: RegExp, to: string) {
   await page.evaluate(
@@ -78,6 +82,8 @@ export interface ShotOptions {
   el?: Locator;
   /** Scroll this into view first. */
   at?: Locator;
+  /** Capture only this part of the screen, in CSS pixels. */
+  clip?: { x: number; y: number; width: number; height: number };
 }
 
 /**
@@ -92,6 +98,6 @@ export async function shot(page: Page, pageSlug: string, name: string, opts: Sho
   await settle(page);
   const png = opts.el
     ? await opts.el.screenshot({ animations: 'disabled', caret: 'hide' })
-    : await page.screenshot({ animations: 'disabled', caret: 'hide' });
+    : await page.screenshot({ animations: 'disabled', caret: 'hide', clip: opts.clip });
   await sharp(png).webp({ quality: 82 }).toFile(file);
 }

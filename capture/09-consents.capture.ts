@@ -1,19 +1,22 @@
-import { expect, test } from '@playwright/test';
+import { expect as baseExpect, test } from '@playwright/test';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { settle, shot, signIn } from './helpers';
-import { api, facilityOf, syntheticImage } from './visits.lib';
+import { fixtures, settle, shot, signIn } from './helpers';
+import { syntheticImage } from './visits.lib';
 
 const P = 'consents';
+// WebKit renders in software here and other runs share the machine: allow slow steps.
+const expect = baseExpect.configure({ timeout: 60_000 });
+test.setTimeout(1_200_000);
 
 test('consents', async ({ page }) => {
   await signIn(page);
-  const facility = await facilityOf(page);
+  const facility = (await fixtures.get(page, 'auth/get-session'))?.session?.activeOrganizationId as string;
   // A made-up patient with no consent on file yet (re-used by name across runs).
-  const found = await api(page, 'get', `personal-details?type=medical-patients&facility=${facility}&$search[text]=Pangilinan&$limit=20`);
+  const found = await fixtures.get(page, `personal-details?type=medical-patients&facility=${facility}&$search[text]=Pangilinan&$limit=20`);
   let id = (found?.data ?? []).find((p: any) => p?.name?.lastName === 'Pangilinan' && p?.name?.firstName === 'Rodrigo')?.id;
   if (!id) {
-    const created = await api(page, 'post', 'medical-patients', {
+    const created = await fixtures.post(page, 'medical-patients', {
       facility,
       personalDetails: {
         name: { firstName: 'Rodrigo', lastName: 'Pangilinan' },
@@ -36,9 +39,9 @@ test('consents', async ({ page }) => {
   await shot(page, P, '01-policies-and-consents');
 
   // 2. Record consent: pick the document.
-  await policies.getByTestId('consent-record').click();
+  await policies.getByTestId('consent-record').tap();
   await expect(sheet).toBeVisible();
-  await sheet.getByText('General treatment consent').click();
+  await sheet.getByText('General treatment consent').tap();
   await shot(page, P, '02-record-consent', { el: sheet });
 
   // 3. Signed paper: a photo of the signed form (a made-up image).
@@ -61,7 +64,7 @@ test('consents', async ({ page }) => {
 
   // Back to signed paper and save.
   await sheet.locator('[data-testid^="consent-method-"]').first().check();
-  await sheet.getByTestId('consent-save').click();
+  await sheet.getByTestId('consent-save').tap();
   await expect(sheet).toBeHidden({ timeout: 30_000 });
   const general = policies.locator('[data-consent="general"]');
   await expect(general.getByTestId('consent-status').first()).toHaveText('Signed', { timeout: 30_000 });

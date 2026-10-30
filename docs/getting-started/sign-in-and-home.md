@@ -23,7 +23,7 @@ You should see: **Welcome back**, with your email and password boxes.
 
 ### 2. If you forgot your password
 
-Tap **Forgot your password?** under the password box. Type your **Email address** and tap **Send reset code**.
+Tap **Forgot your password?**, next to **Password**. Type your **Email address** and tap **Send reset code**.
 You get a 6-digit code by email. Type it in to set a new password. The code works for 15 minutes.
 
 You should see: **Reset your password**. Tap **Back to sign in** if you remembered it after all.

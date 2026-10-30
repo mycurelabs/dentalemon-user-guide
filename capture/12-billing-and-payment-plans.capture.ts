@@ -4,24 +4,25 @@ import { settle, shot, signIn } from './helpers';
 const P = 'billing-and-payment-plans';
 
 test('billing, balances and payment plans', async ({ page }) => {
+  test.setTimeout(900_000); // Billing reports are slow on the demo backend.
   await signIn(page);
   const sections = page.getByRole('tablist', { name: 'Billing sections' });
 
   // Transactions (the default tab).
   await page.goto('/billing');
-  await expect(page.getByTestId('data-table').first()).toBeVisible({ timeout: 90_000 });
+  await expect(page.getByTestId('data-table').first()).toBeVisible({ timeout: 240_000 });
   await shot(page, P, '01-transactions');
 
   // Total sales.
   await page.goto('/billing?tab=sales');
   await expect(page.locator('[data-testid=kpi-tile], [data-testid=data-table]').first()).toBeVisible({
-    timeout: 90_000,
+    timeout: 240_000,
   });
   await shot(page, P, '02-total-sales');
 
   // Payments due, a row's actions, Record payment (cancelled: nothing is saved).
   await page.goto('/billing?tab=balances');
-  await expect(page.getByTestId('data-table').first()).toBeVisible({ timeout: 90_000 });
+  await expect(page.getByTestId('data-table').first()).toBeVisible({ timeout: 240_000 });
   await shot(page, P, '03-payments-due');
   const trigger = page.getByRole('button', { name: /^More actions for / }).first();
   await trigger.click();
@@ -35,7 +36,7 @@ test('billing, balances and payment plans', async ({ page }) => {
 
   // Accounts receivable: what HMOs and PhilHealth owe.
   await page.goto('/billing?tab=receivables');
-  await expect(page.locator('[data-testid=kpi-tile]').first()).toBeVisible({ timeout: 90_000 });
+  await expect(page.locator('[data-testid=kpi-tile]').first()).toBeVisible({ timeout: 240_000 });
   await shot(page, P, '06-accounts-receivable');
   const claimTrigger = page.getByRole('button', { name: /^More actions for / }).first();
   if (await claimTrigger.isVisible({ timeout: 30_000 }).catch(() => false)) {
@@ -48,7 +49,7 @@ test('billing, balances and payment plans', async ({ page }) => {
 
   // Payment plans and the create form (not saved).
   await page.goto('/billing?tab=plans');
-  await expect(page.getByTestId('create-payment-plan')).toBeVisible({ timeout: 90_000 });
+  await expect(page.getByTestId('create-payment-plan')).toBeVisible({ timeout: 240_000 });
   await settle(page);
   await shot(page, P, '08-payment-plans');
   await page.getByTestId('create-payment-plan').click();

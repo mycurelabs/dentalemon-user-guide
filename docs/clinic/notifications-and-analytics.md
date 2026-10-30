@@ -19,7 +19,7 @@ Tap the bell at the top right.
 You should see: the **Notifications** panel with **All** and **Unread**, your newest notifications, and **View all notifications** at the bottom.
 { .see }
 
-![The bell's Notifications panel over Home: All 100, Unread 7, Mark all as read, a critical lab result, booking requests and an appointment confirmation](../assets/notifications-and-analytics/01-bell.webp)
+![The bell's Notifications panel over Home: All and Unread counts, Mark all as read, a critical lab result, booking requests and an appointment confirmation](../assets/notifications-and-analytics/01-bell.webp)
 
 Tap a notification to open what it's about. Tap the **✓** on its right to mark it read.
 
@@ -41,7 +41,7 @@ Tap **Analytics** in the sidebar. Pick a range at the top right: **Last 7 days**
 You should see: the **Overview** tab with **Visits**, **New patients**, **Net revenue** and **Collection rate**. Each is compared with the previous period of the same length (for example *Up 7% · Favorable change vs previous 30 days*). Below are the **Total patient visits** and **Billed vs collected** charts.
 { .see }
 
-![Analytics Overview for the last 30 days: Visits 345 up 7%, New patients 58, Net revenue ₱262,960, Collection rate 79%, and the Total patient visits chart](../assets/notifications-and-analytics/03-analytics-overview.webp)
+![Analytics Overview for the last 30 days: Visits, New patients, Net revenue and Collection rate tiles with their change, and the Total patient visits chart](../assets/notifications-and-analytics/03-analytics-overview.webp)
 
 ### 4. Revenue
 
@@ -53,13 +53,13 @@ Tap **Revenue**: **Net revenue**, **Collected**, **Outstanding (patients)** and 
 
 Tap **Patients**: **Unique patients**, **New**, **Returning** and **Senior / PWD visits**, the **New vs returning visits** chart, then **Age and sex** and **Top visit reasons**.
 
-![The Patients tab: Unique patients 173, New 58, Returning 135, Senior / PWD visits 26%, and the New vs returning visits chart](../assets/notifications-and-analytics/05-analytics-patients.webp)
+![The Patients tab: Unique patients, New, Returning and Senior / PWD visits tiles, and the New vs returning visits chart](../assets/notifications-and-analytics/05-analytics-patients.webp)
 
 ### 6. Clinical
 
 Tap **Clinical**: **Encounters**, **Orders placed**, **Prescriptions** and **Top diagnosis**, then the **Top diagnoses** chart, **Orders by type** and **Prescriptions issued**.
 
-![The Clinical tab: Encounters 345, Orders placed 80, Prescriptions 199, Top diagnosis K02.1 Dental caries, and the Top diagnoses bar chart](../assets/notifications-and-analytics/06-analytics-clinical.webp)
+![The Clinical tab: Encounters, Orders placed, Prescriptions and Top diagnosis tiles, and the Top diagnoses bar chart](../assets/notifications-and-analytics/06-analytics-clinical.webp)
 
 ## Tips
 

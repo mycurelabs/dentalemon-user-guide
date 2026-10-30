@@ -27,13 +27,20 @@ They come from the scripts in `capture/`, which drive a running copy of the app 
 **made-up demo data**. This repository is public: never capture real patients, real clinics,
 staff emails, server addresses or developer tools.
 
+The scripts run in WebKit (Safari's engine) as an 11" iPad in landscape, with touch. They reuse the
+app's own end-to-end helpers (sign-in, patients, encounters, charges, the tooth-entry wizard)
+straight from a checkout of the app's monorepo, so they need that checkout and its installed packages.
+
 ```bash
 cd capture
-bun install                 # or npm install
-npx playwright install chromium   # first time only
-APP_URL=<app address> GUIDE_EMAIL=<demo account> GUIDE_PASSWORD=<password> \
-  npx playwright test --config capture.config.ts             # all pages
-  npx playwright test --config capture.config.ts 06-chart    # one page
+bun install                                   # sharp, for WebP
+./link-app.sh /path/to/monobase-mycure        # use that checkout's Playwright (one shared copy)
+node_modules/.bin/playwright install webkit   # first time only
+
+export APP_URL=<app address> APP_DIR=/path/to/monobase-mycure/apps/dentalemon
+export GUIDE_EMAIL=<demo account> GUIDE_PASSWORD=<password>
+node_modules/.bin/playwright test --config capture.config.ts             # all pages
+node_modules/.bin/playwright test --config capture.config.ts 06-chart    # one page
 ```
 
 Look at every new picture before committing it.

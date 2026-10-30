@@ -47,18 +47,18 @@ You should see: the patient's name, and the visit reason with its length.
 
 ### 4. Pick a day and time, then book
 
-Scroll to **Date and time**. Tap a day, then one of the times shown. Only free times appear, for example **Fri, Oct 30 · 11 times available**.
+Scroll to **Date and time**. Tap a day, then one of the times shown. Only free times appear, and the line above them says how many, for example **Fri, Oct 30 · 8 times available**.
 
 Under **Status**, choose **Confirmed** if the patient has agreed to the time, or **Not yet confirmed** if you still need to check with them. Tap **Book**.
 
 You should see: your chosen day circled and the time highlighted in yellow.
 { .see }
 
-![The New appointment form scrolled down: a month calendar, available time buttons with 10:00 AM selected, Status Confirmed, and Book](../assets/appointments/03-new-appointment.webp)
+![The New appointment form scrolled down: a month calendar, available time buttons with the first one selected, Status Confirmed, and Book](../assets/appointments/03-new-appointment.webp)
 
 ### 5. Check the booking
 
-A message confirms the booking, for example **Booked Ferrer, Paula · Fri, Oct 30 · 10:00 – 10:30 AM**. Tap **View** on it to open the appointment.
+A message confirms the booking with the patient, day and time, for example **Booked Ferrer, Paula · Fri, Oct 30 · 12:00 – 12:30 PM**. Tap **View** on it to open the appointment.
 
 You should see: the new appointment in the list.
 { .see }

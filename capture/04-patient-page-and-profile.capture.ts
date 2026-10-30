@@ -10,6 +10,7 @@ const tab = (page: Page, name: string) =>
     .first();
 
 test('the patient page and profile', async ({ page }) => {
+  test.setTimeout(600_000); // slow when several captures share the machine
   await signIn(page);
   await page.goto(`/patients/${JUAN}`);
   await expect(page.getByTestId('patient-switcher')).toBeVisible({ timeout: 30_000 });
