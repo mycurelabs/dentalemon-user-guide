@@ -9,7 +9,9 @@ theme:
   logo: assets/brand/icon.svg
   favicon: assets/brand/icon.svg
   font: false
-  # Light is the default. The reader's choice is kept in the browser until its site data is cleared.
+  # Light is the default for every new visitor; the header switch flips to dark.
+  # The theme stores the choice in the browser's site storage, so it holds
+  # across refreshes until the visitor clears their browsing data.
   palette:
     - scheme: default
       primary: custom
@@ -25,11 +27,11 @@ theme:
         name: Switch to light mode
   features:
     - navigation.instant
+    - navigation.path
     - navigation.sections
     - navigation.footer
     - navigation.top
     - navigation.indexes
-    - navigation.path
     - search.highlight
     - search.suggest
     - content.tooltips
@@ -37,9 +39,6 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
-
-extra_javascript:
-  - javascripts/extra.js
 
 plugins:
   - search

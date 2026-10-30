@@ -1,537 +1,293 @@
-/*
- * Dentalemon guide, Apple-style.
- * Grey surfaces, one accent (lemon), content first. Lemon is a fill for
- * badges and selection only; text on lemon is ink, and links use dark lemon.
- */
+/* Dentalemon guide: Apple-style reading surface on top of MkDocs Material.
+   Grayscale palette with one accent (link blue). Status colours (green check,
+   orange warning) always sit next to an icon and a label. */
 
 /* ---------- Tokens ---------- */
 
-:root {
-  --dl-lemon: #ffce3d;
-  --dl-ink: #1d1d1f;
-  --dl-r: 12px;
-  --dl-r-sm: 8px;
-  --dl-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --dl-icon-clock: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16m0-18a10 10 0 1 1 0 20 10 10 0 0 1 0-20m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>');
-  --dl-icon-check: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20m-1.5 14.5 7-7-1.4-1.4-5.6 5.6-2.6-2.6L6.5 12.5z"/></svg>');
-  --dl-icon-chevron: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg>');
-  --md-primary-fg-color: var(--dl-lemon);
-  --md-primary-fg-color--light: #ffe08a;
-  --md-primary-fg-color--dark: #e6b520;
-  --md-primary-bg-color: var(--dl-ink);
-  --md-primary-bg-color--light: #1d1d1fb3;
-}
-
+:root,
 [data-md-color-scheme="default"] {
-  --md-default-bg-color: #ffffff;
-  --md-default-fg-color: var(--dl-ink);
-  --md-default-fg-color--light: #6e6e73;
-  --md-default-fg-color--lighter: #86868b;
-  --md-default-fg-color--lightest: #f2f2f7;
-  --md-code-bg-color: #f2f2f7;
-  --md-accent-fg-color: #8a6200;
-  --md-typeset-a-color: #8a6200;
-  --md-footer-bg-color: #f2f2f7;
-  --md-footer-bg-color--dark: #f2f2f7;
-  --md-footer-fg-color: var(--dl-ink);
-  --md-footer-fg-color--light: #6e6e73;
-  --md-footer-fg-color--lighter: #6e6e73;
-  --dl-elev: #f2f2f7;
-  --dl-elev-hover: #e8e8ed;
-  --dl-sep: #d2d2d7;
-  --dl-selected: #fff3c4;
-  --dl-field: #e8e8ed;
-  --dl-field-text: #48484a;
-  --dl-control-border: #86868b;
-  --dl-bar-solid: #ffffff;
-  --dl-bar-glass: rgb(255 255 255 / 80%);
-  --dl-ok: #1f7a4d;
-  --dl-warn: #b25000;
-  --dl-info: #0060c0;
-  --dl-shot-shadow: 0 2px 12px rgb(0 0 0 / 7%);
+  --guide-fg: #1d1d1f;
+  --guide-fg-2: #6e6e73;             /* secondary text: 5.07:1 on white */
+  --guide-bg: #ffffff;
+  --guide-elev: #f5f5f7;             /* grouped surfaces */
+  --guide-elev-hover: #ebebef;
+  --guide-sep: #d2d2d7;              /* hairlines (decorative) */
+  --guide-chevron: #86868b;
+  --guide-accent: #735200;          /* brand lemon, deepened for text: 7.15:1 on white, 6.02:1 on hover panels */
+  --guide-ok: #248a3d;
+  --guide-warn: #b64400;
+  --guide-bar: rgb(251 251 253 / 80%);
+  --guide-bar-solid: #fbfbfd;
+  --guide-img-shadow: 0 1px 2px rgb(0 0 0 / 4%), 0 6px 20px rgb(0 0 0 / 6%);
+  --guide-r: 12px;
+
+  --md-default-fg-color: var(--guide-fg);
+  --md-default-fg-color--light: var(--guide-fg-2);
+  --md-default-bg-color: var(--guide-bg);
+  --md-typeset-color: var(--guide-fg);
+  --md-typeset-a-color: var(--guide-accent);
+  --md-typeset-table-color: var(--guide-sep);
+  --md-primary-fg-color: var(--guide-bar-solid);
+  --md-primary-fg-color--light: var(--guide-elev);
+  --md-primary-fg-color--dark: var(--guide-fg);
+  --md-primary-bg-color: var(--guide-fg);
+  --md-primary-bg-color--light: var(--guide-fg-2);
+  --md-accent-fg-color: var(--guide-accent);
+  --md-footer-bg-color: var(--guide-elev);
+  --md-footer-bg-color--dark: var(--guide-elev);
+  --md-footer-fg-color: var(--guide-fg);
+  --md-footer-fg-color--light: var(--guide-fg-2);
+  --md-footer-fg-color--lighter: var(--guide-fg-2);
 }
 
-/* Dark is its own palette, not an inversion: lighter surfaces lift, shadows go. */
+/* Dark is its own palette, not an inversion: black page, lighter raised surfaces. */
 [data-md-color-scheme="slate"] {
-  --md-default-bg-color: #1c1c1e;
-  --md-default-bg-color--light: #1c1c1eb3;
-  --md-default-fg-color: #f5f5f7;
-  --md-default-fg-color--light: #9e9ea3;
-  --md-default-fg-color--lighter: #7c7c80;
-  --md-default-fg-color--lightest: #2c2c2e;
-  --md-code-bg-color: #2c2c2e;
-  --md-typeset-color: #f5f5f7;
-  --md-accent-fg-color: #ffd866;
-  --md-typeset-a-color: #ffd866;
-  --md-footer-bg-color: #2c2c2e;
-  --md-footer-bg-color--dark: #232325;
-  --md-footer-fg-color: #f5f5f7;
-  --md-footer-fg-color--light: #9e9ea3;
-  --md-footer-fg-color--lighter: #9e9ea3;
-  --dl-elev: #2c2c2e;
-  --dl-elev-hover: #3a3a3c;
-  --dl-sep: #38383a;
-  --dl-selected: #43391a;
-  --dl-field: #3a3a3c;
-  --dl-field-text: #c7c7cc;
-  --dl-control-border: #7c7c80;
-  --dl-bar-solid: #1c1c1e;
-  --dl-bar-glass: rgb(28 28 30 / 80%);
-  --dl-ok: #5fd39a;
-  --dl-warn: #ffb340;
-  --dl-info: #64a8ff;
-  --dl-shot-shadow: none;
+  --guide-fg: #f5f5f7;
+  --guide-fg-2: #a1a1a6;
+  --guide-bg: #000000;
+  --guide-elev: #1c1c1e;
+  --guide-elev-hover: #2c2c2e;
+  --guide-sep: #38383a;
+  --guide-chevron: #8e8e93;
+  --guide-accent: #ffce3d;          /* brand lemon: 9.39:1 or more on every dark surface */
+  --guide-ok: #30d158;
+  --guide-warn: #ff9f0a;
+  --guide-bar: rgb(22 22 23 / 80%);
+  --guide-bar-solid: #161617;
+  --guide-img-shadow: none;
+
+  --md-default-fg-color: var(--guide-fg);
+  --md-default-fg-color--light: var(--guide-fg-2);
+  --md-default-fg-color--lighter: #86868b;
+  --md-default-fg-color--lightest: var(--guide-sep);
+  --md-default-bg-color: var(--guide-bg);
+  --md-typeset-color: var(--guide-fg);
+  --md-typeset-a-color: var(--guide-accent);
+  --md-typeset-table-color: var(--guide-sep);
+  --md-primary-fg-color: var(--guide-bar-solid);
+  --md-primary-fg-color--light: var(--guide-elev);
+  --md-primary-fg-color--dark: var(--guide-fg);
+  --md-primary-bg-color: var(--guide-fg);
+  --md-primary-bg-color--light: var(--guide-fg-2);
+  --md-accent-fg-color: var(--guide-accent);
+  --md-footer-bg-color: var(--guide-elev);
+  --md-footer-bg-color--dark: var(--guide-elev);
+  --md-footer-fg-color: var(--guide-fg);
+  --md-footer-fg-color--light: var(--guide-fg-2);
+  --md-footer-fg-color--lighter: var(--guide-fg-2);
+}
+
+/* Continuous (squircle) corners where the browser supports them. */
+@supports (corner-shape: squircle) {
+  :root { --guide-r: 18px; }
+
+  .md-typeset img,
+  .md-typeset table:not([class]),
+  .md-typeset .admonition,
+  .md-typeset details,
+  .md-typeset .see,
+  .md-typeset p.meta + p.meta,
+  .md-typeset .grid.cards > ul > li,
+  .md-typeset .group ul {
+    corner-shape: squircle;
+  }
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* A little wider than the theme default, so screenshots are big enough to read. */
-.md-grid {
-  max-width: 68rem;
-}
-
-/* ---------- Focus and targets ---------- */
-
-html :focus-visible {
-  outline: 2px solid var(--md-typeset-a-color);
+:root :focus-visible {
+  outline: 2px solid var(--guide-accent);
   outline-offset: 2px;
 }
 
-.md-header__button,
-.md-top {
-  min-width: 44px;
-  min-height: 44px;
-}
+/* ---------- Header: a frosted bar that content scrolls beneath ---------- */
 
-/* Fingers on an iPad: every menu row is at least 44px tall. */
-@media (pointer: coarse) {
-  .md-nav__link {
-    min-height: 44px;
-    margin-top: 0;
-    align-items: center;
-  }
-
-  .md-path__item,
-  .md-path__link {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-  }
-}
-
-/* ---------- Header: a frosted bar the page scrolls under ---------- */
-
-.md-header {
-  background-color: var(--dl-bar-solid);
-  color: var(--md-default-fg-color);
-  border-bottom: 1px solid var(--dl-sep);
-}
-
+.md-header,
 .md-header--shadow {
-  box-shadow: none;
+  background-color: var(--guide-bar-solid);
+  color: var(--guide-fg);
+  box-shadow: 0 1px 0 var(--guide-sep);
 }
 
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .md-header {
-    background-color: var(--dl-bar-glass);
-    -webkit-backdrop-filter: saturate(180%) blur(16px);
-    backdrop-filter: saturate(180%) blur(16px);
+    background-color: var(--guide-bar);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
   }
 }
 
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more), (prefers-reduced-motion: reduce) {
   .md-header {
-    background-color: var(--dl-bar-solid);
+    background-color: var(--guide-bar-solid);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 }
 
-.md-header__title {
-  font-weight: 600;
+/* Header buttons (menu, light/dark switch, search) get a 44px touch target. */
+.md-header__button.md-icon {
+  box-sizing: content-box;
+  padding: 10px;
 }
 
-.md-header__button.md-logo img {
-  height: 1.6rem;
-}
-
-/* Search: a grey pill field, with a visible edge and readable placeholder. */
-@media screen and (min-width: 60em) {
-  .md-search__form {
-    height: 44px;
-  }
-
-  /* The theme places its 24px icons for a 36px field; centre them in ours. */
-  .md-search__icon[for="__search"],
-  .md-search__options {
-    top: 10px;
-  }
-}
-
-/* The clear (×) button keeps its small icon but gets a 44px hit area. */
-.md-search__form button.md-search__icon {
-  position: relative;
-}
-
-.md-search__form button.md-search__icon::after {
-  content: "";
-  position: absolute;
-  inset: -13px;
-}
-
-.md-search__form {
-  background-color: var(--dl-field);
-  border-radius: 999px;
-  box-shadow: inset 0 0 0 1px var(--dl-control-border);
-}
-
-.md-search__form:hover {
-  background-color: var(--dl-field);
-}
-
-.md-search__input,
-.md-search__input::placeholder,
-.md-search__icon {
-  color: var(--dl-field-text);
-}
-
-.md-search__input {
-  color: var(--md-default-fg-color);
-}
-
-/* The menu drawer on an iPad or phone: grey title, not a lemon slab. */
-@media screen and (max-width: 76.2344em) {
-  .md-nav--primary .md-nav__title[for="__drawer"] {
-    background-color: var(--dl-elev);
-    color: var(--md-default-fg-color);
-  }
-}
-
-/* ---------- Sidebar ---------- */
-
-.md-nav__item--section > .md-nav__link {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--md-default-fg-color--light);
-}
-
-/* The page you're on: a soft lemon selection, like a macOS sidebar. */
-.md-sidebar--primary .md-nav__link--active {
-  margin-left: -0.5rem;
-  padding: 0.2rem 0.5rem;
-  background: var(--dl-selected);
-  border-radius: var(--dl-r-sm);
-  color: var(--md-default-fg-color);
-  font-weight: 600;
-}
-
-/* ---------- Page text ---------- */
-
-/* Bold is semibold everywhere. The browser's "bolder" would give 700, or 900 inside semibold text. */
-.md-typeset strong,
-.md-typeset b {
-  font-weight: 600;
-}
-
-/* Body at about 17px: the guide is read on iPads, often at arm's length. */
-.md-typeset {
-  font-size: 0.86rem;
-  line-height: 1.6;
-}
-
-.md-typeset h1 {
-  margin-bottom: 0.5rem;
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  color: var(--md-default-fg-color);
-}
-
-.md-typeset h2 {
-  margin-top: 2.6rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-
-.md-typeset h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 2.2rem;
-  font-size: 1.02rem;
+.md-header__topic {
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
-/* Step headings get a numbered lemon badge (the number is wrapped by extra.js). */
-.md-typeset .step-num {
-  flex: none;
-  display: inline-grid;
-  place-items: center;
-  width: 1.7rem;
-  height: 1.7rem;
-  background: var(--dl-lemon);
-  border-radius: 50%;
-  color: var(--dl-ink);
-  font-size: 0.75rem;
+/* Search field: a quiet filled field inside the bar. */
+@media screen and (min-width: 60em) {
+  .md-search__form {
+    border-radius: 10px;
+    background-color: var(--guide-elev);
+  }
+
+  .md-search__form:hover {
+    background-color: var(--guide-elev-hover);
+  }
+
+  .md-search__input,
+  .md-search__input::placeholder,
+  .md-search__input ~ .md-search__icon {
+    color: var(--guide-fg-2);
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__input {
+    color: var(--guide-fg);
+  }
+}
+
+/* ---------- Reading text ---------- */
+
+.md-typeset {
+  font-size: 17px;
+  line-height: 1.53;
+  letter-spacing: -0.011em;
+}
+
+.md-typeset strong {
   font-weight: 600;
 }
 
-/* ---------- Top of each page ---------- */
-
-/* The one-sentence summary under the title. */
-.md-typeset h1 + .meta,
-.md-typeset .lead {
-  margin-top: 0;
-  font-size: 1.02rem;
-  line-height: 1.5;
-  color: var(--md-default-fg-color--light);
+/* Keep lines a comfortable length; pictures and tables keep their own width. */
+.md-typeset > :is(p:not(:has(img)), ul, ol, h1, h2, h3, .admonition, details) {
+  max-width: 44em;
 }
 
-/* Time and "You'll need": a quiet info row with a clock. */
-.md-typeset .meta + .meta {
-  position: relative;
-  padding: 0.6rem 0.9rem 0.6rem 2.5rem;
-  background: var(--dl-elev);
-  border-radius: var(--dl-r);
-  font-size: 0.78rem;
-  color: var(--md-default-fg-color);
+.md-typeset a:hover {
+  text-decoration: underline;
 }
 
-.md-typeset .meta + .meta::before {
-  content: "";
-  position: absolute;
-  left: 0.9rem;
-  top: 0.78rem;
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--md-default-fg-color--light);
-  -webkit-mask: var(--dl-icon-clock) center / contain no-repeat;
-  mask: var(--dl-icon-clock) center / contain no-repeat;
-}
-
-/* ---------- Grouped lists (Settings-app style) ----------
- * Used for Before you start, What's next, and the lists on the home page.
- * Rows sit flush in a rounded grey group, split by inset hairlines.
- */
-
-[dir] .md-typeset h2#before-you-start + ul,
-[dir] .md-typeset h2#whats-next + ul,
-[dir] .md-typeset .group > ul,
-[dir] .md-typeset .group > ol {
-  margin: 0.7rem 0 0;
-  padding: 0;
-  overflow: hidden;
-  list-style: none;
-  background: var(--dl-elev);
-  border-radius: var(--dl-r);
-}
-
-[dir] .md-typeset h2#before-you-start + ul > li,
-[dir] .md-typeset h2#whats-next + ul > li,
-[dir] .md-typeset .group > ul > li,
-[dir] .md-typeset .group > ol > li {
-  position: relative;
-  margin: 0;
-  padding: 0.65rem 1rem;
-}
-
-.md-typeset h2#before-you-start + ul > li + li::before,
-.md-typeset h2#whats-next + ul > li + li::before,
-.md-typeset .group > ul > li + li::before,
-.md-typeset .group > ol > li + li::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: var(--dl-inset, 1rem);
-  right: 0;
-  border-top: 1px solid var(--dl-sep);
-}
-
-/* Rows that are links: the whole row is tappable, with a chevron. */
-[dir] .md-typeset h2#whats-next + ul > li,
-[dir] .md-typeset .group.links > ul > li {
-  padding: 0;
-}
-
-.md-typeset h2#whats-next + ul a,
-.md-typeset .group.links a {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-height: 44px;
-  padding: 0.6rem 1rem;
-  color: var(--md-default-fg-color);
-  transition: background-color 120ms var(--dl-ease);
-}
-
-.md-typeset h2#whats-next + ul a::after,
-.md-typeset .group.links a::after {
-  content: "";
-  flex: none;
-  width: 1.1rem;
-  height: 1.1rem;
-  margin-left: auto;
-  background-color: var(--md-default-fg-color--lighter);
-  -webkit-mask: var(--dl-icon-chevron) center / contain no-repeat;
-  mask: var(--dl-icon-chevron) center / contain no-repeat;
-}
-
-.md-typeset h2#whats-next + ul a:hover,
-.md-typeset .group.links a:hover {
-  background-color: var(--dl-elev-hover);
-  color: var(--md-default-fg-color);
-}
-
-.md-typeset h2#whats-next + ul a:focus-visible,
-.md-typeset .group.links a:focus-visible {
-  outline-offset: -2px;
-}
-
-/* Rows with an icon, a title and a line of explanation. */
-.md-typeset .group.rich a {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-content: center;
-  gap: 0.1rem 0.85rem;
-  padding: 0.7rem 1rem;
-}
-
-.md-typeset .group.rich a > .twemoji {
-  grid-row: 1 / span 2;
-  grid-column: 1;
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  background: var(--dl-lemon);
-  border-radius: 50%;
-  color: var(--dl-ink);
-}
-
-.md-typeset .group.rich a > .twemoji svg {
-  width: 1.05rem;
-  height: 1.05rem;
-}
-
-.md-typeset .group.rich a > strong {
-  grid-column: 2;
-  align-self: end;
+/* Title ramp: semibold, tight tracking at large sizes. */
+.md-typeset h1 {
+  margin: 0 0 12px;
+  color: var(--guide-fg);
+  font-size: 34px;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
 }
 
-.md-typeset .group.rich a > .sub {
-  grid-column: 2;
-  align-self: start;
-  font-size: 0.76rem;
-  line-height: 1.4;
-  color: var(--md-default-fg-color--light);
-}
-
-.md-typeset .group.rich a::after {
-  grid-row: 1 / span 2;
-  grid-column: 3;
-}
-
-.md-typeset .group.rich {
-  --dl-inset: 3.85rem;
-}
-
-/* Numbered rows: a lemon number, then the text. */
-.md-typeset .group.numbered {
-  --dl-inset: 3rem;
-}
-
-.md-typeset .group.numbered > ol {
-  counter-reset: item;
-}
-
-[dir] .md-typeset .group.numbered > ol > li {
-  padding-left: 3rem;
-  counter-increment: item;
-}
-
-.md-typeset .group.numbered > ol > li::after {
-  content: counter(item);
-  position: absolute;
-  left: 1rem;
-  top: 0.75rem;
-  display: grid;
-  place-items: center;
-  width: 1.35rem;
-  height: 1.35rem;
-  background: var(--dl-lemon);
-  border-radius: 50%;
-  color: var(--dl-ink);
-  font-size: 0.65rem;
+.md-typeset h2 {
+  margin: 48px 0 16px;
+  font-size: 26px;
   font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
 }
 
-/* A small grey heading above a group, as in Settings. */
-.md-typeset .group-label {
-  margin: 0 0 -0.3rem 1rem;
-  font-size: 0.65rem;
+/* Each numbered step starts a new block, divided by a hairline. */
+.md-typeset h3 {
+  margin: 36px 0 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--guide-sep);
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--md-default-fg-color--light);
+  line-height: 1.25;
+  letter-spacing: -0.012em;
 }
 
-/* Groups side by side when there's room. */
-.md-typeset .group-columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  gap: 1.4rem 1.2rem;
-  align-items: start;
-  margin-top: 1rem;
+.md-typeset h2 + h3 {
+  margin-top: 16px;
+  padding-top: 0;
+  border-top: 0;
 }
 
-.md-typeset .group-columns > .group > :first-child {
-  margin-top: 0;
+@media screen and (max-width: 44.984375em) {
+  .md-typeset h1 { font-size: 28px; }
+  .md-typeset h2 { margin-top: 40px; font-size: 22px; }
+  .md-typeset h3 { font-size: 19px; }
+  .md-typeset h1 + p.meta, .md-typeset p.lead { font-size: 19px; }
+}
+
+.md-path {
+  font-size: 13px;
+}
+
+.md-path__link {
+  color: var(--guide-fg-2);
+}
+
+/* ---------- The top of each page ---------- */
+
+/* The sentence under the title says what the page is for. */
+.md-typeset h1 + p.meta,
+.md-typeset p.lead {
+  color: var(--guide-fg-2);
+  font-size: 21px;
+  line-height: 1.38;
+  letter-spacing: 0.004em;
+}
+
+/* "Time · You'll need" sits on its own grouped surface so it isn't skipped. */
+.md-typeset p.meta + p.meta {
+  padding: 12px 16px;
+  border-radius: var(--guide-r);
+  background: var(--guide-elev);
+  color: var(--guide-fg);
+  font-size: 15px;
 }
 
 /* ---------- Steps ---------- */
 
-/* "You should see:" lines: a green tick, so you can confirm the step worked. */
+/* "You should see:" — what the screen looks like when the step worked. */
 .md-typeset .see {
   position: relative;
-  padding: 0.6rem 0.9rem 0.6rem 2.5rem;
-  background: var(--dl-elev);
-  border-radius: var(--dl-r);
+  padding: 12px 16px 12px 44px;
+  border-radius: var(--guide-r);
+  background: var(--guide-elev);
 }
 
 .md-typeset .see::before {
-  content: "";
   position: absolute;
-  left: 0.85rem;
-  top: 0.8rem;
-  width: 1.05rem;
-  height: 1.05rem;
-  background-color: var(--dl-ok);
-  -webkit-mask: var(--dl-icon-check) center / contain no-repeat;
-  mask: var(--dl-icon-check) center / contain no-repeat;
+  top: 15px;
+  left: 16px;
+  width: 18px;
+  height: 18px;
+  content: "";
+  background-color: var(--guide-ok);
+  -webkit-mask-image: var(--md-admonition-icon--success);
+  mask-image: var(--md-admonition-icon--success);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
-.md-typeset .see .see-label {
-  font-weight: 600;
-  color: var(--dl-ok);
-}
-
-/* Screenshots: a hairline frame so white app screens don't melt into the page. */
+/* Screenshots: a hairline and a soft shadow so white app screens don't melt
+   into the page, capped so a full iPad screen stays readable. */
 .md-typeset img:not(.twemoji):not([src$=".svg"]) {
   display: block;
-  margin: 0.8rem 0 1.4rem;
-  border: 1px solid var(--dl-sep);
-  border-radius: var(--dl-r);
-  box-shadow: var(--dl-shot-shadow);
-  cursor: zoom-in;
+  max-width: min(860px, 100%);
+  margin: 16px 0 24px;
+  border: 1px solid var(--guide-sep);
+  border-radius: var(--guide-r);
+  box-shadow: var(--guide-img-shadow);
 }
 
 /* A narrower screenshot for a single sheet, menu or dialog: ![...](x.png){ .shot-sm } */
@@ -539,119 +295,197 @@ html :focus-visible {
   max-width: min(520px, 100%);
 }
 
-/* ---------- Callouts: grey, with the status shown by the icon only ---------- */
+/* ---------- Tips, warnings and notes ---------- */
 
+/* One quiet grouped surface for every kind; the icon carries the kind. */
 .md-typeset .admonition,
 .md-typeset details {
-  border-width: 0;
-  border-radius: var(--dl-r);
-  background-color: var(--dl-elev);
+  margin: 24px 0;
+  padding: 0 16px 4px;
+  border: 0;
+  border-radius: var(--guide-r);
+  background: var(--guide-elev);
   box-shadow: none;
-  font-size: 0.8rem;
+  font-size: 16px;
 }
 
 .md-typeset .admonition > .admonition-title,
 .md-typeset details > summary {
-  background-color: transparent;
+  margin: 0 -16px;
+  padding: 14px 16px 2px 44px;
+  border: 0;
+  background: transparent;
   font-weight: 600;
-  color: var(--md-default-fg-color);
 }
 
-.md-typeset .tip > .admonition-title::before {
-  background-color: var(--dl-ok);
+.md-typeset .admonition > .admonition-title::before,
+.md-typeset details > summary::before {
+  top: 15px;
+  left: 16px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--guide-accent);
 }
 
-.md-typeset .warning > .admonition-title::before {
-  background-color: var(--dl-warn);
+.md-typeset :is(.admonition.warning, .admonition.danger, details.warning) > :is(.admonition-title, summary)::before {
+  background-color: var(--guide-warn);
 }
 
-.md-typeset .note > .admonition-title::before,
-.md-typeset .info > .admonition-title::before {
-  background-color: var(--dl-info);
+.md-typeset .admonition > :last-child {
+  margin-bottom: 12px;
 }
 
 /* ---------- Tables ---------- */
 
 .md-typeset table:not([class]) {
-  overflow: hidden;
-  border: 1px solid var(--dl-sep);
-  border-radius: var(--dl-r);
-  font-size: 0.8rem;
+  border: 1px solid var(--guide-sep);
+  border-radius: var(--guide-r);
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 .md-typeset table:not([class]) th {
-  background: var(--dl-elev);
+  background: var(--guide-elev);
   font-weight: 600;
 }
 
-.md-typeset table:not([class]) td {
-  border-top-color: var(--dl-sep);
+.md-typeset table:not([class]) :is(th, td) {
+  padding: 10px 14px;
 }
 
-/* ---------- Words and answers ---------- */
-
-.md-typeset dl dt {
-  margin-top: 1.1rem;
-  font-size: 0.92rem;
-  font-weight: 600;
+.md-typeset table:not([class]) tbody tr:hover {
+  background: transparent;
+  box-shadow: none;
 }
 
-[dir] .md-typeset dl dd {
-  margin-left: 0;
-  color: var(--md-default-fg-color);
+/* ---------- Welcome page ---------- */
+
+/* "Start here": two raised tiles. */
+.md-typeset .grid.cards > ul > li {
+  padding: 20px;
+  border: 0;
+  border-radius: var(--guide-r);
+  background: var(--guide-elev);
+  box-shadow: none;
 }
 
-/* ---------- Footer ---------- */
-
-.md-footer__title {
-  font-weight: 600;
+.md-typeset .grid.cards > ul > li:hover {
+  border: 0;
+  box-shadow: none;
 }
 
-/* ---------- Continuous corners where the browser supports them ---------- */
+.md-typeset .grid.cards > ul > li > p:first-child {
+  margin-top: 0;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
 
-@supports (corner-shape: squircle) {
-  :root {
-    --dl-r: 18px;
-    --dl-r-sm: 12px;
+.md-typeset .grid.cards .lg {
+  color: var(--guide-accent);
+}
+
+.md-typeset .grid.cards hr {
+  display: none;
+}
+
+/* "Read the overview ›": the chevron is decoration, hidden from screen readers. */
+.md-typeset a.more::after {
+  content: "\00a0\203a" / "";
+}
+
+/* "The guides": Settings-style grouped lists, one per section. */
+.md-typeset .groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px 32px;
+}
+
+.md-typeset .group h3 {
+  margin: 16px 0 8px;
+  padding: 0;
+  border: 0;
+  font-size: 19px;
+}
+
+.md-typeset .group h3 .twemoji {
+  margin-right: 4px;
+  color: var(--guide-accent);
+}
+
+.md-typeset .group ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--guide-r);
+  background: var(--guide-elev);
+  list-style: none;
+}
+
+.md-typeset .group ul li {
+  position: relative;
+  margin: 0;
+}
+
+/* Inset separators between rows, as in a grouped list. */
+.md-typeset .group ul li + li::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 16px;
+  border-top: 1px solid var(--guide-sep);
+  content: "";
+}
+
+.md-typeset .group:not(.plain) ul li > a,
+.md-typeset .group.plain ul li {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 11px 16px;
+}
+
+.md-typeset .group:not(.plain) ul li > a {
+  gap: 12px;
+  justify-content: space-between;
+  outline-offset: -2px;
+  transition: background-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.md-typeset .group:not(.plain) ul li > a::after {
+  flex: none;
+  color: var(--guide-chevron);
+  font-size: 22px;
+  line-height: 1;
+  content: "\203a" / "";
+}
+
+.md-typeset .group ul li > a:hover {
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .md-typeset .group:not(.plain) ul li > a:hover {
+    background-color: var(--guide-elev-hover);
   }
-
-  .md-typeset h2#before-you-start + ul,
-  .md-typeset h2#whats-next + ul,
-  .md-typeset .group > ul,
-  .md-typeset .group > ol,
-  .md-typeset .meta + .meta,
-  .md-typeset .see,
-  .md-typeset .admonition,
-  .md-typeset details,
-  .md-typeset table:not([class]),
-  .md-typeset img:not(.twemoji),
-  .md-sidebar--primary .md-nav__link--active {
-    corner-shape: squircle;
-  }
 }
 
-/* ---------- Motion ---------- */
+.md-typeset .group.plain ul li {
+  display: block;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .md-typeset a {
+  .md-typeset .group ul li > a {
     transition: none;
   }
 }
 
-/* ---------- Phones ---------- */
+/* ---------- Footer ---------- */
 
-@media screen and (max-width: 44.9375em) {
-  .md-typeset h1 {
-    font-size: 1.4rem;
-  }
+.md-footer {
+  border-top: 1px solid var(--guide-sep);
+}
 
-  .md-typeset h2 {
-    margin-top: 2rem;
-    font-size: 1.15rem;
-  }
-
-  .md-typeset .meta + .meta,
-  .md-typeset .see {
-    padding-right: 0.7rem;
-  }
+.md-footer-meta {
+  border-top: 1px solid var(--guide-sep);
+  font-size: 12px;
 }

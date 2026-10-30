@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Welcome to the Dentalemon guide
 
 Dentalemon is a dental clinic app built for the iPad. The tooth chart is at the centre of every visit: you chart, plan, bill and book in one place.
@@ -5,33 +10,33 @@ Dentalemon is a dental clinic app built for the iPad. The tooth chart is at the 
 
 This guide walks you through the everyday tasks, one page per task, with a picture of every step.
 
-<div class="group links rich" markdown>
+## Start here
 
-- [:material-rocket-launch-outline: **New to Dentalemon?** <span class="sub">Start with Your first day. It takes you from a new account to your first paid visit.</span>](#your-first-day)
-- [:material-magnify: **Looking for one thing?** <span class="sub">Use Search at the top, or pick a page from The guides.</span>](#the-guides)
-- [:material-book-open-variant: **New words?** <span class="sub">Encounter, Estimate, Coverage: they're all explained in Words and answers.</span>](help/words-and-answers.md)
+<div class="grid cards start" markdown>
+
+-   :material-flag-checkered:{ .lg .middle } **Your first day**
+
+    ---
+
+    From a new account to your first paid visit, in order. Each step takes a few minutes.
+
+    [See the checklist](#your-first-day){ .more }
+
+-   :material-tablet:{ .lg .middle } **Set up your clinic**
+
+    ---
+
+    Create your account and name your clinic. You only do this once.
+
+    [Sign up](getting-started/sign-up-and-clinic-setup.md){ .more }
 
 </div>
-
-## How to read each page
-
-- **Words in bold** are exactly what you'll see on screen: a button, a tab or a menu item.
-- Each step has a number. Do them in order.
-- **You should see** lines, with a green tick, tell you what the screen looks like when a step worked.
-- Tap any picture to see it full size.
-
-!!! note "About the pictures"
-    Every patient, phone number and ID in the pictures is made up for this guide. The screens were taken on an iPad-sized screen in landscape, so yours may look slightly different on a phone or in portrait.
 
 ## Your first day
 
 Do these in order. Each one takes a few minutes, and together they get you from a new account to your first paid visit.
 
-<div class="group-columns" markdown>
-
-<div class="group numbered" markdown>
-
-<p class="group-label">Set up the clinic (once)</p>
+### Set up the clinic (once)
 
 1. [Create your account and name your clinic](getting-started/sign-up-and-clinic-setup.md).
 2. Add your clinic's address and opening hours: [Settings basics › Your clinic and opening hours](clinic/settings-basics.md#4-your-clinic-and-opening-hours). Appointments can only be booked inside these hours.
@@ -39,11 +44,7 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 4. Choose the payment methods you accept, and your tax registration: [Settings basics › Payments and tax](clinic/settings-basics.md#8-payments-and-tax).
 5. Add your PTR and S2 numbers and your signature to your profile, so they print on prescriptions: [Settings basics › Your licence numbers and signature](clinic/settings-basics.md#3-your-licence-numbers-and-signature).
 
-</div>
-
-<div class="group numbered" markdown>
-
-<p class="group-label">See your first patient</p>
+### See your first patient
 
 1. [Add the patient](patients/find-or-add-a-patient.md), including any allergies.
 2. [Start an encounter](visits/start-an-encounter.md), the record of today's visit.
@@ -53,35 +54,31 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 6. [Take the payment](payments/charges-and-cashier.md).
 7. [Book the next appointment](schedule/appointments.md).
 
-</div>
-
-</div>
-
 ## The guides
 
-<div class="group-columns" markdown>
+<div class="groups" markdown>
 
-<div class="group links" markdown>
+<div class="group" markdown>
 
-<p class="group-label">Getting started</p>
+### :material-rocket-launch-outline: Getting started
 
 - [Sign up and set up your clinic](getting-started/sign-up-and-clinic-setup.md)
 - [Sign in and a first look](getting-started/sign-in-and-home.md)
 
 </div>
 
-<div class="group links" markdown>
+<div class="group" markdown>
 
-<p class="group-label">Patients</p>
+### :material-account-multiple-outline: Patients
 
 - [Find or add a patient](patients/find-or-add-a-patient.md)
 - [The patient page and profile](patients/patient-page-and-profile.md)
 
 </div>
 
-<div class="group links" markdown>
+<div class="group" markdown>
 
-<p class="group-label">Seeing a patient</p>
+### :material-tooth-outline: Seeing a patient
 
 - [Start an encounter](visits/start-an-encounter.md)
 - [Chart teeth](visits/chart-teeth.md)
@@ -92,41 +89,56 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 
 </div>
 
-<div class="group links" markdown>
+<div class="group" markdown>
 
-<p class="group-label">Payments</p>
+### :material-cash-register: Payments
 
 - [Charges and the Cashier](payments/charges-and-cashier.md)
 - [Billing, balances and payment plans](payments/billing-and-payment-plans.md)
 
 </div>
 
-<div class="group links" markdown>
+<div class="group" markdown>
 
-<p class="group-label">Schedule</p>
+### :material-calendar-month-outline: Schedule
 
 - [Appointments](schedule/appointments.md)
 
 </div>
 
-<div class="group links" markdown>
+<div class="group" markdown>
 
-<p class="group-label">Your clinic</p>
+### :material-cog-outline: Your clinic
 
 - [Settings basics](clinic/settings-basics.md)
 - [Notifications and Analytics](clinic/notifications-and-analytics.md)
 
 </div>
 
-<div class="group links" markdown>
+<div class="group" markdown>
 
-<p class="group-label">Help</p>
+### :material-help-circle-outline: Help
 
 - [Words and answers](help/words-and-answers.md)
 
 </div>
 
 </div>
+
+## How to read the pages
+
+<div class="group plain" markdown>
+
+- **Words in bold** are exactly what you'll see on screen: a button, a tab or a menu item.
+- **Steps are numbered.** Do them in order.
+- **You should see** boxes tell you what the screen looks like when a step worked.
+- **Tap any picture** to see it full size.
+- **New words** are explained in [Words and answers](help/words-and-answers.md).
+
+</div>
+
+!!! note "About the pictures"
+    Every patient, phone number and ID in the pictures is made up for this guide. The screens were taken on an iPad-sized screen in landscape, so yours may look slightly different on a phone or in portrait.
 
 ## What Dentalemon can't do yet
 
