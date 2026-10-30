@@ -77,6 +77,16 @@ export async function showText(page: Page, from: RegExp, to: string) {
   );
 }
 
+/**
+ * A dev server shows Vue DevTools' floating button; it never belongs in a guide
+ * picture. Hidden by style only (a production preview has none to hide).
+ */
+async function hideDevTools(page: Page) {
+  await page
+    .addStyleTag({ content: '#__vue-devtools-container__, #vue-inspector-container { display: none !important; }' })
+    .catch(() => {});
+}
+
 export interface ShotOptions {
   /** Capture just this element (a sheet, menu or dialog) instead of the whole screen. */
   el?: Locator;
@@ -95,6 +105,7 @@ export async function shot(page: Page, pageSlug: string, name: string, opts: Sho
   const file = resolve(ASSETS, pageSlug, `${name}.webp`);
   mkdirSync(dirname(file), { recursive: true });
   if (opts.at) await opts.at.scrollIntoViewIfNeeded();
+  await hideDevTools(page);
   await settle(page);
   const png = opts.el
     ? await opts.el.screenshot({ animations: 'disabled', caret: 'hide' })

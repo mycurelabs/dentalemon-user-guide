@@ -1,4 +1,9 @@
+import { existsSync } from 'node:fs';
 import { defineConfig, devices } from '@playwright/test';
+
+// A saved sign-in (E2E_STORAGE_STATE, a Playwright storageState file): the app
+// rate-limits sign-in, so a full run signs in once instead of once per page.
+const authState = process.env.E2E_STORAGE_STATE;
 
 /**
  * Screenshot runs, not tests. Each `<page>.capture.ts` walks one guide page's
@@ -8,6 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  * APP_DIR         the app folder in a monorepo checkout; its e2e/ helpers are reused
  * GUIDE_EMAIL     the demo account (made-up data only; this repo is public)
  * GUIDE_PASSWORD
+ * E2E_STORAGE_STATE  optional saved sign-in; the app's signIn helper reuses it
  */
 export default defineConfig({
   testDir: '.',
@@ -29,5 +35,6 @@ export default defineConfig({
     reducedMotion: 'reduce',
     locale: 'en-PH',
     timezoneId: 'Asia/Manila',
+    storageState: authState && existsSync(authState) ? authState : undefined,
   },
 });
