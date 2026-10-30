@@ -43,7 +43,7 @@ Tap **Start encounter**.
 The encounter opens straight away, with an **Encounter started for *name*** message.
 
 - **Top bar:** **←** goes back. The date button (for example **Fri, Oct 30 · Active**) lists the patient's other encounters, and **‹ ›** step through them. At the right are notifications, share, and **Finish encounter**.
-- **The chart:** a new patient starts with **Dental chart not recorded**. Choose **Blank permanent chart**, **Blank mixed chart** or **Blank primary chart**, then tap **Start chart**. See [Chart teeth](chart-teeth.md).
+- **The chart:** the patient's teeth. A new patient's chart has no marks yet. See [Chart teeth](chart-teeth.md).
 - **Legend:** what each chart colour and mark means.
 - **Views under the chart:** **Chart list**, **Records**, **Prescription**, **Orders**, **Attachments** and **Orthodontics**. Tap one to switch.
 

@@ -19,7 +19,6 @@ test('chart teeth', async ({ page }) => {
   await page.goto(visit.url);
   await expect(page.getByTestId('start-chart')).toBeVisible({ timeout: 60_000 });
   await page.locator('[data-start-option="permanent"] input').check();
-  await shot(page, P, '01-start-chart');
 
   // 2. The blank chart.
   await page.getByTestId('start-chart').tap();

@@ -13,22 +13,9 @@ Record what you find on each tooth, and the treatment it needs, right on the cha
 
 ## Steps
 
-### 1. Start the chart
+### 1. Open the chart
 
-The first time you see a patient, the chart is empty and reads **Dental chart not recorded**.
-
-Pick how to start, then tap **Start chart**:
-
-- **Blank permanent chart**: 32 adult teeth.
-- **Blank mixed chart**: 20 baby teeth and 32 adult teeth together. Use it for a child who has both.
-- **Blank primary chart**: 20 baby teeth. Use it for a young child.
-
-On later visits you'll also see **Continue from *date***, which carries the last chart forward so you only record what changed.
-
-You should see: the three blank chart choices and a **Start chart** button.
-{ .see }
-
-![The empty chart: Dental chart not recorded, with Blank permanent chart selected and a Start chart button](../assets/chart-teeth/01-start-chart.webp)
+The chart is at the top of the encounter, under the patient's name. The first time you see a patient, no tooth is marked yet.
 
 ### 2. Get to know the chart
 
