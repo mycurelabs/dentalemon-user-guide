@@ -85,7 +85,7 @@ nav:
       - Finish the visit: visits/finish-the-visit.md
   - Payments:
       - Charges and the Cashier: payments/charges-and-cashier.md
-      - Billing, balances and payment plans: payments/billing-and-payment-plans.md
+      - Billing and balances: payments/billing-and-payment-plans.md
   - Schedule:
       - Appointments: schedule/appointments.md
   - Your clinic:

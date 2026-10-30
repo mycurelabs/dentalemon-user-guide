@@ -41,12 +41,12 @@ You should see: the latest visit in the middle, marked **Latest**.
 
 Tap **Billing**.
 
-You should see: **Balance due** (what the patient owes), **Owed by payers** (what HMOs or PhilHealth owe for this patient) and **Last payment**. Use **View** to switch between due invoices, the statement, invoices, claims and payment plans.
+You should see: **Balance due** (what the patient owes), **Owed by payers** (what HMOs or PhilHealth owe for this patient) and **Last payment**. Use **View** to switch between due invoices, the statement, invoices and claims.
 { .see }
 
 ![The Billing tab: Balance due, Owed by payers and Last payment, with a View selector and "No open invoices"](../assets/patient-page-and-profile/03-billing.webp)
 
-More on payments in [Billing, balances and payment plans](../payments/billing-and-payment-plans.md).
+More on payments in [Billing and balances](../payments/billing-and-payment-plans.md).
 
 ### 4. Use the patient menu
 

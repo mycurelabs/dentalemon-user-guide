@@ -94,7 +94,7 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 ### :material-cash-register: Payments
 
 - [Charges and the Cashier](payments/charges-and-cashier.md)
-- [Billing, balances and payment plans](payments/billing-and-payment-plans.md)
+- [Billing and balances](payments/billing-and-payment-plans.md)
 
 </div>
 

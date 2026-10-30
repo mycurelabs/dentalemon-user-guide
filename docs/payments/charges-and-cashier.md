@@ -210,4 +210,4 @@ If the patient already has a bill waiting at the Cashier, the sheet offers to op
 
 ## What's next
 
-- [Billing, balances and payment plans](billing-and-payment-plans.md)
+- [Billing and balances](billing-and-payment-plans.md)

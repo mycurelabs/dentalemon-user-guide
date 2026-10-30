@@ -1,6 +1,6 @@
-# Billing, balances and payment plans
+# Billing and balances
 
-See what came in, who still owes you, what HMOs and PhilHealth owe, and set up payment plans for bigger treatments.
+See what came in, who still owes you, and what HMOs and PhilHealth owe.
 { .meta }
 
 **Time:** about 5 minutes to learn · **You'll need:** some bills already made at the [Cashier](charges-and-cashier.md).
@@ -16,7 +16,7 @@ See what came in, who still owes you, what HMOs and PhilHealth owe, and set up p
 
 Tap **Billing** in the sidebar.
 
-You should see: five tabs (**Transactions**, **Total sales**, **Payments due**, **Accounts receivable**, **Payment plans**) with **Transactions** open. The cards at the top sum up the period: **Collected**, **Transactions**, **Average ticket** and **Voided**.
+You should see: the tabs **Transactions**, **Total sales**, **Payments due** and **Accounts receivable**, with **Transactions** open. The cards at the top sum up the period: **Collected**, **Transactions**, **Average ticket** and **Voided**.
 { .see }
 
 ![The Billing page on Transactions: summary cards, a search box, Status, Period and Method filters, and a table of invoices with Paid and Unpaid labels](../assets/billing-and-payment-plans/01-transactions.webp)
@@ -83,51 +83,11 @@ When you tap **Mark paid** (or another step), a message with **Undo** appears fo
 
 ![The claim menu on a Submitted claim: View claim, View billing, Mark approved, Mark denied, Mark paid, Send follow-up](../assets/billing-and-payment-plans/07b-claim-submitted-actions.webp)
 
-### 6. Set up a payment plan
-
-Tap **Payment plans**, then **Create payment plan**.
-
-Choose the **Patient**, give the plan a **Plan title**, then fill in **Proposed total (₱)**, **Down payment (₱)**, **Number of monthly installments** and **First installment date**. Under the terms, list the **Included services** and any **Exclusions**, then name the **Responsible payer** and pick their **Payer relationship** (Patient, Parent, Guardian or Other authorized payer). Tap **Save draft agreement**.
-
-The form won't save until the patient, terms and payer are filled in, the installments are between 1 and 60, and the down payment is less than the total.
-
-![The Payment plans tab with no plans yet and a Create payment plan button](../assets/billing-and-payment-plans/08-payment-plans.webp)
-
-You should see: the plan saved as a draft. Drafting a plan does not start treatment, issue an invoice or collect money.
-{ .see }
-
-![The Create payment plan form: Patient search, Related case, Plan title, Proposed total 30000, Down payment 6000, 6 monthly installments, First installment date, and Save draft agreement](../assets/billing-and-payment-plans/09-create-payment-plan.webp)
-
-### 7. Take the plan from draft to paid
-
-A payment plan moves through these steps. Each step is a button on the plan's page, and none of them starts treatment.
-
-1. **Draft**: the terms you saved. Check them on the plan's page. To change them, tap **Edit draft**.
-2. **Offer agreement**: tap it when you show the terms to the patient. The status changes to **Offered**. Dentalemon doesn't send anything to the patient; to give them a copy, use **Financial documents** on the plan's page.
-3. **Record acceptance** or **Record decline**: when the patient answers.
-    - For acceptance, fill in **Accepted by** (who agreed), **Capacity** (**Patient**, **Authorized parent / guardian** or **Authorized financial guarantor**) and **Evidence method** (**Written agreement recorded** or **Verbal acceptance documented**). Tick the box confirming you checked their authority, then save. Tap **Keep unaccepted** to go back without recording.
-4. **Issue package invoice**: one invoice for the whole plan, with the down payment due today and the rest due monthly. Tap **Issue invoice** to confirm, or **Keep agreement only** to wait.
-5. **Record payment**: each time the patient pays, record it here. Dentalemon shows which installments the payment covers before you save.
-6. **Finalize invoice**: gives the plan's invoice its number from your series.
-
-You can also open **View invoice** and **Financial statement** (what the patient has paid and still owes) from the plan's page.
-
-You should see: on a draft plan, the terms and **Offer agreement**.
-{ .see }
-
-![A draft payment plan for Ocampo, Pilar: Braces — demo plan, its terms and an Offer agreement button](../assets/billing-and-payment-plans/11-plan-draft.webp)
-
-After **Offer agreement**, the plan shows **Offered**, with **Record acceptance** and **Record decline**. If the patient wants different terms, tap **Propose revision** to start a new version of the agreement.
-
-![The same plan Offered, with Record acceptance and Record decline](../assets/billing-and-payment-plans/12-plan-offered.webp)
-
-![The Record financial acceptance sheet: the agreement, Accepted by, Capacity, Evidence method, the confirmation tick box, and Keep unaccepted](../assets/billing-and-payment-plans/13-record-acceptance.webp)
-
-### 8. See one patient's billing
+### 6. See one patient's billing
 
 Open a patient and tap the **Billing** tab. Or, in Billing, tap **⋮ › View billing** on a row.
 
-You should see: **Balance due**, **Owed by payers** and **Last payment** at the top, the open invoices with **Record payment** on each, and a **View** menu for **Due**, **Statement**, **Invoices**, **Claims** and **Plans**.
+You should see: **Balance due**, **Owed by payers** and **Last payment** at the top, the open invoices with **Record payment** on each, and a **View** menu for **Due**, **Statement**, **Invoices** and **Claims**.
 { .see }
 
 ![A patient's Billing tab: Balance due ₱640, Owed by payers ₱1,000, Last payment ₱300 Cash, and two open invoices with Record payment buttons](../assets/billing-and-payment-plans/10-patient-billing.webp)

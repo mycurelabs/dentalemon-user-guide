@@ -69,13 +69,11 @@ test('billing, balances and payment plans', async ({ page }) => {
   await page.goto('/billing?tab=plans');
   await expect(page.getByTestId('create-payment-plan')).toBeVisible({ timeout: 240_000 });
   await settle(page);
-  await shot(page, P, '08-payment-plans');
   await page.getByTestId('create-payment-plan').click();
   await expect(page.getByTestId('payment-plan-form')).toBeVisible({ timeout: 60_000 });
   await page.getByLabel('Proposed total').fill('30000');
   await page.getByLabel('Down payment').fill('6000');
   await page.getByLabel('Number of installments').fill('6');
-  await shot(page, P, '09-create-payment-plan');
 
   // One demo plan, reused on later runs: draft, then offered, then the acceptance sheet
   // (closed with Keep unaccepted, so the plan never goes further).
@@ -102,15 +100,12 @@ test('billing, balances and payment plans', async ({ page }) => {
     await page.getByTestId('save-draft-agreement').click();
     await expect(page.getByTestId('offer-agreement')).toBeVisible({ timeout: 60_000 });
     await settle(page);
-    await shot(page, P, '11-plan-draft');
     await page.getByTestId('offer-agreement').click();
   }
   await expect(page.getByTestId('record-acceptance')).toBeVisible({ timeout: 60_000 });
   await settle(page);
-  await shot(page, P, '12-plan-offered');
   await page.getByTestId('record-acceptance').click();
   await expect(page.locator('[name="accepted-by"]')).toBeVisible({ timeout: 30_000 });
-  await shot(page, P, '13-record-acceptance');
   await page.getByRole('button', { name: 'Keep unaccepted' }).click();
 
   // A patient's own Billing tab.
