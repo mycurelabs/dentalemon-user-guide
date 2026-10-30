@@ -91,7 +91,9 @@ Tap **Prescription** in the row of views, then **Add prescription**.
 Type part of the name in **Search name, brand or strength**, for example *amox*, then tap the medicine and strength you want.
 
 !!! warning "If the patient is allergic"
-    When the medicine matches an allergy on the patient's record, Dentalemon warns you before adding it, for example **Penicillin allergy on record · Severe**. Tap **Keep current** to go back without adding the medicine, or **Choose medicine** to add it anyway. Record allergies first (step 3) so this check can work.
+    The patient's allergies show in red under their name, for example **Penicillin · Severe**, and every matching medicine in the list has a red warning sign. When you tap one, Dentalemon warns you before adding it, for example **Penicillin allergy on record · Severe**. Tap **Keep current** to go back without adding the medicine, or **Choose medicine** to add it anyway. Record allergies first (step 3) so this check can work.
+
+    ![Add prescription for a patient with a severe penicillin allergy: Penicillin · Severe in red under the patient's name, and a red warning sign next to each amoxicillin in the search results](../assets/notes-prescriptions-orders-attachments/05a-allergy-warning.webp){ .shot-sm }
 
 You should see: a list of matching medicines under **Medicines**.
 { .see }

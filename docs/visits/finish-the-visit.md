@@ -37,7 +37,11 @@ The sheet shows the patient's name and today's date. Work through it from the to
 
 **Total charges** adds up the ticked lines.
 
-You should see: the ticked charges and the total, for example **₱2,300**.
+When the sheet opens, nothing is ticked yet and **Total charges** is **₱0**:
+
+![The Finish encounter sheet as it opens: Encounter type Consultation, Charges Consultation ₱500 and Composite restoration 36 O Done today ₱1,800 both unticked, Total charges ₱0](../assets/finish-the-visit/02a-finish-unticked.webp){ .shot-sm }
+
+You should see: after ticking, the ticked charges and the total, for example **₱2,300**.
 { .see }
 
 ![The Finish encounter sheet: Before you end with Chief complaint Not recorded, Encounter type Consultation, Charges Consultation ₱500 and Composite restoration 36 O Done today ₱1,800 ticked, Total charges ₱2,300](../assets/finish-the-visit/02-finish-sheet.webp){ .shot-sm }
