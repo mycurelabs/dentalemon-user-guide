@@ -1,18 +1,34 @@
 /* Brand: lemon is a fill only; text on lemon is ink, links use the dark lemon. */
 :root {
-  --md-primary-fg-color: #ffce3d;
+  --dl-lemon: #ffce3d;
+  --dl-lemon-soft: #fff6d6;
+  --dl-ink: #1d1d1f;
+  --dl-card-bg: #fafaf7;
+  --dl-card-border: #ebe8dc;
+  --dl-ok: #1f7a4d;
+  --dl-icon-clock: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16m0-18a10 10 0 1 1 0 20 10 10 0 0 1 0-20m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>');
+  --dl-icon-check: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20m-1.5 14.5 7-7-1.4-1.4-5.6 5.6-2.6-2.6L6.5 12.5z"/></svg>');
+  --md-primary-fg-color: var(--dl-lemon);
   --md-primary-fg-color--light: #ffe08a;
   --md-primary-fg-color--dark: #e6b520;
-  --md-primary-bg-color: #1d1d1f;
+  --md-primary-bg-color: var(--dl-ink);
   --md-primary-bg-color--light: #1d1d1fb3;
+}
+
+/* Material sets link and accent colours per scheme, so ours must match that specificity. */
+[data-md-color-scheme="default"] {
   --md-accent-fg-color: #8a6200;
   --md-typeset-a-color: #8a6200;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #ffce3d;
-  --md-primary-bg-color: #1d1d1f;
-  --md-accent-fg-color: #ffce3d;
+  --dl-lemon-soft: #3a3420;
+  --dl-card-bg: #24252b;
+  --dl-card-border: #3a3b43;
+  --dl-ok: #5fd39a;
+  --md-primary-fg-color: var(--dl-lemon);
+  --md-primary-bg-color: var(--dl-ink);
+  --md-accent-fg-color: #ffd866;
   --md-typeset-a-color: #ffd866;
 }
 
@@ -20,10 +36,185 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* A little wider than the theme default, so screenshots are big enough to read. */
+.md-grid {
+  max-width: 68rem;
+}
+
+/* ---------- Header ---------- */
+
+.md-header__title {
+  font-weight: 700;
+}
+
+/* The lemon logo sits on a white badge so it doesn't vanish into the lemon bar. */
+.md-header__button.md-logo {
+  margin: 0.2rem 0.4rem 0.2rem 0.6rem;
+  padding: 0.25rem;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.md-header__button.md-logo img {
+  height: 1.4rem;
+}
+
+/* Search: a light field on the lemon bar instead of a muddy dark one. */
+@media screen and (min-width: 60em) {
+  .md-search__form {
+    background-color: rgb(255 255 255 / 55%);
+    border-radius: 999px;
+  }
+
+  .md-search__form:hover {
+    background-color: rgb(255 255 255 / 80%);
+  }
+
+  .md-search__input::placeholder,
+  .md-search__icon {
+    color: var(--dl-ink);
+  }
+}
+
+/* ---------- Sidebar ---------- */
+
+.md-nav__item--section > .md-nav__link {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+
+/* The page you're on: a soft lemon pill, readable in both themes. */
+.md-sidebar--primary .md-nav__link--active {
+  margin-left: -0.5rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--dl-lemon-soft);
+  border-radius: 6px;
+  color: var(--md-default-fg-color);
+  font-weight: 600;
+}
+
+/* ---------- Page text ---------- */
+
 /* Slightly larger body text: the guide is read on iPads, often at arm's length. */
 .md-typeset {
   font-size: 0.86rem;
   line-height: 1.65;
+}
+
+.md-typeset h1 {
+  margin-bottom: 0.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h2 {
+  margin-top: 2.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h1 + h2,
+.md-typeset .meta + h2,
+.md-typeset .lead + h2 {
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Step headings get a numbered lemon badge (the number is wrapped by extra.js). */
+.md-typeset h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 2.2rem;
+  font-weight: 700;
+}
+
+.md-typeset .step-num {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: var(--dl-lemon);
+  border-radius: 50%;
+  color: var(--dl-ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* ---------- Top of each page ---------- */
+
+/* The one-sentence summary under the title. */
+.md-typeset h1 + .meta {
+  margin-top: 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Time and "You'll need": an info bar with a clock. */
+.md-typeset .meta + .meta {
+  position: relative;
+  padding: 0.6rem 0.9rem 0.6rem 2.6rem;
+  background: var(--dl-card-bg);
+  border: 1px solid var(--dl-card-border);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .meta + .meta::before {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  top: 0.78rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--md-typeset-a-color);
+  -webkit-mask: var(--dl-icon-clock) center / contain no-repeat;
+  mask: var(--dl-icon-clock) center / contain no-repeat;
+}
+
+/* "Before you start": a card, so it reads as a checklist rather than more steps. */
+.md-typeset h2#before-you-start + ul {
+  margin: 0.6rem 0 0;
+  padding: 0.7rem 1rem 0.7rem 0.6rem;
+  background: var(--dl-lemon-soft);
+  border-radius: 10px;
+}
+
+/* ---------- Steps ---------- */
+
+/* "You should see:" lines: a check mark, so you can confirm the step worked. */
+.md-typeset .see {
+  position: relative;
+  padding: 0.55rem 0.9rem 0.55rem 2.5rem;
+  background: var(--dl-card-bg);
+  border: 1px solid var(--dl-card-border);
+  border-radius: 10px;
+}
+
+.md-typeset .see::before {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  top: 0.78rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  background-color: var(--dl-ok);
+  -webkit-mask: var(--dl-icon-check) center / contain no-repeat;
+  mask: var(--dl-icon-check) center / contain no-repeat;
+}
+
+.md-typeset .see .see-label {
+  font-weight: 700;
+  color: var(--dl-ok);
 }
 
 /* Screenshots: a soft frame so white app screens don't melt into the page. */
@@ -32,7 +223,8 @@ body {
   margin: 0.8rem 0 1.4rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 8%);
+  box-shadow: 0 4px 18px rgb(0 0 0 / 8%);
+  cursor: zoom-in;
 }
 
 /* A narrower screenshot for a single sheet, menu or dialog: ![...](x.png){ .shot-sm } */
@@ -40,16 +232,169 @@ body {
   max-width: min(520px, 100%);
 }
 
-/* "You should see:" lines stand out from the instruction above them. */
-.md-typeset .see {
-  padding: 0.35rem 0.75rem;
-  border-left: 3px solid var(--md-primary-fg-color);
-  background: var(--md-code-bg-color);
-  border-radius: 0 8px 8px 0;
+/* ---------- What's next ---------- */
+
+.md-typeset h2#whats-next + ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.6rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-/* The "at a glance" line under each page title. */
-.md-typeset .meta {
-  color: var(--md-default-fg-color--light);
+.md-typeset h2#whats-next + ul > li {
+  margin: 0;
+}
+
+.md-typeset h2#whats-next + ul a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--dl-card-bg);
+  border: 1px solid var(--dl-card-border);
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.md-typeset h2#whats-next + ul a::after {
+  content: "→";
+  color: var(--md-typeset-a-color);
+}
+
+.md-typeset h2#whats-next + ul a:hover {
+  border-color: var(--md-primary-fg-color--dark);
+  transform: translateY(-1px);
+}
+
+/* ---------- Tables and admonitions ---------- */
+
+.md-typeset table:not([class]) {
+  border-radius: 10px;
   font-size: 0.8rem;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--dl-card-bg);
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 1px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+/* ---------- Home page ---------- */
+
+.md-typeset .lead {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .grid.cards > ul > li {
+  background: var(--dl-card-bg);
+  border: 1px solid var(--dl-card-border);
+  border-radius: 12px;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--md-primary-fg-color--dark);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 6%);
+}
+
+.md-typeset .grid.cards .lg {
+  color: var(--md-primary-fg-color--dark);
+}
+
+.md-typeset .grid.cards hr {
+  margin: 0.5rem 0;
+}
+
+/* The three "start here" cards fit on one row on an iPad. */
+.md-typeset .grid.cards.start {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+/* An odd card out at the end takes the whole row instead of leaving a gap. */
+.md-typeset .grid.cards > ul > li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.md-typeset .grid.cards.start > ul > li:last-child:nth-child(odd) {
+  grid-column: auto;
+}
+
+/* Definitions on the Words and answers page: the word stands out, the meaning is indented. */
+.md-typeset dl dt {
+  margin-top: 1.1rem;
+  font-size: 0.95rem;
+}
+
+[dir] .md-typeset dl dd {
+  margin-left: 0;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--dl-lemon);
+}
+
+/* The two first-day lists sit side by side as cards. */
+.md-typeset .grid > .checklist {
+  padding: 1rem 1.1rem 0.6rem;
+  background: var(--dl-card-bg);
+  border: 1px solid var(--dl-card-border);
+  border-radius: 12px;
+}
+
+.md-typeset .grid > .checklist > p:first-child {
+  margin-top: 0;
+  font-size: 0.95rem;
+}
+
+/* Numbered lists that read as a checklist: lemon circles instead of plain numbers. */
+.md-typeset .checklist ol {
+  counter-reset: item;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.md-typeset .checklist ol > li {
+  position: relative;
+  margin: 0 0 0.55rem;
+  padding-left: 2.2rem;
+  counter-increment: item;
+}
+
+.md-typeset .checklist ol > li::before {
+  content: counter(item);
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--dl-lemon);
+  border-radius: 50%;
+  color: var(--dl-ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+/* Phones: less padding so text keeps its width. */
+@media screen and (max-width: 44.9375em) {
+  .md-typeset h2 {
+    margin-top: 1.8rem;
+  }
+
+  .md-typeset .meta + .meta,
+  .md-typeset .see {
+    padding-right: 0.7rem;
+  }
 }

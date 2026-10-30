@@ -1,8 +1,6 @@
 site_name: Dentalemon User Guide
 site_description: Step-by-step guides for dentists using Dentalemon.
 site_url: https://mycurelabs.github.io/dentalemon-user-guide/
-repo_url: https://github.com/mycurelabs/dentalemon-user-guide
-edit_uri: ""
 copyright: Dentalemon by MYCURE Inc. · Screenshots use made-up demo data.
 
 theme:
@@ -36,6 +34,7 @@ theme:
     - navigation.footer
     - navigation.top
     - navigation.indexes
+    - navigation.path
     - search.highlight
     - search.suggest
     - content.tooltips
@@ -43,6 +42,9 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
 
 plugins:
   - search
@@ -62,6 +64,9 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - toc:
       permalink: false
 
