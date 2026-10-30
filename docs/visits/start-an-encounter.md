@@ -47,11 +47,6 @@ The encounter opens straight away, with an **Encounter started for *name*** mess
 - **Legend:** what each chart colour and mark means.
 - **Views under the chart:** **Chart list**, **Records**, **Prescription**, **Orders**, **Attachments** and **Orthodontics**. Tap one to switch.
 
-You should see: the patient's name, the chart area and the views row.
-{ .see }
-
-![A new encounter: the top bar with the date and Active, Finish encounter, the Dental chart not recorded choices with Start chart, and the views row: Chart list, Records, Prescription, Orders, Attachments, Orthodontics](../assets/start-an-encounter/02-workspace.webp)
-
 ### 3. Or start from the Encounters page
 
 Tap **Encounters** in the sidebar.

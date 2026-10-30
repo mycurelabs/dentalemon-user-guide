@@ -39,13 +39,12 @@ test('start an encounter', async ({ page }) => {
     await expect(page.getByTestId('patient-switcher')).toBeVisible({ timeout: 15_000 });
   }).toPass({ timeout: 120_000 });
   const empty = page.getByTestId('no-encounters');
-  // A re-run finds the encounter the first run started; keep those two images then.
+  // A re-run finds the encounter the first run started; keep that image then.
   if (await empty.isVisible({ timeout: 5_000 }).catch(() => false)) {
     await shot(page, P, '01-no-encounters');
     await empty.getByRole('button', { name: 'Start encounter' }).click();
     await page.waitForURL(/\/encounters\/[^/?]+/, { timeout: 30_000 });
     await expect(page.getByText(/Encounter started for/)).toBeVisible({ timeout: 30_000 });
-    await shot(page, P, '02-workspace');
   }
 
   // 2. From the Encounters page: Add encounter.
