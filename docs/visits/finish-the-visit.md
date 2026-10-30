@@ -31,7 +31,7 @@ You should see: **Finish encounter** at the top right. The **⌄** menu shows **
 
 The sheet shows the patient's name and today's date. Work through it from the top:
 
-1. **Before you end** lists anything missing, such as **Chief complaint · Not recorded**. Tap **+ Add** to fill it in now, or carry on.
+1. **Before you end** lists anything missing, such as **Chief complaint · Not recorded**. Tap **+ Add** to fill it in now, or carry on: reminders never stop you ending. If the visit has draft orders (for example a lab order you haven't sent), a switch such as **Send the draft order** appears here. It's on, so ending the visit sends them; switch it off to keep them as drafts.
 2. **Encounter type**: choose **Consultation**, **Follow-up**, **Oral prophylaxis**, **Dental certificate** or **Procedure**. This sets the visit charge.
 3. **Charges**: tick each line to put it on the bill: the encounter type and the work you marked **Done today**. Tap **+ Add charge** for anything else from your price list.
 
@@ -42,11 +42,13 @@ You should see: the ticked charges and the total, for example **₱2,300**.
 
 ![The Finish encounter sheet: Before you end with Chief complaint Not recorded, Encounter type Consultation, Charges Consultation ₱500 and Composite restoration 36 O Done today ₱1,800 ticked, Total charges ₱2,300](../assets/finish-the-visit/02-finish-sheet.webp){ .shot-sm }
 
+![Before you end on a visit with a draft lab order: Chief complaint Not recorded with Add, and the Send the draft order switch turned on](../assets/finish-the-visit/08-send-drafts.webp){ .shot-sm }
+
 ### 3. Book the follow-up
 
 Under **Follow-up**, choose **None**, **1 week**, **2 weeks**, **1 month**, or **Date** to pick a day yourself.
 
-Dentalemon finds the first open time and shows it in a card with the day, time and length, for example **Fri, Nov 6** and **10:30 AM · 30 min follow-up**. The booking is made when you end the encounter.
+Dentalemon finds the first open time and shows it in a card with the day, time and length, for example **Fri, Nov 6** and **10:30 AM · 30 min follow-up**. The booking is made when you end the encounter, and it then appears in **Appointments** like any other booking, where you can move or cancel it. See [Appointments](../schedule/appointments.md).
 
 You should see: the follow-up card under the choices.
 { .see }
@@ -77,6 +79,34 @@ You should see: **Reopen encounter** in the **⌄** menu.
 { .see }
 
 ![The ⌄ menu on an ended encounter, showing Reopen encounter](../assets/finish-the-visit/05-ended-menu.webp)
+
+### 6. End a visit early
+
+Use **End early…** when the visit didn't really happen, before you've recorded any care. It's only in the **⌄** menu until you start charting.
+
+1. Tap **⌄** beside **Finish encounter**, then **End early…**.
+2. Choose why: **Left before being seen**, **Referred or transferred** or **Declined care**.
+3. Add a note if you want, then tap **End early**. Tap **Keep** to go back without ending.
+
+You should see: **End Encounter · *time* early?** with the reason list and your choice marked. The encounter then ends. For **Left before being seen** and **Declined care**, the visit's unpaid charges are cleared too.
+{ .see }
+
+![The End early step: Left before being seen chosen, Referred or transferred and Declined care, a note box, and Keep and End early buttons](../assets/finish-the-visit/06-end-early.webp)
+
+### 7. Archive an encounter opened by mistake
+
+If you started an encounter for the wrong patient, or by accident, and nothing has been recorded in it, you can archive it.
+
+1. Tap **⌄** beside **Finish encounter**, then **Archive…**.
+2. The reason **Opened by mistake** is chosen for you. Add a note if you want.
+3. Tap **Archive encounter**, or tap **Keep** to leave it.
+
+You should see: **Archive encounter** with the reason and the **Archive encounter** button.
+{ .see }
+
+![The Archive encounter step: Opened by mistake chosen, a note box, and Keep and Archive encounter buttons](../assets/finish-the-visit/07-archive.webp)
+
+An archived encounter disappears from the patient's list of visits. You can bring it back from the **Patient Profile**.
 
 ## Tips
 

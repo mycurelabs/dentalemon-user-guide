@@ -23,6 +23,16 @@ You should see: your appointments in the calendar, with today's date circled. Ea
 
 ![The Appointments calendar in Week view: appointments for each day, today circled, with Today, the date range, View: Week and New appointment](../assets/appointments/01-calendar-week.webp)
 
+- **Day** shows one day hour by hour. Use it on a busy day: each block is one patient. Walk-ins (patients seen without a booking) appear as grey blocks.
+- **Month** shows the whole month. Each day lists its first appointments, then **+N more**. Tap **+N more** to open that day. Days the clinic is closed say **Closed**.
+
+![The Day view for Fri, Oct 30: appointment blocks laid out by hour from 7 AM](../assets/appointments/01b-calendar-day.webp)
+
+![The Month view for October 2026: each day lists appointments with their time and status, +N more, and Closed on Sundays](../assets/appointments/01c-calendar-month.webp)
+
+!!! tip "Choose the view that opens first"
+    In **Settings › Appointments**, set **Default view** to **Day**, **Week**, **Month** or **List**. See [Settings basics](../clinic/settings-basics.md).
+
 ### 2. Use the list
 
 Tap **List**. The cards at the top show **Next available**, **Awaiting confirmation**, **This week's fill** and **No-show rate**.
@@ -110,6 +120,37 @@ You should see: **Ferrer, Paula checked in**, with an **Open encounter** button.
 
 Checking in opens the patient's encounter for today, ready for charting and charges. Tap **Open encounter** to go straight there.
 
+### 10. Confirm an appointment
+
+An appointment booked as **Not yet confirmed** shows the status **Pending**. When the patient confirms (for example by phone or text), open the appointment and tap **Confirm**.
+
+You should see: **Status · Pending** and a yellow **Confirm** button. After you tap it, the status changes to **Confirmed**.
+{ .see }
+
+![A pending appointment opened: Status Pending, with Confirm, Reschedule, Check in and Cancel appointment](../assets/appointments/09-confirm.webp)
+
+!!! tip "Find the ones to call"
+    The **Awaiting confirmation** card at the top of the list counts every upcoming pending appointment. Use **Status** in the list to show only those.
+
+### 11. Mark a no-show
+
+If a patient with a **Confirmed** appointment doesn't come, open the appointment and tap **No-show**.
+
+**No-show** appears from 5 minutes after the appointment's start time. It isn't offered for pending appointments: cancel those instead.
+
+You should see: **No-show** among the buttons at the bottom of the appointment.
+{ .see }
+
+![A confirmed appointment from earlier today opened, with Check in, Reschedule, No-show and Cancel appointment](../assets/appointments/10-no-show-button.webp)
+
+A message says **Marked *name* as a no-show**, with **Undo**. Tap **Undo** within a few seconds if you tapped it by mistake. After that, the appointment's status is **No-show**, and it counts in the **No-show rate** card.
+
+![The list with the appointment's status now No-show and the message Marked Dela Cruz, Juan M. as a no-show, with Undo](../assets/appointments/11-no-show-undo.webp)
+
+### 12. Follow-ups booked when you finish a visit
+
+When you finish an encounter and choose a **Follow-up** (for example **1 week**), Dentalemon books it for you. It shows up here as a **Confirmed** appointment with the reason **Follow-up**, on the first open time that day. Open it like any other appointment to move or cancel it. See [Finish the visit](../visits/finish-the-visit.md).
+
 ## Tips
 
 !!! tip "Not sure the patient will come?"
@@ -122,7 +163,8 @@ Checking in opens the patient's encounter for today, ready for charting and char
 !!! info "Good to know"
     - Dentalemon doesn't send reminders or confirmation messages to patients. Contact them yourself.
     - You can check patients in only on the day of their appointment.
-    - A no-show is marked with **No-show** on the appointment.
+    - A checked-in appointment can't be cancelled. If the visit shouldn't go ahead, use **End encounter early…** on the appointment.
+    - Appointments can't be dragged to a new time. Use **Reschedule**.
 
 ## What's next
 

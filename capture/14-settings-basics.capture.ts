@@ -47,4 +47,28 @@ test('settings basics', async ({ page }) => {
   await open('billing', '08-billing');
   await open('billing', '08b-billing-tax', 'Tax');
   await open('encounter', '09-encounter');
+
+  // Signature (in Profile): looked at, not changed.
+  await open('profile', '02b-signature', 'Signature');
+
+  // Add service: the empty form, then Back (nothing typed, nothing saved).
+  await page.getByTestId('settings-nav-services').click();
+  await page.getByTestId('services-add').click();
+  await expect(page.getByTestId('service-editor')).toBeVisible({ timeout: 30_000 });
+  await shot(page, P, '07b-add-service');
+  await page.getByTestId('service-back').click();
+  await expect(page.getByTestId('services-list')).toBeVisible({ timeout: 30_000 });
+
+  // Add payment method: the form, then Cancel.
+  await page.getByTestId('settings-nav-billing').click();
+  await page.getByTestId('add-payment-method').click();
+  const pm = page.getByTestId('payment-method-form');
+  await expect(pm).toBeVisible({ timeout: 30_000 });
+  await pm.evaluate(el => el.scrollIntoView({ block: 'center' }));
+  await shot(page, P, '08c-add-payment-method');
+  await pm.getByRole('button', { name: 'Cancel' }).click();
+
+  await open('notifications', '10-notifications');
+  await open('appointments', '11-appointments');
+  await open('consents', '12-consents');
 });

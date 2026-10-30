@@ -79,4 +79,37 @@ test('chart teeth', async ({ page }) => {
   await shot(page, P, '11-whole-mouth');
   await page.keyboard.press('Escape');
   await expect(sheet(page)).toBeVisible();
+
+  // 10. A record's ⋯ menu: on the caries finding of 36 it offers Resolve and Entered in error….
+  await tapTooth(page, 36);
+  await panel(page).getByTestId('record-menu').first().tap();
+  await expect(page.getByTestId('record-action-error').filter({ visible: true }).first()).toBeVisible();
+  await shot(page, P, '12-record-menu');
+  await page.keyboard.press('Escape');
+
+  // 11. A tooth note, typed in place; it saves when you leave the field.
+  const note = panel(page).getByTestId('tooth-note-field');
+  await note.scrollIntoViewIfNeeded();
+  await note.tap();
+  await note.fill('Sensitive to cold since last week');
+  await note.evaluate(el => (el as HTMLElement).blur());
+  await expect(page.getByTestId('undo-bar')).toBeVisible();
+  await shot(page, P, '13-tooth-note', { el: panel(page) });
+
+  // 12. The tooth's state: tap the state button above the drawing and pick one (18 is missing).
+  await tapTooth(page, 18);
+  await panel(page).getByTestId('tooth-state-badge').first().tap();
+  await expect(page.getByTestId('tooth-state-menu')).toBeVisible();
+  await shot(page, P, '14-state-menu');
+  await page.getByRole('option', { name: /^Missing/ }).tap();
+  await expect(panel(page).getByTestId('tooth-state-badge').first()).toContainText('Missing');
+  await shot(page, P, '15-tooth-missing');
+
+  // 13. Leave a record half-way: the tooth keeps it as Resume record.
+  await tapTooth(page, 38);
+  await toothEntry.openRecord(page);
+  await toothEntry.addCondition(page, 'caries', ['O']);
+  await toothEntry.parkRecord(page);
+  await shot(page, P, '16-resume-record', { el: panel(page) });
+  await toothEntry.discardParked(page);
 });

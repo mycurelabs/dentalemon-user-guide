@@ -163,7 +163,24 @@ test('charges and the cashier', async ({ page }) => {
   await page.getByTestId('invoice-more').click();
   await expect(page.getByTestId('invoice-more-duplicate')).toBeVisible();
   await shot(page, P, '12-more-menu');
-  await page.keyboard.press('Escape');
+
+  // Send receipt: shown, never sent (Send only hands off to Mail or Messages).
+  await page.getByTestId('invoice-more-send').click();
+  await expect(dialog.getByTestId('send-to')).toBeVisible({ timeout: 15_000 });
+  await shot(page, P, '15-send-receipt', { el: dialog.first() });
+  await dialog.getByTestId('send-cancel').click();
+  await expect(dialog).toHaveCount(0, { timeout: 15_000 });
+
+  // Void…: the sheet with a reason typed, then Cancel. Nothing is voided.
+  await page.getByTestId('invoice-more').click();
+  await page.getByTestId('invoice-more-void').click();
+  await expect(dialog.getByTestId('void-sheet')).toBeVisible({ timeout: 15_000 });
+  await dialog.getByTestId('void-reason').fill('Charged the wrong patient');
+  await dialog.getByTestId('void-reason').press('End');
+  await expect(dialog.getByTestId('void-preview')).toBeVisible();
+  await shot(page, P, '16-void', { el: dialog.first() });
+  await dialog.getByTestId('void-cancel').click();
+  await expect(dialog).toHaveCount(0, { timeout: 15_000 });
 
   // ── Coverage: Pilar's invoice with a consultation and an extraction.
   const pilarId = await patient(page, facility, PILAR);
@@ -185,6 +202,17 @@ test('charges and the cashier', async ({ page }) => {
   await expect(dialog.getByTestId('coverage-line').first()).toBeVisible();
   await shot(page, P, '13-apply-coverage', { el: dialog.first() });
   await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0, { timeout: 15_000 });
+
+  // GCash asks for a reference number. Shown, then closed: nothing is collected.
+  await page.getByTestId('invoice-collect').click();
+  await expect(dialog.getByTestId('collect-methods')).toBeVisible();
+  await dialog.locator('[data-collect-methods] label:has([data-kind="E-wallet"])').first().click();
+  await expect(dialog.getByTestId('collect-reference')).toBeVisible();
+  await dialog.getByTestId('collect-reference').evaluate(el => el.scrollIntoView({ block: 'center' }));
+  await shot(page, P, '17-collect-gcash', { el: dialog.first() });
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0, { timeout: 15_000 });
 
   // New sale.
   await page.goto('/cashier');
@@ -192,5 +220,11 @@ test('charges and the cashier', async ({ page }) => {
   await page.getByRole('button', { name: 'New sale' }).first().click();
   await expect(dialog.first()).toBeVisible();
   await shot(page, P, '14-new-sale', { el: dialog.first() });
+  // The same sheet with a patient picked (Start sale is not tapped: no invoice is made).
+  await dialog.getByTestId('sale-patient-field').locator('input').first().fill('Pilar');
+  const option = page.getByRole('option', { name: /Ocampo, Pilar/ }).first();
+  await expect(option).toBeVisible({ timeout: 30_000 });
+  await option.click();
+  await shot(page, P, '18-new-sale-patient', { el: dialog.first() });
   await page.keyboard.press('Escape');
 });

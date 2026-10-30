@@ -72,22 +72,60 @@ Use the list on the left to move between sections. Nothing here is required, but
 
 - **Contact**: **Mobile number**, **Email**, **Home phone**.
 - **Demographics**, **Address**, **Family & Emergency**.
-- **Insurance & Benefits**: HMO or PhilHealth cards, and Senior Citizen or PWD IDs.
-- **Allergies** and **Medical history**: record these before the first treatment.
+- **Insurance & Benefits**: HMO or PhilHealth cards, and Senior Citizen or PWD IDs (step 7).
+- **Allergies** (step 6) and **Medical history**: record these before the first treatment.
 
 You should see: the section you tapped, with your details filled in.
 { .see }
 
 ![The Contact section with a mobile number and an email filled in](../assets/find-or-add-a-patient/05-contact.webp)
 
-### 6. Save
+### 6. Record allergies
+
+Always ask about allergies before the first treatment. Allergies you record here appear in red on the patient's page and at every visit.
+
+1. Tap **Allergies** in the list on the left.
+2. Tap **Add allergy**.
+3. In **Allergen**, type what the patient is allergic to, for example *Penicillin*. Pick a suggestion if one matches, or keep what you typed.
+4. Under **Type**, tap **Drug**, **Food**, **Environmental** or **Other**.
+5. Under **Severity**, tap **Mild**, **Moderate** or **Severe**.
+6. Under **First observed**, add when it started, if the patient knows. You can leave it empty.
+7. For another allergy, tap **Add allergy** again. To remove one, tap the bin next to its name.
+
+If you haven't asked about allergies yet, leave this section empty. The patient's page then says **Allergies not recorded**, so you know to ask.
+
+You should see: **Allergy 1** with the allergen, type and severity filled in.
+{ .see }
+
+![The Allergies section with Allergy 1: Allergen Penicillin, Type Drug, Severity Severe, and First observed](../assets/find-or-add-a-patient/05b-allergies.webp)
+
+!!! note
+    You can add allergies here only while you're adding the patient. Later, add or change them during a visit: in the encounter, open **Records** and tap **+ Allergies**. See [Notes, prescriptions, orders and attachments](../visits/notes-prescriptions-orders-attachments.md).
+
+### 7. Add insurance cards and discount IDs
+
+Fill this in if the patient has an HMO or PhilHealth card, or a PWD or Senior Citizen ID. The Cashier uses it later for coverage and discounts.
+
+1. Tap **Insurance & Benefits** in the list on the left.
+2. Tap **Add insurance card**.
+3. Tap **Select insurer** and choose the HMO or PhilHealth. The list shows the payers your clinic works with.
+4. Type the **Card number**. Choose the **Membership** (member or dependent) and **Valid until** date if you have them.
+5. For a second card, tap **Add another card**.
+6. Under **Benefits**, type the **PWD ID** if the patient has one, and the **Declared on** date (the day they showed it to you). For patients aged 60 or over, a **Senior Citizen ID (OSCA)** box appears here too.
+
+You should see: **Insurance card 1** with the insurer and card number.
+{ .see }
+
+![The Insurance & Benefits section: Insurance card 1 with Insurer Bayanihan Health and a card number, Add another card, and the PWD ID box under Benefits](../assets/find-or-add-a-patient/05c-insurance.webp)
+
+### 8. Save
 
 Tap **Add patient**.
 
-You should see: a **Patient added** message, and the new patient's page opens on **Summary**.
+You should see: a **Patient added** message, and the new patient's page opens on **Summary**. Allergies you added show in red under the name, and the insurer shows under **Insurance**.
 { .see }
 
-![The new patient's page open on the Summary tab, with a Patient added message at the bottom](../assets/find-or-add-a-patient/06-patient-added.webp)
+![The new patient's page on the Summary tab: Allergies Penicillin (severe) in red, Insurance Bayanihan Health, and a Patient added message](../assets/find-or-add-a-patient/06-patient-added.webp)
 
 ## Tips
 

@@ -32,7 +32,7 @@ Tap **⋯** at the end of a planned row:
 
 - **Mark done**: you did the work in this visit. It moves to **Done today**.
 - **Patient declined**: the patient doesn't want it. It moves to **Declined**.
-- **Dismiss…**: remove an item that was planned by mistake. You'll be asked why.
+- **Dismiss…**: take an item off the plan, for example when it's no longer needed. You'll be asked why (step 5).
 
 You should see: a small menu with **Mark done**, **Patient declined** and **Dismiss…**.
 { .see }
@@ -72,6 +72,30 @@ You should see: **Treatment plan · Proposed**, with the same **Estimate** as th
 
 ![The patient's Treatment plan tab: Proposed, Version 1, Planned items with an Estimate of ₱9,800, Oral prophylaxis under Done, and Surgical extraction under Declined, with a Back to encounter button](../assets/treatment-plan-and-estimate/04-treatment-plan-tab.webp)
 
+### 5. Take an item off the plan
+
+Use **Dismiss…** when planned work is no longer needed, was referred to someone else, or was planned twice. It's different from **Patient declined**, which records that the patient said no.
+
+1. Tap **⋯** on the planned row, then **Dismiss…**.
+2. Under **Reason**, choose **No longer indicated**, **Referred elsewhere**, **Recorded twice** or **Other**.
+3. Tap **Dismiss**. Tap **Cancel** to keep it.
+
+You should see: **Dismiss from plan**, with the tooth and treatment under the title. The item leaves the plan and the **Estimate** goes down. It still shows in the tooth's history.
+{ .see }
+
+![The Dismiss from plan sheet for 46 Root canal treatment, with No longer indicated chosen and Cancel and Dismiss buttons](../assets/treatment-plan-and-estimate/05-dismiss-reason.webp)
+
+### 6. When the plan is finished
+
+When the last planned item is done, the plan is complete. The **Treatment plan** tab then says **No open treatment plan**, and the finished plan moves to **Earlier plans** with the date it was completed and the work it covered.
+
+New planned work on the chart starts a new plan. **Open latest encounter** takes you back to the patient's most recent visit.
+
+You should see: **No open treatment plan**, and the plan under **Earlier plans** marked **Completed**.
+{ .see }
+
+![The Treatment plan tab with No open treatment plan and an Open latest encounter button, and under Earlier plans a Completed plan listing its treatments](../assets/treatment-plan-and-estimate/06-plan-complete.webp)
+
 ## Tips
 
 !!! tip "Talk the patient through the Estimate"
@@ -82,7 +106,6 @@ You should see: **Treatment plan · Proposed**, with the same **Estimate** as th
     - **A fee shows ₱0 or the wrong amount.** Check the treatment's price in **Settings › Services**.
 
 !!! info "Good to know"
-    - When the last planned item is done, the plan is complete and moves to **Earlier plans**. New planned work starts a new plan.
     - The Estimate is a guide. Dentalemon can't print or share a signed estimate yet, and there are no plan versions to compare.
     - Planned work isn't charged until it's done.
 

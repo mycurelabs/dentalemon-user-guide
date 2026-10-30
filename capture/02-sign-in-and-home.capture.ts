@@ -32,4 +32,19 @@ test('sign in and a first look', async ({ page }) => {
   await page.getByTestId('nav-user-trigger').click();
   await expect(page.getByTestId('nav-user-settings')).toBeVisible();
   await shot(page, P, '06-account-menu');
+
+  // What's new, from the account menu.
+  await page.getByTestId('nav-user-whats-new').click();
+  const whatsNew = page.getByTestId('whats-new');
+  await expect(whatsNew).toBeVisible();
+  await shot(page, P, '08-whats-new');
+  await page.getByTestId('whats-new-done').click();
+  await expect(whatsNew).toBeHidden();
+
+  // Sync status: the cloud icon at the top right.
+  await page.getByTestId('sync-button').click();
+  const sync = page.getByRole('dialog', { name: 'Sync status' });
+  await expect(sync).toBeVisible();
+  await shot(page, P, '07-sync-status', { el: sync });
+  await page.keyboard.press('Escape');
 });

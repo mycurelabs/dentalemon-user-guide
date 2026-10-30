@@ -62,6 +62,24 @@ test('find or add a patient', async ({ page }) => {
   await dialog.getByLabel('Email', { exact: true }).fill('tomas.ignacio@dl.test');
   await shot(page, P, '05-contact');
 
+  // Allergies: one made-up drug allergy.
+  await dialog.getByTestId('patient-form-nav-allergies').click();
+  await dialog.getByRole('button', { name: 'Add allergy' }).click();
+  await dialog.getByLabel('Allergen').first().fill('Penicillin');
+  await page.keyboard.press('Tab'); // leave the allergen box so its suggestion list closes
+  await dialog.getByRole('radiogroup', { name: 'Type' }).getByRole('radio', { name: 'Drug' }).click();
+  await dialog.getByRole('radiogroup', { name: 'Severity' }).getByRole('radio', { name: 'Severe' }).click();
+  await expect(dialog.getByRole('radio', { name: 'Drug' })).toHaveAttribute('aria-checked', 'true');
+  await shot(page, P, '05b-allergies');
+
+  // Insurance & Benefits: a card from the clinic's own partner list (made-up payers).
+  await dialog.getByTestId('patient-form-nav-insurance').click();
+  await dialog.getByRole('button', { name: 'Add insurance card' }).click();
+  await dialog.getByText('Select insurer').click();
+  await page.getByRole('option', { name: 'Bayanihan Health', exact: true }).click();
+  await dialog.getByLabel('Card number').first().fill('BH-TEST-0031');
+  await shot(page, P, '05c-insurance');
+
   // The toast only stays a few seconds: wait for it from the moment of the tap, then capture at once.
   const toast = page.getByText('Patient added').waitFor({ timeout: 30_000 });
   await dialog.getByRole('button', { name: 'Add patient', exact: true }).click();

@@ -61,4 +61,28 @@ test('treatment plan and Estimate', async ({ page }) => {
   await expect(page).toHaveURL(/tab=treatment-plan/);
   await expect(page.getByTestId('treatment-plan')).toBeVisible();
   await shot(page, P, '04-treatment-plan-tab');
+
+  // 5. Dismiss… takes a planned item off the plan, with a reason.
+  await page.goto(visit.url);
+  await expect(list).toBeVisible();
+  const rct = rows('planned').filter({ hasText: /root canal/i });
+  await rct.getByTestId('record-menu').tap();
+  await page.getByTestId('record-action-dismiss').tap();
+  const reason = page.getByTestId('record-reason-sheet').filter({ visible: true }).first();
+  await expect(reason).toBeVisible();
+  await reason.getByText('No longer indicated', { exact: true }).tap();
+  await shot(page, P, '05-dismiss-reason');
+  await page.getByTestId('record-reason-confirm').tap();
+  await expect(reason).toBeHidden();
+
+  // 6. Mark the last planned item done: the plan is complete and moves to Earlier plans.
+  const comp = rows('planned').filter({ hasText: /composite/i });
+  await comp.getByTestId('record-menu').tap();
+  await page.getByTestId('record-action-done').tap();
+  await expect(rows('planned')).toHaveCount(0);
+  await page.waitForTimeout(800);
+  await page.goto(`/patients/${visit.patientId}?tab=treatment-plan`);
+  await expect(page.getByTestId('treatment-plan')).toBeVisible();
+  await page.waitForTimeout(800);
+  await shot(page, P, '06-plan-complete');
 });

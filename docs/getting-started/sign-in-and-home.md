@@ -63,6 +63,14 @@ You should see: each patient's time, name, visit reason and a button.
 
 ![The Up next card listing today's patients with Resume and Start encounter buttons, and a Walk-in button](../assets/sign-in-and-home/04-up-next.webp)
 
+**Seeing a walk-in patient:**
+
+1. Tap **Walk-in**. Dentalemon opens **Patients**.
+2. Search for the patient. If they're new, add them (see [Find or add a patient](../patients/find-or-add-a-patient.md)).
+3. On the patient's page, tap **Start encounter**.
+
+The visit then appears in **Up next** with the label **Walk-in**, so you can come back to it with **Resume**.
+
 ### 5. Check notifications and recent payments
 
 Keep scrolling. **Notifications** shows the newest alerts, such as lab results and booking requests. **Recent transactions** shows the latest payments. Tap **View all** on either card to see the full list.
@@ -83,7 +91,25 @@ The sidebar on the left is always there. It has three groups:
 A small number next to an item tells you how many things are waiting there.
 The **Search…** box at the top finds a patient by name: type and press Enter.
 
-### 7. Open your account menu
+To make more room on the screen, tap the panel button at the top left, next to the page title. It hides the sidebar. Tap it again to bring the sidebar back.
+
+### 7. Check the icons at the top right
+
+Two icons sit at the top right of every page.
+
+- **The cloud** shows whether your data is up to date. A tick means everything is saved and current. Tap it to open **Sync status**:
+    - **Up to date**: your clinic data is current.
+    - **You're offline**: there's no internet connection. Changes you make can't reach the clinic until you're back online.
+    - **Couldn't finish syncing**: the update didn't go through. Tap **Try again**.
+    - **Sync now** fetches the latest changes straight away.
+- **The bell** opens your notifications. The number on it is how many you haven't read. See [Notifications and Analytics](../clinic/notifications-and-analytics.md).
+
+You should see: **Sync status**, with **Last updated**, **Connection** and a **Sync now** button.
+{ .see }
+
+![The Sync status panel: Up to date, Your clinic data is up to date, Last updated, Connection Connected, and a Sync now button](../assets/sign-in-and-home/07-sync-status.webp){ .shot-sm }
+
+### 8. Open your account menu
 
 Tap your name at the bottom of the sidebar.
 
@@ -97,6 +123,28 @@ You should see: the menu open above your name.
 { .see }
 
 ![The account menu open from the sidebar, showing Account, Settings, Share Dentalemon, What's new and Log out](../assets/sign-in-and-home/06-account-menu.webp)
+
+### 9. See what's new
+
+In the account menu, tap **What's new**. It lists recent improvements, newest first. Tap **Done** to close it.
+
+What's new also opens by itself once after you sign in, when there's something new. Tick **Don't show at sign-in** if you'd rather open it yourself.
+
+![What's new: recent improvements with their dates, a Don't show at sign-in tick box, and Done](../assets/sign-in-and-home/08-whats-new.webp)
+
+### 10. Log out
+
+In the account menu, tap **Log out**. Dentalemon signs you out on this device and shows the sign-in page.
+
+Log out when you hand the iPad to someone else, or at the end of the day on a shared iPad.
+
+## Using Dentalemon on an iPad
+
+- **Tap** to choose. There's no need to double-tap.
+- **Scroll** inside a panel or list by sliding your finger on it. Long forms and lists scroll on their own, while the top bar stays put.
+- **Sheets** are panels that slide up from the bottom or in from the side, such as **Collect payment**. Close one with **✕**, **Cancel** or **Close**, or by dragging its handle down.
+- **Landscape or portrait**: both work. In portrait, some panels, like the tooth panel, open as sheets instead of sitting beside the page.
+- **Typing**: tap a box to bring up the keyboard. Use the keyboard's hide key when you're done.
 
 ## Tips
 

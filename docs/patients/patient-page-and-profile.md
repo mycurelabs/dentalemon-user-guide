@@ -53,12 +53,12 @@ More on payments in [Billing, balances and payment plans](../payments/billing-an
 Tap the patient's name at the top left. The menu has:
 
 - **View profile**: the full patient card (next step).
-- **Book appointment**: book this patient straight away. See [Appointments](../schedule/appointments.md).
+- **Book appointment**: book this patient straight away (step 8).
 - **Start encounter**: open a new visit now.
 - **Copy patient number**: copies the number (for example *P-0011*) so you can paste it elsewhere.
 - **Edit details**: change the patient's details (step 7).
 - **Switch patient…**: jump to another patient (step 5).
-- **Archive patient**: take the patient off your list (step 8).
+- **Archive patient**: take the patient off your list (step 9).
 
 You should see: the menu under the patient's name.
 { .see }
@@ -87,17 +87,35 @@ The profile is for reading. To change anything, use **Edit details**.
 
 ### 7. Edit the patient's details
 
-From the patient menu, tap **Edit details**. Change what you need, then tap **Save changes**. Tap **Cancel** to leave without saving.
+1. From the patient menu, tap **Edit details**.
+2. Use the list on the left to go to the section you need, for example **Contact** for a new mobile number, or **Insurance & Benefits** for a new card.
+3. Change what you need.
+4. Tap **Save changes**. To leave without saving, tap **Cancel**.
 
 You should see: **Edit patient**, with the same sections as when you added the patient.
 { .see }
 
 ![The Edit patient form on Identity, with Save changes and Cancel buttons and a note about allergies](../assets/patient-page-and-profile/07-edit-details.webp)
 
-!!! note
-    Allergies and medical history aren't edited here. Add or change them during an encounter, so each change is dated to a visit.
+After you save, a **Patient updated** message appears and the patient's page shows the new details.
 
-### 8. Archive a patient (only when needed)
+![The patient's page after saving, with a Patient updated message at the bottom](../assets/patient-page-and-profile/09-patient-updated.webp)
+
+!!! note
+    Allergies and medical history aren't edited here. Add or change them during an encounter, so each change is dated to a visit: in the encounter, open **Records** and tap **+ Allergies**.
+
+### 8. Book an appointment for this patient
+
+From the patient menu, tap **Book appointment**. Dentalemon opens **Appointments** with a **New appointment** form, and the patient is already filled in.
+
+Choose the **Reason**, a day and a time, then tap **Book**. The rest of the booking works the same as from the Appointments page. See [Appointments](../schedule/appointments.md).
+
+You should see: **New appointment** with the patient's name under **Patient**.
+{ .see }
+
+![The New appointment form opened from the patient menu, with Ignacio, Tomas R. already filled in under Patient, Reason Consultation, and a calendar](../assets/patient-page-and-profile/10-book-appointment.webp)
+
+### 9. Archive a patient (only when needed)
 
 From the patient menu, tap **Archive patient**.
 

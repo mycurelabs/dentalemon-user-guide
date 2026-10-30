@@ -15,6 +15,30 @@ This guide walks you through the everyday tasks, one page per task, with a pictu
 !!! note "About the pictures"
     Every patient, phone number and ID in the pictures is made up for this guide. The screens were taken on an iPad-sized screen in landscape, so yours may look slightly different on a phone or in portrait.
 
+## Your first day
+
+Do these in order. Each one takes a few minutes, and together they get you from a new account to your first paid visit.
+
+**Set up the clinic (once)**
+
+1. [Create your account and name your clinic](getting-started/sign-up-and-clinic-setup.md).
+2. Add your clinic's address and opening hours: [Settings basics › Your clinic and opening hours](clinic/settings-basics.md#4-your-clinic-and-opening-hours). Appointments can only be booked inside these hours.
+3. Check your price list: [Settings basics › Your price list](clinic/settings-basics.md#7-your-price-list). These prices are used for every charge and estimate.
+4. Choose the payment methods you accept, and your tax registration: [Settings basics › Payments and tax](clinic/settings-basics.md#8-payments-and-tax).
+5. Add your PTR and S2 numbers and your signature to your profile, so they print on prescriptions: [Settings basics › Your licence numbers and signature](clinic/settings-basics.md#3-your-licence-numbers-and-signature).
+
+**See your first patient**
+
+1. [Add the patient](patients/find-or-add-a-patient.md), including any allergies.
+2. [Start an encounter](visits/start-an-encounter.md), the record of today's visit.
+3. [Chart the teeth](visits/chart-teeth.md) and [plan the treatment](visits/treatment-plan-and-estimate.md).
+4. [Write notes, prescribe and order](visits/notes-prescriptions-orders-attachments.md) as needed.
+5. [Finish the visit](visits/finish-the-visit.md) and send the bill to the Cashier.
+6. [Take the payment](payments/charges-and-cashier.md).
+7. [Book the next appointment](schedule/appointments.md).
+
+New words, such as *encounter* or *Estimate*, are explained in [Words and answers](help/words-and-answers.md).
+
 ## The guides
 
 ### Getting started
@@ -43,6 +67,9 @@ This guide walks you through the everyday tasks, one page per task, with a pictu
 ### Your clinic
 14. [Settings basics](clinic/settings-basics.md)
 15. [Notifications and Analytics](clinic/notifications-and-analytics.md)
+
+### Help
+- [Words and answers](help/words-and-answers.md): what the app's words mean, and answers to common questions.
 
 ## What Dentalemon can't do yet
 

@@ -78,7 +78,11 @@ You should see: the invoice. **Items on this invoice** is in the middle, the tot
 
 ### 7. Apply a Senior Citizen or PWD discount
 
-Next to **Discount**, tap **Apply**. Choose **Senior Citizen** or **PWD**, and check the ID number. If the ID is already in the patient's details, it fills in by itself. Then tap **Apply discount**.
+Next to **Discount**, tap **Apply**. Choose **Senior Citizen** or **PWD** (person with disability).
+
+Check the ID number in **Senior Citizen ID no.** or **PWD ID no.** If the ID is already in the patient's details, it fills in by itself. If not, type the number from the ID card the patient shows you. Then tap **Apply discount**.
+
+The PWD discount works the same way as the Senior Citizen one: 20% off.
 
 You should see: the discount and the new total before you confirm it (20% off).
 { .see }
@@ -102,11 +106,25 @@ You should see: what the payer covers line by line (**Not covered** where it pay
 
 Tap **Collect · ₱X**. Under **Pay with**, choose **Cash**, **GCash**, **Card** or **Bank transfer**.
 
-For cash, type the amount the patient handed you in **Cash received**, or tap a quick amount such as **Exact ₱2,400** or **₱2,500**. Dentalemon works out the **Change**. The **Official receipt** number is the next in your series.
+For cash, type the amount the patient handed you in **Cash received**, or tap a quick amount such as **Exact ₱2,400** or **₱2,500**. Dentalemon works out the **Change**.
+
+The **Official receipt** (OR) number is the next in your series. If you write receipts from a paper booklet, switch on **Manual OR number** and type the number from the booklet.
 
 Tap **Collect ₱X**.
 
 ![The Collect payment sheet: Cash chosen, Amount ₱2,400, Cash received ₱2,500, Change ₱100, Official receipt Next in series](../assets/charges-and-cashier/09-collect-cash.webp)
+
+For other payment methods, Dentalemon asks for proof of payment instead of **Cash received**:
+
+| Pay with | What to type |
+|---|---|
+| **GCash** (or another e-wallet) | The **Reference number** from the patient's payment confirmation |
+| **Card** | The **Approval code** from the card terminal. The last 4 digits of the card are optional. |
+| **Bank transfer** | The **Bank** the money came from, and the transfer's **Reference number** |
+
+You can't collect until the reference number or approval code is filled in.
+
+![The Collect payment sheet with GCash chosen: Amount ₱3,000 and an empty Reference number box](../assets/charges-and-cashier/17-collect-gcash.webp){ .shot-sm }
 
 You should see: the receipt with its number, the change, and **Balance due · Paid in full**. Tap **Done**.
 { .see }
@@ -121,14 +139,57 @@ Tap **Print** at the top of the invoice, check the preview, then tap **Print**.
 
 ## Other things you can do
 
-- **More (⋯)** on the invoice has **Send receipt**, **Duplicate as new sale** and **Void…**.
+The **More** button (**⋯**) at the top of the invoice has **Send receipt** (**Send invoice** before payment), **Duplicate as new sale** and **Void…**.
 
-    ![The More menu on a paid invoice: Send receipt, Duplicate as new sale, Void…](../assets/charges-and-cashier/12-more-menu.webp)
+![The More menu on a paid invoice: Send receipt, Duplicate as new sale, Void…](../assets/charges-and-cashier/12-more-menu.webp)
 
-- **Void…** cancels the whole invoice, or only some items, and asks for a reason.
-- **New sale** (top of the Cashier page) bills a patient who didn't have a visit, for example someone buying an item. Search for the patient, or tap **Add a new patient**, then **Start sale**.
+### Send a receipt or invoice to the patient
 
-    ![The New sale sheet with a patient search, Add a new patient, and Start sale](../assets/charges-and-cashier/14-new-sale.webp){ .shot-sm }
+1. Tap **⋯**, then **Send receipt**.
+2. At the top, choose what to send: the **Invoice**, or a **Receipt** (one per payment).
+3. Choose **Email** or **Text message**. The patient's email or mobile number on file fills in. Change it if you need to.
+4. Tap **Send**.
+
+You should see: your iPad's Mail or Messages app open with the message ready. Send it from there.
+{ .see }
+
+![The Send receipt sheet: Invoice or Receipt ₱2,400 Cash, Email or Text message, Mobile number 0917 000 0021, Cancel and Send](../assets/charges-and-cashier/15-send-receipt.webp){ .shot-sm }
+
+### Void an invoice
+
+Voiding cancels a bill that was made by mistake, for example for the wrong patient or with a charge that shouldn't be there. A voided invoice stays on record, marked as voided.
+
+1. Tap **⋯**, then **Void…**.
+2. Choose **Whole invoice**, or **Items** to void only some lines, then tick those lines.
+3. Type the **Reason for voiding**. It's required.
+4. Check the summary: **Voids** (the amount), **Refund** (what to give back, by payment method and receipt number) and, for a visit's bill, **Encounter's charges · New invoice** (the visit gets a new invoice, so it can be billed again).
+5. Tap the red button, for example **Void invoice · refund ₱2,400**. Tap **Cancel** to leave without voiding.
+
+You should see: a message confirming the void and the amount refunded.
+{ .see }
+
+![The Void sheet: Whole invoice chosen, Reason for voiding Charged the wrong patient, Voids ₱2,400, Refund Cash ₱2,400, Encounter's charges New invoice, and Void invoice · refund ₱2,400](../assets/charges-and-cashier/16-void.webp){ .shot-sm }
+
+!!! warning "Give the refund yourself"
+    Dentalemon only records the refund. Hand the money back to the patient, or reverse the GCash or card payment, yourself.
+
+### Sell something without a visit (New sale)
+
+Use **New sale** to bill a patient who isn't in a visit, for example someone buying a toothbrush or picking up a dental certificate.
+
+1. On the **Cashier** page, tap **New sale**.
+2. Under **Patient**, type part of the name and tap the patient. For someone who isn't registered yet, tap **Add a new patient**.
+3. Tap **Start sale**.
+4. A new invoice opens. Add items from **Add to invoice** on the left (tap **Add** next to each one), then take payment with **Collect**, as in step 9.
+
+![The New sale sheet with an empty Patient search, Add a new patient, and Start sale](../assets/charges-and-cashier/14-new-sale.webp){ .shot-sm }
+
+You should see: the patient's name in the **Patient** box before you tap **Start sale**.
+{ .see }
+
+![The New sale sheet with Ocampo, Pilar chosen, and Start sale](../assets/charges-and-cashier/18-new-sale-patient.webp){ .shot-sm }
+
+If the patient already has a bill waiting at the Cashier, the sheet offers to open that bill, so you don't start a second one by mistake.
 
 ## Tips
 

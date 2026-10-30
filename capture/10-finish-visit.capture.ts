@@ -74,4 +74,73 @@ test('finish the visit', async ({ page }) => {
   await expect(actionsMenu).toBeVisible();
   await shot(page, P, '05-ended-menu');
   await page.keyboard.press('Escape');
+
+  // 6. End early…: a visit that never really happened (the patient left, was referred, or declined).
+  const early = await patientWithEncounter(page, {
+    firstName: 'Danilo',
+    lastName: 'Abella',
+    sex: 'male',
+    dateOfBirth: '1992-08-23',
+    mobileNo: '0917 000 0027',
+  }, { fresh: true });
+  await page.goto(early.url);
+  await expect(main).toContainText('Finish encounter', { timeout: 60_000 });
+  await expect
+    .poll(async () => {
+      await more.tap();
+      const has = await page.getByTestId('lifecycle-early').isVisible().catch(() => false);
+      if (!has) await page.keyboard.press('Escape');
+      return has;
+    }, { timeout: 30_000 })
+    .toBe(true);
+  await page.getByTestId('lifecycle-early').tap();
+  const step = page.getByTestId('reason-step');
+  await expect(step).toBeVisible();
+  await step.getByRole('radio', { name: 'Left before being seen' }).tap();
+  await shot(page, P, '06-end-early');
+  await step.getByTestId('reason-confirm').tap();
+  await expect(step).toBeHidden({ timeout: 30_000 });
+
+  // 7. Archive…: an encounter opened by mistake (nothing recorded yet). Shown, then kept.
+  const oops = await patientWithEncounter(page, {
+    firstName: 'Teresita',
+    lastName: 'Abella',
+    sex: 'female',
+    dateOfBirth: '1990-01-12',
+    mobileNo: '0917 000 0028',
+  }, { fresh: true });
+  await page.goto(oops.url);
+  await expect(main).toContainText('Finish encounter', { timeout: 60_000 });
+  await expect
+    .poll(async () => {
+      await more.tap();
+      const has = await page.getByTestId('lifecycle-archive').isVisible().catch(() => false);
+      if (!has) await page.keyboard.press('Escape');
+      return has;
+    }, { timeout: 30_000 })
+    .toBe(true);
+  await page.getByTestId('lifecycle-archive').tap();
+  await expect(step).toBeVisible();
+  await step.getByRole('radio', { name: 'Opened by mistake' }).tap();
+  await shot(page, P, '07-archive');
+  await page.getByTestId('reason-keep').tap();
+  await expect(step).toBeHidden();
+
+  // 8. A draft order: Finish encounter offers to send it.
+  await page.goto(`${oops.url}?tab=orders`);
+  await expect(page.getByTestId('views-add-order')).toBeVisible({ timeout: 60_000 });
+  await page.getByTestId('views-add-order').tap();
+  await page.getByRole('menuitem', { name: 'Lab order' }).tap();
+  const dlg = page.getByRole('dialog').filter({ visible: true }).last();
+  await dlg.getByRole('button', { name: 'Complete blood count' }).tap();
+  await dlg.getByRole('button', { name: 'Save' }).tap();
+  await expect(page.getByRole('dialog').filter({ hasText: 'Add lab order' })).toHaveCount(0, { timeout: 30_000 });
+  await main.tap();
+  await expect(sheet).toBeVisible();
+  await expect(sheet.getByText('Loading the charges…')).toHaveCount(0, { timeout: 60_000 });
+  const reminders = sheet.getByTestId('finish-reminders');
+  await expect(reminders).toContainText('Send the draft order');
+  await settle(page);
+  await shot(page, P, '08-send-drafts', { el: reminders });
+  await page.keyboard.press('Escape');
 });

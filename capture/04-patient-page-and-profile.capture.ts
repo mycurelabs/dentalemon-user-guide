@@ -62,4 +62,22 @@ test('the patient page and profile', async ({ page }) => {
   await expect(confirm).toBeVisible();
   await shot(page, P, '08-archive-confirm');
   await page.keyboard.press('Escape');
+
+  // Edit details on the guide's own patient, then save: the change is kept and a message confirms it.
+  await page.getByTestId('patient-switcher').click();
+  await page.getByTestId('menu-edit').click();
+  const editTomas = page.getByRole('dialog', { name: 'Edit patient' });
+  await expect(editTomas).toBeVisible();
+  await editTomas.getByTestId('patient-form-nav-contact').click();
+  await editTomas.getByLabel('Mobile number').first().fill('0917 000 0032');
+  const updated = page.getByText('Patient updated').waitFor({ timeout: 30_000 });
+  await editTomas.getByRole('button', { name: 'Save changes' }).click();
+  await updated;
+  await shot(page, P, '09-patient-updated');
+
+  // Book appointment from the patient menu: the booking form opens with the patient filled in.
+  await page.getByTestId('patient-switcher').click();
+  await page.getByTestId('menu-book').or(page.getByRole('menuitem', { name: 'Book appointment' })).first().click();
+  await expect(page.getByText('New appointment', { exact: true }).first()).toBeVisible({ timeout: 30_000 });
+  await shot(page, P, '10-book-appointment');
 });

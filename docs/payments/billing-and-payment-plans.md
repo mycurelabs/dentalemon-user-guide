@@ -58,20 +58,36 @@ You should see: under **Applies to, oldest first**, which invoices the money wil
 
 Tap **Accounts receivable**. This is the money HMOs and PhilHealth owe the clinic for covered work.
 
-You should see: the amounts grouped by age (**0–30 days**, **31–60 days**, **61–90 days**, **90+ days**), and a table of claims with the payer, the patient, the service date, when it was submitted, the amount, the age and the status (**Draft**, **Submitted**, **Paid**).
+You should see: the amounts grouped by age (**0–30 days**, **31–60 days**, **61–90 days**, **90+ days**), and a table of claims with the payer, the patient, the service date, when it was submitted, the amount, the age and the status.
 { .see }
 
 ![The Accounts receivable tab: amounts by age, then claims with payer, patient, service date, submitted date and amount](../assets/billing-and-payment-plans/06-accounts-receivable.webp)
 
-Filter by **Status** or **Payer**. Tap **⋮** on a claim to move it along. A draft claim offers **Mark submitted**, and a submitted one **Mark paid**.
+A **claim** is what a payer owes for one patient's covered work. Filter by **Status** or **Payer**, or search by patient. Tap **⋮** at the end of a claim's row to move it along as you deal with the payer:
+
+| Status | What it means | What you can do next (in **⋮**) |
+|---|---|---|
+| **Draft** | Not sent to the payer yet | **Mark submitted** once you've sent it |
+| **Submitted** | Sent, waiting for the payer | **Mark approved**, **Mark denied**, **Mark paid**, **Send follow-up** |
+| **Approved** | The payer agreed to pay | **Mark paid** when the money arrives, or **Mark denied** |
+| **Denied** | The payer refused. You type the reason when you mark it denied. | **Reopen claim** to try again |
+| **Paid** | The payer paid | Nothing more to do |
+
+**View claim** shows the claim's details, and **View billing** opens the patient's own billing.
 
 ![The claim menu on a Draft claim: View claim, View billing, Mark submitted](../assets/billing-and-payment-plans/07-claim-actions.webp)
+
+When you tap **Mark paid** (or another step), a message with **Undo** appears for a few seconds before the change is saved. **Send follow-up** writes a reminder for you to send from your iPad's share sheet.
+
+![The claim menu on a Submitted claim: View claim, View billing, Mark approved, Mark denied, Mark paid, Send follow-up](../assets/billing-and-payment-plans/07b-claim-submitted-actions.webp)
 
 ### 6. Set up a payment plan
 
 Tap **Payment plans**, then **Create payment plan**.
 
-Choose the **Patient**, give the plan a **Plan title**, then fill in **Proposed total (₱)**, **Down payment (₱)**, **Number of monthly installments** and **First installment date**. Tap **Save draft agreement**.
+Choose the **Patient**, give the plan a **Plan title**, then fill in **Proposed total (₱)**, **Down payment (₱)**, **Number of monthly installments** and **First installment date**. Under the terms, list the **Included services** and any **Exclusions**, then name the **Responsible payer** and pick their **Payer relationship** (Patient, Parent, Guardian or Other authorized payer). Tap **Save draft agreement**.
+
+The form won't save until the patient, terms and payer are filled in, the installments are between 1 and 60, and the down payment is less than the total.
 
 ![The Payment plans tab with no plans yet and a Create payment plan button](../assets/billing-and-payment-plans/08-payment-plans.webp)
 
@@ -80,9 +96,32 @@ You should see: the plan saved as a draft. Drafting a plan does not start treatm
 
 ![The Create payment plan form: Patient search, Related case, Plan title, Proposed total 30000, Down payment 6000, 6 monthly installments, First installment date, and Save draft agreement](../assets/billing-and-payment-plans/09-create-payment-plan.webp)
 
-From the plan's page you can then offer it to the patient, record that they accepted or declined, issue the invoice and record payments.
+### 7. Take the plan from draft to paid
 
-### 7. See one patient's billing
+A payment plan moves through these steps. Each step is a button on the plan's page, and none of them starts treatment.
+
+1. **Draft**: the terms you saved. Check them on the plan's page. To change them, tap **Edit draft**.
+2. **Offer agreement**: tap it when you show the terms to the patient. The status changes to **Offered**. Dentalemon doesn't send anything to the patient; to give them a copy, use **Financial documents** on the plan's page.
+3. **Record acceptance** or **Record decline**: when the patient answers.
+    - For acceptance, fill in **Accepted by** (who agreed), **Capacity** (**Patient**, **Authorized parent / guardian** or **Authorized financial guarantor**) and **Evidence method** (**Written agreement recorded** or **Verbal acceptance documented**). Tick the box confirming you checked their authority, then save. Tap **Keep unaccepted** to go back without recording.
+4. **Issue package invoice**: one invoice for the whole plan, with the down payment due today and the rest due monthly. Tap **Issue invoice** to confirm, or **Keep agreement only** to wait.
+5. **Record payment**: each time the patient pays, record it here. Dentalemon shows which installments the payment covers before you save.
+6. **Finalize invoice**: gives the plan's invoice its number from your series.
+
+You can also open **View invoice** and **Financial statement** (what the patient has paid and still owes) from the plan's page.
+
+You should see: on a draft plan, the terms and **Offer agreement**.
+{ .see }
+
+![A draft payment plan for Ocampo, Pilar: Braces — demo plan, its terms and an Offer agreement button](../assets/billing-and-payment-plans/11-plan-draft.webp)
+
+After **Offer agreement**, the plan shows **Offered**, with **Record acceptance** and **Record decline**. If the patient wants different terms, tap **Propose revision** to start a new version of the agreement.
+
+![The same plan Offered, with Record acceptance and Record decline](../assets/billing-and-payment-plans/12-plan-offered.webp)
+
+![The Record financial acceptance sheet: the agreement, Accepted by, Capacity, Evidence method, the confirmation tick box, and Keep unaccepted](../assets/billing-and-payment-plans/13-record-acceptance.webp)
+
+### 8. See one patient's billing
 
 Open a patient and tap the **Billing** tab. Or, in Billing, tap **⋮ › View billing** on a row.
 

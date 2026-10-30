@@ -42,6 +42,16 @@ test('appointments', async ({ page }) => {
   await expect(skeleton).toHaveCount(0, { timeout: 60_000 });
   await shot(page, P, '01-calendar-week');
 
+  for (const [view, name] of [
+    ['day', '01b-calendar-day'],
+    ['month', '01c-calendar-month'],
+  ] as const) {
+    await page.goto(`/appointments?view=${view}`);
+    await expect(page.getByTestId('calendar-period')).toBeVisible({ timeout: 60_000 });
+    await expect(skeleton).toHaveCount(0, { timeout: 60_000 });
+    await shot(page, P, name);
+  }
+
   await page.goto('/appointments?view=list');
   await expect(page.getByTestId('data-table-row').first()).toBeVisible({ timeout: 60_000 });
   await expect(skeleton).toHaveCount(0, { timeout: 60_000 });
@@ -100,6 +110,52 @@ test('appointments', async ({ page }) => {
     const checkedIn = toast(page, /checked in/i);
     await expect(checkedIn).toBeVisible({ timeout: 30_000 });
     await shot(page, P, '08-checked-in');
+  }
+
+  // Confirm: a second booking for Paula, booked as Not yet confirmed, then confirmed.
+  // (The next run's tidy-up at the top cancels it.)
+  await page.goto('/appointments?view=list');
+  await expect(page.getByTestId('data-table-row').first()).toBeVisible({ timeout: 60_000 });
+  await page.getByTestId('new-appointment').click();
+  await expect(booking).toBeVisible();
+  await page.getByTestId('patient-picker-input').fill('Ferrer');
+  await page.getByRole('option', { name: /Ferrer/ }).first().click();
+  const chip2 = page.getByTestId('time-chip').last();
+  await expect(chip2.or(next).first()).toBeVisible({ timeout: 30_000 });
+  if (await next.isVisible()) await next.click();
+  await page.getByTestId('time-chip').last().click();
+  await page.getByRole('button', { name: 'Not yet confirmed', exact: true }).click();
+  await page.getByTestId('booking-submit').click();
+  const booked2 = toast(page, /^Booked /);
+  await expect(booked2).toBeVisible({ timeout: 30_000 });
+  await booked2.getByRole('button', { name: 'View', exact: true }).click();
+  await expect(sheet).toBeVisible({ timeout: 30_000 });
+  await expect(sheet.getByTestId('primary-action')).toHaveText(/Confirm/, { timeout: 30_000 });
+  await shot(page, P, '09-confirm');
+  await sheet.getByTestId('primary-action').click();
+  await expect(sheet.getByTestId('appointment-status')).toHaveText(/Confirmed/, { timeout: 30_000 }).catch(() => {});
+
+  // No-show: a confirmed booking 5 minutes past its start. Tapped, pictured, then Undo,
+  // so nothing is sent.
+  await page.goto('/appointments?view=list');
+  await expect(page.getByTestId('data-table-row').first()).toBeVisible({ timeout: 60_000 });
+  const rows = page.getByTestId('data-table-row').filter({ hasText: 'Confirmed' }).filter({ hasText: 'Today' });
+  const count = await rows.count();
+  for (let i = 0; i < count; i++) {
+    await rows.nth(i).click();
+    await expect(sheet).toBeVisible({ timeout: 30_000 });
+    const noShow = sheet.getByRole('button', { name: 'No-show', exact: true });
+    if (await noShow.isVisible().catch(() => false)) {
+      await shot(page, P, '10-no-show-button');
+      await noShow.click();
+      const marked = toast(page, /^Marked .* as a no-show/);
+      await expect(marked).toBeVisible({ timeout: 15_000 });
+      await shot(page, P, '11-no-show-undo');
+      await marked.getByRole('button', { name: 'Undo' }).click();
+      break;
+    }
+    await page.keyboard.press('Escape');
+    await expect(sheet).toBeHidden({ timeout: 15_000 });
   }
   expect(paula.id).toBeTruthy();
 });

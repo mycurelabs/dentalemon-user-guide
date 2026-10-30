@@ -57,6 +57,7 @@ plugins:
 markdown_extensions:
   - admonition
   - attr_list
+  - def_list
   - md_in_html
   - pymdownx.details
   - pymdownx.superfences
@@ -90,3 +91,5 @@ nav:
   - Your clinic:
       - Settings basics: clinic/settings-basics.md
       - Notifications and Analytics: clinic/notifications-and-analytics.md
+  - Help:
+      - Words and answers: help/words-and-answers.md

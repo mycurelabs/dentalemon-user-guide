@@ -20,10 +20,10 @@ The first time you see a patient, the chart is empty and reads **Dental chart no
 Pick how to start, then tap **Start chart**:
 
 - **Blank permanent chart**: 32 adult teeth.
-- **Blank mixed chart**: baby teeth and adult teeth together.
-- **Blank primary chart**: 20 baby teeth.
+- **Blank mixed chart**: 20 baby teeth and 32 adult teeth together. Use it for a child who has both.
+- **Blank primary chart**: 20 baby teeth. Use it for a young child.
 
-On later visits you'll also see **Continue from *date***, which carries the last chart forward.
+On later visits you'll also see **Continue from *date***, which carries the last chart forward so you only record what changed.
 
 You should see: the three blank chart choices and a **Start chart** button.
 { .see }
@@ -37,9 +37,9 @@ Each tooth is drawn from three sides (**Facial**, **Occlusal**, **Lingual**), wi
 Above the chart:
 
 - The chips **All**, **Conditions**, **Existing**, **Planned**, **Done** and **Declined** show only that kind of mark, with a count of each.
-- **All quadrants** lets you zoom into one quadrant, for example **Q4 · Lower right**.
-- **Any visit** shows marks from this visit, earlier visits, or both.
-- **Simple mode** draws a plainer chart.
+- **All quadrants** lets you zoom into one quadrant, for example **Q4 · Lower right**, so the teeth are bigger and easier to tap. Choose **All quadrants** again to see the whole mouth.
+- **Any visit** shows marks from this visit (**This visit**), earlier visits (**Earlier**), or both.
+- **Simple mode** shows only the biting surface of each tooth, without the side views. It's quicker to read; switch it off to see every surface. Your choice is remembered for you.
 - **Legend** explains every colour and code.
 
 You should see: a blank permanent chart with teeth 18 to 28 on top and 48 to 38 below.
@@ -132,7 +132,27 @@ You should see: **No findings** next to **Create record** at the bottom of the p
 
 ![The tooth panel for 37 Lower left second molar, Not examined, with No findings and Create record](../assets/chart-teeth/09-no-findings.webp){ .shot-sm }
 
-### 10. Check the Legend
+### 10. Mark a missing or extracted tooth
+
+A tooth's **state** is its overall condition. It shows as a button under the tooth's name. A tooth nobody has looked at yet says **Not examined**; a tooth you've already charted says **Set state**.
+
+1. Tap the tooth, then tap its state button.
+2. Choose the state:
+    - **Healthy**: sound, nothing to chart.
+    - **Watch**: keep an eye on it at the next visit.
+    - **Missing**: the tooth isn't there and you don't know why.
+    - **Extracted earlier**: the tooth was taken out before.
+    - **Not examined**: clears the state, as if you hadn't looked.
+3. Check **Changes to record**, which shows the state before and after, then tap **Update state**. Tap **Cancel** to leave it as it was.
+
+You should see: the list of states, each with a short description. A choice that doesn't fit the tooth right now is greyed out and says why (for example, a tooth with planned work can't be marked **Missing**).
+{ .see }
+
+![The state menu open for tooth 18, Upper right third molar: Healthy, Watch, Missing, Extracted earlier and Not examined](../assets/chart-teeth/14-state-menu.webp)
+
+![Tooth 18 with Missing chosen: the panel shows Changes to record, Tooth state Missing, and the Update state button](../assets/chart-teeth/15-tooth-missing.webp)
+
+### 11. Check the Legend
 
 Tap **Legend** above the chart to see what each mark means:
 
@@ -147,7 +167,7 @@ You should see: **Chart legend** with **Chart statuses** and **Tooth codes**.
 
 ![The Chart legend: Planned, Done and Declined outlines, then tooth codes such as Present, Decayed, Missing, Composite and Jacket crown](../assets/chart-teeth/10-legend.webp)
 
-### 11. Record work for the whole mouth
+### 12. Record work for the whole mouth
 
 Some work isn't on one tooth: a cleaning, a panoramic X-ray, a denture. Under the chart, tap **Whole-mouth work**.
 
@@ -160,6 +180,45 @@ You should see: **Whole-mouth work** with your clinic's treatments and prices.
 { .see }
 
 ![The Whole-mouth work list: Oral examination, Panoramic X-ray, Oral prophylaxis, Fluoride application, dentures and more with prices, Record as Planned, and Add](../assets/chart-teeth/11-whole-mouth.webp)
+
+### 13. Add a note about a tooth
+
+In the tooth panel, tap **Tooth note** (it says **Add a note**) and type, for example *Sensitive to cold since last week*. The note saves by itself when you tap anywhere else. A message confirms it, for example **36 · Saved tooth note**, with **Undo**.
+
+You should see: your note under **Tooth note** in the panel.
+{ .see }
+
+![The tooth panel for 36 with its Caries and Composite restoration records, and the tooth note "Sensitive to cold since last week"](../assets/chart-teeth/13-tooth-note.webp){ .shot-sm }
+
+### 14. Change or correct a record
+
+Each record in the tooth panel has a **⋯** button. What it offers depends on the record:
+
+| Record | **⋯** offers |
+|---|---|
+| A condition, such as **Caries** | **Resolve condition** (it's been dealt with) or **Entered in error…** |
+| Planned work | **Mark done**, **Patient declined** or **Dismiss from plan…** |
+| Work you did today | **Entered in error…** |
+
+**Entered in error…** is for a record you saved by mistake. Pick a reason (for example **Wrong tooth or surface** or **Recorded twice**), then tap **Mark in error**. The record isn't deleted: it stays in the tooth's history, marked as an error.
+
+You should see: the menu under **⋯**, headed with the record's name and surface.
+{ .see }
+
+![The ⋯ menu on the Caries record of tooth 36: Resolve condition and Entered in error…](../assets/chart-teeth/12-record-menu.webp)
+
+### 15. Stop half-way and come back
+
+If you leave a record before saving it, for example by tapping the back arrow in the panel, Dentalemon keeps it for that tooth. The yellow button then reads **Resume record**. Tap it to carry on where you stopped.
+
+While a record is waiting, you can't change the tooth's state. The panel says so.
+
+You should see: **Resume record** at the bottom of the tooth panel.
+{ .see }
+
+![The tooth panel for 38 with a waiting record: Resume record at the bottom, and a note to resume the record before changing tooth state](../assets/chart-teeth/16-resume-record.webp){ .shot-sm }
+
+To throw it away instead, tap **Resume record**, go **Back** to the first step, tap **Cancel**, then **Discard record**.
 
 ## Tips
 
