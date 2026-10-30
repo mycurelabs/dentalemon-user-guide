@@ -80,6 +80,8 @@ You should see: the invoice. **Items on this invoice** is in the middle, the tot
 
 Next to **Discount**, tap **Apply**. Choose **Senior Citizen** or **PWD** (person with disability).
 
+The Senior Citizen discount is only for patients aged 60 or older. For a younger patient, Dentalemon says so, for example *Teresa is 41. The Senior Citizen discount starts at 60.*
+
 Check the ID number in **Senior Citizen ID no.** or **PWD ID no.** If the ID is already in the patient's details, it fills in by itself. If not, type the number from the ID card the patient shows you. Then tap **Apply discount**.
 
 The PWD discount works the same way as the Senior Citizen one: 20% off.

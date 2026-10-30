@@ -71,13 +71,15 @@ A **claim** is what a payer owes for one patient's covered work. Filter by **Sta
 | **Submitted** | Sent, waiting for the payer | **Mark approved**, **Mark denied**, **Mark paid**, **Send follow-up** |
 | **Approved** | The payer agreed to pay | **Mark paid** when the money arrives, or **Mark denied** |
 | **Denied** | The payer refused. You type the reason when you mark it denied. | **Reopen claim** to try again |
-| **Paid** | The payer paid | Nothing more to do |
+| **Paid** | The payer paid | Nothing more to do. Paid claims leave the **Submitted** and **Approved** lists; **Status** has no **Paid** option. |
 
 **View claim** shows the claim's details, and **View billing** opens the patient's own billing.
 
 ![The claim menu on a Draft claim: View claim, View billing, Mark submitted](../assets/billing-and-payment-plans/07-claim-actions.webp)
 
-When you tap **Mark paid** (or another step), a message with **Undo** appears for a few seconds before the change is saved. **Send follow-up** writes a reminder for you to send from your iPad's share sheet.
+When you tap **Mark paid** (or another step), a message with **Undo** appears for a few seconds before the change is saved.
+
+**Mark paid** settles the whole invoice with that payer, not only the row you tapped. For example, tapping one ₱500 row can mark ₱6,000 paid when the invoice has more covered lines for the same payer. Check the amount in the message, for example *0001 marked paid — ₱6,000 from Philippine Health Insurance Corporation (Philhealth)*, and tap **Undo** if it isn't what you meant. **Send follow-up** writes a reminder for you to send from your iPad's share sheet.
 
 ![The claim menu on a Submitted claim: View claim, View billing, Mark approved, Mark denied, Mark paid, Send follow-up](../assets/billing-and-payment-plans/07b-claim-submitted-actions.webp)
 

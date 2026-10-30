@@ -33,7 +33,7 @@ The sheet shows the patient's name and today's date. Work through it from the to
 
 1. **Before you end** lists anything missing, such as **Chief complaint · Not recorded**. Tap **+ Add** to fill it in now, or carry on: reminders never stop you ending. If the visit has draft orders (for example a lab order you haven't sent), a switch such as **Send the draft order** appears here. It's on, so ending the visit sends them; switch it off to keep them as drafts.
 2. **Encounter type**: choose **Consultation**, **Follow-up**, **Oral prophylaxis**, **Dental certificate** or **Procedure**. This sets the visit charge.
-3. **Charges**: tick each line to put it on the bill: the encounter type and the work you marked **Done today**. Tap **+ Add charge** for anything else from your price list.
+3. **Charges**: the lines start **unticked**. Tick each line you want to bill: the encounter type and the work you marked **Done today**. Each tick puts that line on the bill straight away, with **Undo**. Tap **+ Add charge** for anything else from your price list.
 
 **Total charges** adds up the ticked lines.
 
@@ -66,7 +66,7 @@ The chart becomes view only, and the date pill at the top says **Ended**. A mess
 
 The top button now reads **Charges · Ready · ₱*total***. Tap it to see the bill.
 
-You should see: **Ended** at the top and the message **Ended Consultation… Follow-up booked**.
+You should see: **Ended** at the top and a message that starts with **Ended** and the encounter type (for example **Ended Consultation**, or **Ended Encounter** if you didn't choose a type), then **Follow-up booked**.
 { .see }
 
 ![The ended encounter: the date pill says Ended, the top button reads Charges · Ready · ₱2,300, and a message says Ended Consultation, Follow-up booked Fri, Nov 6, with Undo](../assets/finish-the-visit/04-ended.webp)
