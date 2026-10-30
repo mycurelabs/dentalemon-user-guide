@@ -45,6 +45,16 @@ node_modules/.bin/playwright test --config capture.config.ts 06-chart    # one p
 
 Look at every new picture before committing it.
 
+## Checking the site
+
+`capture/site/` holds a few checks on the guide itself, such as the light and dark switch in the top bar.
+Run them against `mkdocs serve`:
+
+```bash
+cd capture
+node_modules/.bin/playwright test --config site.config.ts
+```
+
 ## Publishing
 
 Every push to `main` runs `.github/workflows/pages.yml`, which builds with `mkdocs build --strict` and publishes
