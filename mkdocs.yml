@@ -1,0 +1,92 @@
+site_name: Dentalemon User Guide
+site_description: Step-by-step guides for dentists using Dentalemon.
+site_url: https://mycurelabs.github.io/dentalemon-user-guide/
+repo_url: https://github.com/mycurelabs/dentalemon-user-guide
+edit_uri: ""
+copyright: Dentalemon by MYCURE Inc. · Screenshots use made-up demo data.
+
+theme:
+  name: material
+  language: en
+  logo: assets/brand/icon.svg
+  favicon: assets/brand/icon.svg
+  font: false
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - content.tooltips
+    - toc.follow
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      width: 100%
+      zoomable: true
+      draggable: false
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.keys
+  - toc:
+      permalink: false
+
+exclude_docs: |
+  _template.md
+
+nav:
+  - Welcome: index.md
+  - Getting started:
+      - Sign up and set up your clinic: getting-started/sign-up-and-clinic-setup.md
+      - Sign in and a first look: getting-started/sign-in-and-home.md
+  - Patients:
+      - Find or add a patient: patients/find-or-add-a-patient.md
+      - The patient page and profile: patients/patient-page-and-profile.md
+  - Seeing a patient:
+      - Start an encounter: visits/start-an-encounter.md
+      - Chart teeth: visits/chart-teeth.md
+      - Treatment plan and Estimate: visits/treatment-plan-and-estimate.md
+      - Notes, prescriptions, orders and attachments: visits/notes-prescriptions-orders-attachments.md
+      - Consents: visits/consents.md
+      - Finish the visit: visits/finish-the-visit.md
+  - Payments:
+      - Charges and the Cashier: payments/charges-and-cashier.md
+      - Billing, balances and payment plans: payments/billing-and-payment-plans.md
+  - Schedule:
+      - Appointments: schedule/appointments.md
+  - Your clinic:
+      - Settings basics: clinic/settings-basics.md
+      - Notifications and Analytics: clinic/notifications-and-analytics.md

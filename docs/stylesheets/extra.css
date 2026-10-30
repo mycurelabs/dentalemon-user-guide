@@ -1,0 +1,55 @@
+/* Brand: lemon is a fill only; text on lemon is ink, links use the dark lemon. */
+:root {
+  --md-primary-fg-color: #ffce3d;
+  --md-primary-fg-color--light: #ffe08a;
+  --md-primary-fg-color--dark: #e6b520;
+  --md-primary-bg-color: #1d1d1f;
+  --md-primary-bg-color--light: #1d1d1fb3;
+  --md-accent-fg-color: #8a6200;
+  --md-typeset-a-color: #8a6200;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #ffce3d;
+  --md-primary-bg-color: #1d1d1f;
+  --md-accent-fg-color: #ffce3d;
+  --md-typeset-a-color: #ffd866;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Slightly larger body text: the guide is read on iPads, often at arm's length. */
+.md-typeset {
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+/* Screenshots: a soft frame so white app screens don't melt into the page. */
+.md-typeset img:not(.twemoji):not([src$=".svg"]) {
+  display: block;
+  margin: 0.8rem 0 1.4rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 8%);
+}
+
+/* A narrower screenshot for a single sheet, menu or dialog: ![...](x.png){ .shot-sm } */
+.md-typeset img.shot-sm {
+  max-width: min(520px, 100%);
+}
+
+/* "You should see:" lines stand out from the instruction above them. */
+.md-typeset .see {
+  padding: 0.35rem 0.75rem;
+  border-left: 3px solid var(--md-primary-fg-color);
+  background: var(--md-code-bg-color);
+  border-radius: 0 8px 8px 0;
+}
+
+/* The "at a glance" line under each page title. */
+.md-typeset .meta {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.8rem;
+}
