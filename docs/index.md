@@ -5,25 +5,11 @@ Dentalemon is a dental clinic app built for the iPad. The tooth chart is at the 
 
 This guide walks you through the everyday tasks, one page per task, with a picture of every step.
 
-<div class="grid cards start" markdown>
+<div class="group links rich" markdown>
 
--   :material-rocket-launch-outline:{ .lg } **New to Dentalemon?**
-
-    ---
-
-    Follow [Your first day](#your-first-day) below. It takes you from a new account to your first paid visit.
-
--   :material-magnify:{ .lg } **Looking for one thing?**
-
-    ---
-
-    Use the **Search** box at the top, or pick a page from [The guides](#the-guides).
-
--   :material-book-open-variant:{ .lg } **New words?**
-
-    ---
-
-    *Encounter*, *Estimate*, *Coverage*: they're all explained in [Words and answers](help/words-and-answers.md).
+- [:material-rocket-launch-outline: **New to Dentalemon?** <span class="sub">Start with Your first day. It takes you from a new account to your first paid visit.</span>](#your-first-day)
+- [:material-magnify: **Looking for one thing?** <span class="sub">Use Search at the top, or pick a page from The guides.</span>](#the-guides)
+- [:material-book-open-variant: **New words?** <span class="sub">Encounter, Estimate, Coverage: they're all explained in Words and answers.</span>](help/words-and-answers.md)
 
 </div>
 
@@ -41,11 +27,11 @@ This guide walks you through the everyday tasks, one page per task, with a pictu
 
 Do these in order. Each one takes a few minutes, and together they get you from a new account to your first paid visit.
 
-<div class="grid" markdown>
+<div class="group-columns" markdown>
 
-<div class="checklist" markdown>
+<div class="group numbered" markdown>
 
-**Set up the clinic (once)**
+<p class="group-label">Set up the clinic (once)</p>
 
 1. [Create your account and name your clinic](getting-started/sign-up-and-clinic-setup.md).
 2. Add your clinic's address and opening hours: [Settings basics › Your clinic and opening hours](clinic/settings-basics.md#4-your-clinic-and-opening-hours). Appointments can only be booked inside these hours.
@@ -55,9 +41,9 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 
 </div>
 
-<div class="checklist" markdown>
+<div class="group numbered" markdown>
 
-**See your first patient**
+<p class="group-label">See your first patient</p>
 
 1. [Add the patient](patients/find-or-add-a-patient.md), including any allergies.
 2. [Start an encounter](visits/start-an-encounter.md), the record of today's visit.
@@ -73,58 +59,72 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 
 ## The guides
 
-<div class="grid cards" markdown>
+<div class="group-columns" markdown>
 
--   :material-flag-outline:{ .lg } **Getting started**
+<div class="group links" markdown>
 
-    ---
+<p class="group-label">Getting started</p>
 
-    - [Sign up and set up your clinic](getting-started/sign-up-and-clinic-setup.md)
-    - [Sign in and a first look](getting-started/sign-in-and-home.md)
+- [Sign up and set up your clinic](getting-started/sign-up-and-clinic-setup.md)
+- [Sign in and a first look](getting-started/sign-in-and-home.md)
 
--   :material-account-outline:{ .lg } **Patients**
+</div>
 
-    ---
+<div class="group links" markdown>
 
-    - [Find or add a patient](patients/find-or-add-a-patient.md)
-    - [The patient page and profile](patients/patient-page-and-profile.md)
+<p class="group-label">Patients</p>
 
--   :material-tooth-outline:{ .lg } **Seeing a patient**
+- [Find or add a patient](patients/find-or-add-a-patient.md)
+- [The patient page and profile](patients/patient-page-and-profile.md)
 
-    ---
+</div>
 
-    - [Start an encounter](visits/start-an-encounter.md)
-    - [Chart teeth](visits/chart-teeth.md)
-    - [Treatment plan and Estimate](visits/treatment-plan-and-estimate.md)
-    - [Notes, prescriptions, orders and attachments](visits/notes-prescriptions-orders-attachments.md)
-    - [Consents](visits/consents.md)
-    - [Finish the visit](visits/finish-the-visit.md)
+<div class="group links" markdown>
 
--   :material-cash-register:{ .lg } **Payments**
+<p class="group-label">Seeing a patient</p>
 
-    ---
+- [Start an encounter](visits/start-an-encounter.md)
+- [Chart teeth](visits/chart-teeth.md)
+- [Treatment plan and Estimate](visits/treatment-plan-and-estimate.md)
+- [Notes, prescriptions, orders and attachments](visits/notes-prescriptions-orders-attachments.md)
+- [Consents](visits/consents.md)
+- [Finish the visit](visits/finish-the-visit.md)
 
-    - [Charges and the Cashier](payments/charges-and-cashier.md)
-    - [Billing, balances and payment plans](payments/billing-and-payment-plans.md)
+</div>
 
--   :material-calendar-month-outline:{ .lg } **Schedule**
+<div class="group links" markdown>
 
-    ---
+<p class="group-label">Payments</p>
 
-    - [Appointments](schedule/appointments.md)
+- [Charges and the Cashier](payments/charges-and-cashier.md)
+- [Billing, balances and payment plans](payments/billing-and-payment-plans.md)
 
--   :material-cog-outline:{ .lg } **Your clinic**
+</div>
 
-    ---
+<div class="group links" markdown>
 
-    - [Settings basics](clinic/settings-basics.md)
-    - [Notifications and Analytics](clinic/notifications-and-analytics.md)
+<p class="group-label">Schedule</p>
 
--   :material-help-circle-outline:{ .lg } **Help**
+- [Appointments](schedule/appointments.md)
 
-    ---
+</div>
 
-    [Words and answers](help/words-and-answers.md): what the app's words mean, and answers to common questions.
+<div class="group links" markdown>
+
+<p class="group-label">Your clinic</p>
+
+- [Settings basics](clinic/settings-basics.md)
+- [Notifications and Analytics](clinic/notifications-and-analytics.md)
+
+</div>
+
+<div class="group links" markdown>
+
+<p class="group-label">Help</p>
+
+- [Words and answers](help/words-and-answers.md)
+
+</div>
 
 </div>
 
