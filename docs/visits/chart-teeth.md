@@ -29,10 +29,10 @@ Above the chart:
 - **Simple mode** shows only the biting surface of each tooth, without the side views. It's quicker to read; switch it off to see every surface. Your choice is remembered for you.
 - **Legend** explains every colour and code.
 
-You should see: a blank permanent chart with teeth 18 to 28 on top and 48 to 38 below.
+You should see: an empty chart with teeth 18 to 28 on top and 48 to 38 below.
 { .see }
 
-![A blank permanent chart with the filter chips, All quadrants, Any visit, Simple mode and Legend above it](../assets/chart-teeth/02-blank-chart.webp)
+![An empty chart with the filter chips, All quadrants, Any visit, Simple mode and Legend above it](../assets/chart-teeth/02-blank-chart.webp)
 
 ### 3. Tap a tooth
 
