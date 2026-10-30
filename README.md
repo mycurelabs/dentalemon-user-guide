@@ -52,8 +52,10 @@ Run them against `mkdocs serve`:
 
 ```bash
 cd capture
-node_modules/.bin/playwright test --config site.config.ts
+DESIGN_PAGES=help/words-and-answers/ node_modules/.bin/playwright test --config site.config.ts
 ```
+
+`DESIGN_PAGES` adds Words and answers to the design checks, which otherwise only open the first sidebar pages.
 
 ## Publishing
 
