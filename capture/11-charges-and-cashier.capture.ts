@@ -133,7 +133,6 @@ test('charges and the cashier', async ({ page }) => {
   // The dentist (who may collect) lands on the bill at the Cashier, which takes it out of
   // Waiting; put it back so the Waiting list pictures it, as the front desk would see it.
   await page.waitForURL(/\/cashier\//, { timeout: 30_000 }).catch(() => {});
-  console.log('after End and send to cashier:', new URL(page.url()).pathname);
   await fixtures.backToWaiting(page, invoiceId);
 
   // ── The Cashier: Waiting list.
@@ -199,10 +198,9 @@ test('charges and the cashier', async ({ page }) => {
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0, { timeout: 15_000 });
 
-  // More: Send receipt (coming soon), Duplicate as new sale, Void….
+  // More › Void… (the menu itself is described in words, not pictured).
   await page.getByTestId('invoice-more').click();
   await expect(page.getByTestId('invoice-more-duplicate')).toBeVisible();
-  await shot(page, P, '12-more-menu');
 
   // Void…: the sheet with a reason typed, then Cancel. Nothing is voided.
   await page.getByTestId('invoice-more-void').click();
@@ -232,7 +230,6 @@ test('charges and the cashier', async ({ page }) => {
   const consultRow = page.getByTestId('cashier-invoice').locator('tr', { hasText: 'Consultation' }).first();
   await consultRow.getByTestId('invoice-line-actions').click();
   await expect(page.getByTestId('invoice-line-coverage')).toBeVisible();
-  await shot(page, P, '13a-line-menu');
   await page.getByTestId('invoice-line-coverage').click();
   await expect(dialog.getByTestId('coverage-payers')).toBeVisible();
   await dialog.getByTestId('coverage-payer-PhilHealth').click();

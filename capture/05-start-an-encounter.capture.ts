@@ -68,8 +68,9 @@ test('start an encounter', async ({ page }) => {
   await page.getByRole('button', { name: 'Add encounter' }).first().tap();
   const dialog = page.getByRole('dialog', { name: 'Add Encounter' });
   await expect(dialog).toBeVisible();
+  // Pilar Ocampo (Charges and the Cashier) shares the surname: pick Carmela by first name.
   await dialog.getByRole('searchbox', { name: 'Search patients' }).fill('Ocampo');
-  const pick = dialog.getByText(/Ocampo/).first();
+  const pick = dialog.getByText(/Carmela/).first();
   await expect(pick).toBeVisible({ timeout: 20_000 });
   await pick.tap();
   await shot(page, P, '04-add-encounter-dialog');
