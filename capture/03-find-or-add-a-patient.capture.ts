@@ -1,5 +1,6 @@
 import { expect, test, type Locator } from '@playwright/test';
 import { fixtures, shot, signIn } from './helpers';
+import { ensurePayers, ensureRoster, juanDelaCruz } from './patients.lib';
 
 const P = 'find-or-add-a-patient';
 
@@ -28,6 +29,10 @@ test('find or add a patient', async ({ page }) => {
   test.setTimeout(600_000); // slow when several captures share the machine
   await signIn(page);
   await archiveEarlierTomas(page);
+  // A lived-in demo clinic: made-up patients to list, and the payers Insurance & Benefits offers.
+  await ensurePayers(page);
+  await ensureRoster(page);
+  await juanDelaCruz(page);
   // A tap, as on the iPad. Right after sign-in the shell can still be settling and drop
   // the first tap, so tap again until the page changes.
   await expect(async () => {
@@ -40,6 +45,7 @@ test('find or add a patient', async ({ page }) => {
   await search.fill('Villareal');
   await expect(page.getByText('Villareal', { exact: true }).first()).toBeVisible({ timeout: 20_000 });
   await expect(page.getByText('Aguilar', { exact: true })).toHaveCount(0, { timeout: 20_000 });
+  await expect(page.getByText('1 patient', { exact: true })).toBeVisible({ timeout: 20_000 });
   await shot(page, P, '02-search');
   await search.fill('');
   await expect(page.getByText('Aguilar', { exact: true }).first()).toBeVisible({ timeout: 20_000 });
@@ -88,4 +94,9 @@ test('find or add a patient', async ({ page }) => {
   // Let Record logs finish loading (placeholders gone) while the toast is still up.
   await page.locator('.animate-pulse').first().waitFor({ state: 'hidden', timeout: 4_000 }).catch(() => {});
   await shot(page, P, '06-patient-added');
+
+  // The new patient's page opens on Encounters; Summary shows the allergy and the insurer.
+  await page.getByRole('tab', { name: 'Summary', exact: true }).first().click();
+  await expect(page.getByText(/Allergies: Penicillin/).first()).toBeVisible({ timeout: 30_000 });
+  await shot(page, P, '06b-summary');
 });

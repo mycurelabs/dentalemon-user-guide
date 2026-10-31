@@ -9,12 +9,19 @@ const P = 'notes-prescriptions-orders-attachments';
 const expect = baseExpect.configure({ timeout: 60_000 });
 test.setTimeout(1_200_000);
 
-/** Brings the views row (and the view under it) to the top of the screen, as a user scrolls on the iPad. */
+/** Scrolls a sheet's body back to its top, so its first fields are in the picture. */
+async function toTop(el: import('@playwright/test').Locator) {
+  await el.evaluate(root => {
+    for (const n of [root, ...root.querySelectorAll('*')]) if (n.scrollTop > 0) n.scrollTop = 0;
+  });
+}
+
 /** Waits for a success message to fade, so it doesn't cover the picture. */
 async function toastGone(page: import('@playwright/test').Page, text: string) {
   await page.getByText(text, { exact: true }).first().waitFor({ state: 'hidden', timeout: 15_000 }).catch(() => {});
 }
 
+/** Brings the views row (and the view under it) to the top of the screen, as a user scrolls on the iPad. */
 async function viewsToTop(page: import('@playwright/test').Page) {
   await page.getByTestId('encounter-views').evaluate(el => el.scrollIntoView({ block: 'start' }));
   await page.waitForTimeout(400);
@@ -82,6 +89,13 @@ test('notes, prescriptions, orders and attachments', async ({ page }) => {
   // Bring the prescription card to the top of the screen, under the views row.
   await page.getByTestId('views-rx-print').evaluate(el => el.scrollIntoView({ block: 'start' }));
   await shot(page, P, '06-rx-saved');
+  // Print opens Print prescription: the preview and the paper size. Shown, then cancelled (printing issues it).
+  await page.getByTestId('views-rx-print').tap();
+  const printSheet = page.getByTestId('rx-paper');
+  await expect(printSheet).toBeVisible({ timeout: 30_000 });
+  await shot(page, P, '06b-rx-print');
+  await page.getByTestId('rx-print-cancel').tap();
+  await expect(printSheet).toBeHidden({ timeout: 30_000 });
 
   // 4. A lab order.
   await page.goto(`${visit.url}?tab=orders`);
@@ -91,12 +105,14 @@ test('notes, prescriptions, orders and attachments', async ({ page }) => {
   await expect(page.getByRole('menuitem', { name: 'Lab order' })).toBeVisible();
   await shot(page, P, '07-add-order-menu');
   await page.getByRole('menuitem', { name: 'Lab order' }).tap();
-  await dialog().getByRole('button', { name: 'Complete blood count' }).tap();
+  // Tests are ticked in the catalogue (checkbox rows); the list stays put.
+  await dialog().getByTestId('order-choices').getByRole('checkbox', { name: 'Complete blood count' }).tap();
   await settle(page);
   await shot(page, P, '08-lab-order', { el: dialog() });
   await dialog().getByRole('button', { name: 'Save' }).tap();
   await expect(page.getByRole('dialog').filter({ hasText: 'Add lab order' })).toHaveCount(0, { timeout: 30_000 });
   await expect(page.getByTestId('view-orders').locator('[data-order-line]').first()).toBeVisible({ timeout: 30_000 });
+  await toastGone(page, 'Added lab order');
   await viewsToTop(page);
   await shot(page, P, '09-orders-view');
 
@@ -154,6 +170,7 @@ test('notes, prescriptions, orders and attachments', async ({ page }) => {
   await allergen.fill('Penic');
   await page.getByRole('option', { name: 'Penicillin' }).first().tap();
   await dialog().getByLabel('Severity').selectOption('severe');
+  await toTop(dialog());
   await settle(page);
   await shot(page, P, '13-allergy', { el: dialog() });
   await dialog().getByRole('button', { name: 'Save' }).tap();
@@ -184,7 +201,7 @@ test('notes, prescriptions, orders and attachments', async ({ page }) => {
   await viewsToTop(page);
   await page.getByTestId('views-add-order').tap();
   await page.getByRole('menuitem', { name: 'Imaging order' }).tap();
-  await dialog().getByRole('button', { name: /Periapical/ }).first().tap();
+  await dialog().getByTestId('order-choices').getByRole('checkbox', { name: /Periapical/ }).first().tap();
   await settle(page);
   await shot(page, P, '16-imaging-order', { el: dialog() });
   await dialog().getByRole('button', { name: 'Save' }).tap();

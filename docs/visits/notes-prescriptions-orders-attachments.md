@@ -23,7 +23,7 @@ Tap **Records** in the row of views. The notes are laid out in four columns:
 - **Assessment**: the conditions you've recorded on the chart
 - **Plan**: what happens next (**Post-op instructions**)
 
-Each empty column says **Nothing recorded.** and shows **+** buttons for what you can add.
+An empty column says **Nothing recorded.** (**Assessment** says **No active conditions on the chart.**) and shows **+** buttons for what you can add.
 
 You should see: the four columns, with **+ Chief complaint** under **Subjective**.
 { .see }
@@ -58,6 +58,8 @@ You should see: **Add allergies** with the allergen and severity filled in. Afte
 { .see }
 
 ![The Add allergies form: No known allergies switch, Allergen Penicillin, Severity Severe, First observed, and Save](../assets/notes-prescriptions-orders-attachments/13-allergy.webp){ .shot-sm }
+
+Allergies recorded at an earlier visit are carried into every new encounter. Tap the card to read them: the reader says where they came from, for example **From Oct 30, 2026 encounter**, and they can't be edited from this visit.
 
 ### 4. Record vitals
 
@@ -122,23 +124,36 @@ You should see: the medicine details and the **Directions** you entered.
 
 The prescription now lists the medicine with its directions in plain words. To add another medicine, search again.
 
+Under the medicines:
+
+- **Destination**: where the patient gets the medicine, **Patient-arranged** unless you change it. **Change in Settings** opens **Settings › Partners** in front of the prescription, where your clinic's referral partners are kept.
+- **Add professional credentials** (under your name) opens **Settings › Profile**, where you add your licence numbers.
+- **Remove all medicines** clears the list and starts again.
+
 Tap **Save**.
 
 You should see: **1. Amoxicillin 500 mg capsule…** with **1 capsule by mouth 3 times a day for 7 days** under it.
 { .see }
 
-![The Add prescription form showing the medicine and its directions, Include impression, Destination Patient-arranged, and Save](../assets/notes-prescriptions-orders-attachments/05b-rx-ready.webp){ .shot-sm }
+![The Add prescription form showing the medicine and its directions, Include impression, Destination Patient-arranged with Change in Settings, Remove all medicines, and Save](../assets/notes-prescriptions-orders-attachments/05b-rx-ready.webp){ .shot-sm }
 
 ### 9. Print it
 
 The prescription appears in the **Prescription** view, laid out as it will print: your clinic, the patient, the **Rx** with **Sig:** and **Disp.**, and your name and licence numbers.
 
-Tap **Print** to print it or save it as a PDF.
-
 You should see: the prescription with **Print** and **Add prescription** above it.
 { .see }
 
-![The saved prescription: Lemon Tree Dental (Demo), patient, Rx Amoxicillin 500 mg capsule with Sig and Disp. 21, signed by Ana Santos, Prescriber](../assets/notes-prescriptions-orders-attachments/06-rx-saved.webp)
+![The saved prescription: Lemon Tree Dental, the patient, Rx Amoxicillin 500 mg capsule with Sig and Disp. 21, signed by Ana Santos, Prescriber, with PRC Lic. No. and PTR No. lines](../assets/notes-prescriptions-orders-attachments/06-rx-saved.webp)
+
+Tap **Print**. **Print prescription** opens with a preview. Choose the **Paper** size (**Half letter**, **A5** or **Letter**; Dentalemon remembers your choice), then tap **Print** to print it or save it as a PDF. A draft prescription is issued when you print it: the sheet says **Printing issues this prescription.**
+
+If your licence number isn't set, the sheet says **Your licence number isn't set.** Tap **Add in Settings** to add it, or print with a blank line to write on.
+
+You should see: **Print prescription** with the paper preview, **Paper**, **Cancel** and **Print**.
+{ .see }
+
+![Print prescription: the prescription on paper, Your licence number isn't set with Add in Settings, Paper Half letter, the note Printing issues this prescription, and Cancel and Print](../assets/notes-prescriptions-orders-attachments/06b-rx-print.webp)
 
 ## Order lab or imaging work
 
@@ -155,11 +170,13 @@ You should see: a small menu with **Lab order** and **Imaging order**.
 
 1. Pick the **Kind**, for example **Laboratory or dental lab**.
 2. Choose **Individual tests** or **Package**.
-3. Tap the tests you want, or use **Search catalogue**. The list includes dental lab work (crowns, dentures, night guards) and blood tests.
-4. Under **ICD-10**, add the diagnosis if you need to.
-5. Tap **Save**.
+3. Tick the tests you want, or use **Search catalogue**. The list includes dental lab work (crowns, dentures, night guards) and blood tests. If a test isn't listed, type its name and tap **Use "…"**. Work from the patient's treatment plan is offered under **From the treatment plan**.
+4. Under **ICD-10**, search by code or name to add the diagnosis if you need to.
+5. Under **Clinical reason**, say why you're ordering it.
+6. Check the **Destination**: **In-house**, **Referral partner** or **Patient-arranged**.
+7. Tap **Save**.
 
-You should see: the test you picked at the top, with **×** to remove it.
+You should see: a tick beside each test you chose, and the chosen tests listed under the catalogue, each with **✕** to remove it. The list stays where it is while you tick, and your search stays in the box.
 { .see }
 
 ![The Add lab order form: Kind Laboratory or dental lab, Individual tests, Complete blood count selected, and the catalogue list](../assets/notes-prescriptions-orders-attachments/08-lab-order.webp){ .shot-sm }
@@ -172,7 +189,7 @@ An **Imaging order** works the same way. Its **Kind** is **Dental imaging**, and
 
 The **Orders** view shows every order for this visit on one order sheet, grouped by kind (**Laboratory**, **Imaging**, **Prescriptions**), with each one's **Destination** and **Status**.
 
-New orders start as **Draft**. Tap a line to see its details.
+New orders start as **Draft**. Tap a line to see its details. The **+ Lab order** and **+ Imaging order** links under the list add a kind of order the sheet doesn't have yet.
 
 You should see: your order listed with the status **Draft**.
 { .see }
@@ -183,7 +200,7 @@ You should see: your order listed with the status **Draft**.
 
 Draft orders are sent when you finish the visit (see [Finish the visit](finish-the-visit.md)). To send one sooner, or to follow up on orders across the clinic, tap **Orders** in the sidebar.
 
-**Clinic orders** lists every order in your clinic. By default it shows **Open** orders (Draft and Requested). Use the **Status**, **Type** and **Date** filters, or search by patient name.
+**Clinic orders** lists every order in your clinic. By default it shows **Open** orders (Draft and Requested). Use the **Status**, **Type** and **Date** filters, or **Search orders…** by patient name. **List** and **Table** switch the layout. A row's **⋮** menu has **View encounter** and **Record logs**.
 
 ![Clinic orders: a table of open orders from all patients with Type, Order, Status and Date ordered](../assets/notes-prescriptions-orders-attachments/10-orders-page.webp)
 
@@ -213,7 +230,7 @@ You should see: your file listed under **Choose files**.
 
 ![The Add attachment form with one image chosen, an optional Note box, and Save](../assets/notes-prescriptions-orders-attachments/11-add-attachment.webp){ .shot-sm }
 
-The file appears in the **Attachments** view. Use the grid button to switch between grid and list.
+The file appears in the **Attachments** view. To switch the layout, tap the grid button, then **Grid** or **List**.
 
 ![The Attachments view with one image attachment and the message Added attachment](../assets/notes-prescriptions-orders-attachments/12-attachments-view.webp)
 
@@ -226,7 +243,7 @@ Tap the picture or file. It opens large, with its name, type, size and the date 
 ## Tips
 
 !!! tip "Check allergies before you prescribe"
-    The order sheet shows the patient's **Allergies** at the top. If it says **Not recorded**, ask the patient and add them in **Records › + Allergies** (step 3).
+    The order sheet shows the patient's allergies under their name. If it says **Allergies not recorded**, ask the patient and add them in **Records › + Allergies** (step 3).
 
 !!! warning "If something goes wrong"
     - **The medicine isn't in the list.** Try fewer letters, or the generic name. You can also type the details yourself on the **Medicine** page.

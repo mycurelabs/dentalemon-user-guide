@@ -42,16 +42,19 @@ Tap **Start encounter**.
 
 The encounter opens straight away, with an **Encounter started for *name*** message.
 
-- **Top bar:** **←** goes back. The date button (for example **Fri, Oct 30 · Active**) lists the patient's other encounters, and **‹ ›** step through them. At the right are notifications, share, and **Finish encounter**.
+- **Top bar:** **←** goes back. The date button (for example **Fri, Oct 30 · Active**) lists the patient's other encounters, and **‹ ›** step through them. At the right are notifications, share, **Charges** (what the visit has charged so far, for example **Charges · ₱0**) and **End encounter**.
 - **The chart:** the patient's teeth. A new patient's chart has no marks yet. See [Chart teeth](chart-teeth.md).
-- **Legend:** what each chart colour and mark means.
-- **Views under the chart:** **Chart list**, **Records**, **Prescription**, **Orders**, **Attachments** and **Orthodontics**. Tap one to switch.
+- **Legend ›:** under the chart, next to the count of teeth seen. It explains each chart colour and mark.
+- **Views under the chart:** **Chart list**, **Records**, **Prescription**, **Orders**, **Attachments** and **Orthodontics**. Tap one to switch. **Whole-mouth work** sits at the end of the same row.
+
+You should see: **Encounter started for *name***, the patient's chart, and **End encounter** at the top right.
+{ .see }
 
 ### 3. Or start from the Encounters page
 
 Tap **Encounters** in the sidebar.
 
-You should see: every encounter as a folder, newest first, each with a status such as **Pending** (still open) or **Closed**. Use **Status** and **Date** to filter, or **Search encounters…**.
+You should see: every encounter as a folder, newest first, each with a status: **Pending** or **Active** while it's still open, **Closed** once it has ended. Use **Status** and **Date** to filter, or **Search encounters…**.
 { .see }
 
 ![The Encounters page: folders for each encounter with the patient's name, age, status and date, plus Status and Date filters and a yellow + button](../assets/start-an-encounter/03-encounters-page.webp)
@@ -63,7 +66,7 @@ Tap the yellow **+** button. In **Add Encounter**, search for the patient, tap t
 You should see: **Add Encounter** with the patient you picked highlighted.
 { .see }
 
-![The Add Encounter window: a search for Villareal with one matching patient selected, and Cancel and Start encounter buttons](../assets/start-an-encounter/04-add-encounter-dialog.webp){ .shot-sm }
+![The Add Encounter window: a search for Ocampo with one matching patient selected, and Cancel and Start encounter buttons](../assets/start-an-encounter/04-add-encounter-dialog.webp){ .shot-sm }
 
 Dentalemon confirms with **Encounter started for *name***, and the new encounter appears first in the list. Tap it to open it.
 
@@ -77,7 +80,7 @@ Dentalemon confirms with **Encounter started for *name***, and the new encounter
     **A patient in Add Encounter can't be picked.** They already have an open encounter, shown with an **Open encounter** tag. Open that one from their page.
 
 !!! info "Good to know"
-    An encounter stays **Active** until you finish it. See [Finish the visit](finish-the-visit.md).
+    An encounter stays open until you tap **End encounter**. See [Finish the visit](finish-the-visit.md).
 
 ## What's next
 

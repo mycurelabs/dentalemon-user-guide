@@ -45,23 +45,26 @@ After you sign in, Dentalemon opens **Home**.
 You should see: your greeting, the **You have** chips, and the visits chart.
 { .see }
 
-![Home: the greeting card with three You have chips, the Total patient visits chart, and the sidebar](../assets/sign-in-and-home/03-home.webp)
+![Home: the greeting card with a You have chip for unread notifications, the Total patient visits chart, and the sidebar](../assets/sign-in-and-home/03-home.webp)
 
 !!! note
     A chip only shows when there's something to do. If you have no appointments today, that chip is hidden.
 
 ### 4. See who's up next
 
-Scroll down to **Up next**. It lists today's patients in time order.
+Scroll down to **Up next**. It lists today's patients: visits under way first, then bookings in time order. Three rows show at a time; slide your finger on the card to see the rest.
 
-- **Start encounter** opens a new visit for a booked patient.
+- **Start encounter** checks a booked patient in and opens their visit, in one tap.
 - **Resume** goes back to a visit that is still open.
+- **Check in** shows for a booking whose patient isn't in your patient list yet.
 - **Walk-in** is for a patient who came in without an appointment.
+
+Under each name is the visit reason and, when it applies, **In visit**, **Not confirmed** or **Checked in**.
 
 You should see: each patient's time, name, visit reason and a button.
 { .see }
 
-![The Up next card listing today's patients with Resume and Start encounter buttons, and a Walk-in button](../assets/sign-in-and-home/04-up-next.webp)
+![The Up next card showing three of today's patients, each a Walk-in In visit with a Resume button, and a Walk-in button](../assets/sign-in-and-home/04-up-next.webp)
 
 **Seeing a walk-in patient:**
 
@@ -78,7 +81,7 @@ Keep scrolling. **Notifications** shows the newest alerts, such as lab results a
 You should see: the two cards side by side.
 { .see }
 
-![The Notifications card with lab and appointment alerts, next to the Recent transactions card with payment amounts](../assets/sign-in-and-home/05-notifications-and-transactions.webp)
+![The Notifications card with a new booking request, next to the Recent transactions card with payment amounts](../assets/sign-in-and-home/05-notifications-and-transactions.webp)
 
 ### 6. Find your way with the sidebar
 
@@ -92,6 +95,9 @@ A small number next to an item tells you how many things are waiting there.
 The **Search…** box at the top finds a patient by name: type and press Enter.
 
 To make more room on the screen, tap the panel button at the top left, next to the page title. It hides the sidebar. Tap it again to bring the sidebar back.
+
+You should see: the page you tapped, with its name at the top and its item highlighted in the sidebar.
+{ .see }
 
 ### 7. Check the icons at the top right
 
@@ -115,7 +121,7 @@ Tap your name at the bottom of the sidebar.
 
 - **Account**: your profile, photo and signature.
 - **Settings**: your clinic, prices, formats and more. See [Settings basics](../clinic/settings-basics.md).
-- **Share Dentalemon**: tell a colleague about the app.
+- **Share Dentalemon**: your clinic's invite code for colleagues. It's marked **Coming soon**.
 - **What's new**: the latest changes to Dentalemon.
 - **Log out**: sign out on this device.
 
@@ -128,13 +134,19 @@ You should see: the menu open above your name.
 
 In the account menu, tap **What's new**. It lists recent improvements, newest first. Tap **Done** to close it.
 
-What's new also opens by itself once after you sign in, when there's something new. Tick **Don't show at sign-in** if you'd rather open it yourself.
+What's new also opens by itself once after you sign in, when there's something new. Tick **Don't show at sign-in** if you'd rather open it yourself. You can switch it back on in **Settings › General › Show updates at login**.
+
+You should see: **What's new**, with the newest change marked **Latest**.
+{ .see }
 
 ![What's new: recent improvements with their dates, a Don't show at sign-in tick box, and Done](../assets/sign-in-and-home/08-whats-new.webp)
 
 ### 10. Log out
 
 In the account menu, tap **Log out**. Dentalemon signs you out on this device and shows the sign-in page.
+
+You should see: **Welcome back**, the sign-in page.
+{ .see }
 
 Log out when you hand the iPad to someone else, or at the end of the day on a shared iPad.
 

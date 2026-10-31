@@ -3,17 +3,24 @@ import { EMAIL, signIn, shot } from './helpers';
 
 const P = 'sign-in-and-home';
 
-test('sign in and a first look', async ({ page }) => {
-  await page.goto('/login');
-  await expect(page.locator('#email')).toBeVisible();
-  await page.fill('#email', EMAIL);
-  await shot(page, P, '01-sign-in');
+test.describe('signed out', () => {
+  // The sign-in pages, as a dentist sees them before signing in (the run's saved sign-in is left out).
+  test.use({ storageState: { cookies: [], origins: [] } });
 
-  await page.getByText('Forgot your password?').click();
-  await expect(page.getByRole('button', { name: 'Send reset code' })).toBeVisible();
-  // Crop above the page footer: it shows the wrong company name (an app bug, reported separately).
-  await shot(page, P, '02-forgot-password', { clip: { x: 0, y: 0, width: 1180, height: 760 } });
+  test('sign in and forgot password', async ({ page }) => {
+    await page.goto('/login');
+    await expect(page.locator('#email')).toBeVisible();
+    await page.fill('#email', EMAIL);
+    await shot(page, P, '01-sign-in');
 
+    await page.getByText('Forgot your password?').click();
+    await expect(page.getByRole('button', { name: 'Send reset code' })).toBeVisible();
+    // Crop above the page footer: it shows the wrong company name (an app bug, reported separately).
+    await shot(page, P, '02-forgot-password', { clip: { x: 0, y: 0, width: 1180, height: 760 } });
+  });
+});
+
+test('a first look', async ({ page }) => {
   await signIn(page);
   await expect(page.getByTestId('delight-greeting')).toBeVisible();
   await expect(page.getByTestId('delight-chips')).toBeVisible({ timeout: 30_000 });

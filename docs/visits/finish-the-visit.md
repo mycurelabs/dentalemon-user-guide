@@ -13,38 +13,40 @@ End the encounter, put the work you did on the bill, book the follow-up, and sen
 
 ## Steps
 
-### 1. Tap Finish encounter
+### 1. Tap End encounter
 
-In the encounter's top bar, tap **Finish encounter**.
+In the encounter's top bar, tap **End encounter**.
 
-The **⌄** beside it has other choices. While nothing has been recorded yet, you'll see:
+Beside it, **Charges · ₱*total*** shows what this visit has put on the bill so far. The **⌄** on **End encounter** has other choices. While nothing has been recorded yet, you'll see:
 
 - **End early…**: the patient left before being seen, was referred or transferred, or declined care. You'll pick the reason.
 - **Archive…**: remove an encounter that was opened by mistake.
 
-You should see: **Finish encounter** at the top right. The **⌄** menu shows **End early…** and **Archive…** when you open it.
+If the visit was booked as an appointment, **Open appointment** is there too. Once you've charted or recorded anything, End early and Archive are gone, and the **⌄** may not show at all.
+
+You should see: **Charges · ₱0** and **End encounter** at the top right. The **⌄** menu shows **End early…** and **Archive…** when you open it.
 { .see }
 
-![The encounter top bar with Finish encounter and its ⌄ menu open, showing End early… and Archive…](../assets/finish-the-visit/01-actions-menu.webp)
+![The encounter top bar with Charges · ₱0, and End encounter with its ⌄ menu open, showing End early… and Archive…](../assets/finish-the-visit/01-actions-menu.webp)
 
-### 2. Check the Finish encounter sheet
+### 2. Check the End encounter sheet
 
-The sheet shows the patient's name and today's date. Work through it from the top:
+The **End encounter** sheet shows the patient's name and today's date. Work through it from the top:
 
-1. **Before you end** lists anything missing, such as **Chief complaint · Not recorded**. Tap **+ Add** to fill it in now, or carry on: reminders never stop you ending. If the visit has draft orders (for example a lab order you haven't sent), a switch such as **Send the draft order** appears here. It's on, so ending the visit sends them; switch it off to keep them as drafts.
+1. **Before you end** lists anything missing, such as **Chief complaint · Not recorded**. Tap **+ Add** to fill it in now, or carry on: reminders never stop you ending. If the visit has draft orders (for example a lab order you haven't sent), a switch such as **Send the draft order** appears here. It's on, so ending the visit sends them. If you switch it off, the sheet reminds you that **Ending the encounter still finalizes them.**
 2. **Encounter type**: choose **Consultation**, **Follow-up**, **Oral prophylaxis**, **Dental certificate** or **Procedure**. This sets the visit charge.
 3. **Charges**: the lines start **unticked**. Tick each line you want to bill: the encounter type and the work you marked **Done today**. Each tick puts that line on the bill straight away, with **Undo**. Tap **+ Add charge** for anything else from your price list.
 
 **Total charges** adds up the ticked lines.
 
-When the sheet opens, nothing is ticked yet and **Total charges** is **₱0**:
+When the sheet opens, nothing is ticked yet, **Total charges** is **₱0**, and the only button at the bottom is **End encounter**:
 
-![The Finish encounter sheet as it opens: Encounter type Consultation, Charges Consultation ₱500 and Composite restoration 36 O Done today ₱1,800 both unticked, Total charges ₱0](../assets/finish-the-visit/02a-finish-unticked.webp){ .shot-sm }
+![The End encounter sheet as it opens: Encounter type Consultation, Charges Consultation ₱500 and Composite restoration 36 O Done today ₱1,800 both unticked, Total charges ₱0, and one End encounter button](../assets/finish-the-visit/02a-finish-unticked.webp){ .shot-sm }
 
 You should see: after ticking, the ticked charges and the total, for example **₱2,300**.
 { .see }
 
-![The Finish encounter sheet: Before you end with Chief complaint Not recorded, Encounter type Consultation, Charges Consultation ₱500 and Composite restoration 36 O Done today ₱1,800 ticked, Total charges ₱2,300](../assets/finish-the-visit/02-finish-sheet.webp){ .shot-sm }
+![The End encounter sheet: Before you end with Chief complaint Not recorded, Encounter type Consultation, Charges Consultation ₱500 and Composite restoration 36 O Done today ₱1,800 ticked, Total charges ₱2,300](../assets/finish-the-visit/02-finish-sheet.webp){ .shot-sm }
 
 ![Before you end on a visit with a draft lab order: Chief complaint Not recorded with Add, and the Send the draft order switch turned on](../assets/finish-the-visit/08-send-drafts.webp){ .shot-sm }
 
@@ -52,7 +54,7 @@ You should see: after ticking, the ticked charges and the total, for example **�
 
 Under **Follow-up**, choose **None**, **1 week**, **2 weeks**, **1 month**, or **Date** to pick a day yourself.
 
-Dentalemon finds the first open time and shows it in a card with the day, time and length, for example **Fri, Nov 6** and **10:30 AM · 30 min follow-up**. The booking is made when you end the encounter, and it then appears in **Appointments** like any other booking, where you can move or cancel it. See [Appointments](../schedule/appointments.md).
+Dentalemon finds the first open time and shows it in a card with the day, time and length, for example **Fri, Nov 6** and **7:00 AM · 30 min follow-up**. The booking is made when you end the encounter, and it then appears in **Appointments** like any other booking, where you can move or cancel it. See [Appointments](../schedule/appointments.md).
 
 You should see: the follow-up card under the choices.
 { .see }
@@ -63,32 +65,28 @@ You should see: the follow-up card under the choices.
 
 Choose how to end:
 
-- **End and send to cashier · ₱*total***: ends the visit and sends the bill to the **Cashier** to collect payment. Use this when the patient pays today.
-- **End encounter**: ends the visit without sending a bill.
+- **End and send to cashier · ₱*total***: ends the visit and opens its invoice at the **Cashier**, ready to collect payment. Use this when the patient pays today. (If your role can't take payments, you land on the patient's **Billing** tab instead.)
+- **End encounter**: ends the visit without sending the bill. You stay on the chart.
 
-The chart becomes view only, and the date pill at the top says **Ended**. A message confirms the encounter type, the time and the follow-up, with **Undo**.
-
-The top button now reads **Charges · Ready · ₱*total***. Tap it to see the bill.
+After **End encounter**, the chart becomes view only and the date pill at the top says **Ended**. A message confirms the encounter type, the time and the follow-up, with **Undo**. The top right now shows **Reopen encounter**, and **Charges** shows the bill's total. Tap **Charges** to see the bill.
 
 You should see: **Ended** at the top and a message that starts with **Ended** and the encounter type (for example **Ended Consultation**, or **Ended Encounter** if you didn't choose a type), then **Follow-up booked**.
 { .see }
 
-![The ended encounter: the date pill says Ended, the top button reads Charges · Ready · ₱2,300, and a message says Ended Consultation, Follow-up booked Fri, Nov 6, with Undo](../assets/finish-the-visit/04-ended.webp)
+![The ended encounter: the date pill says Ended, the top bar shows Charges · ₱2,300 and Reopen encounter, and a message says Ended Consultation, Follow-up booked Fri, Nov 6, with Undo](../assets/finish-the-visit/04-ended.webp)
 
 ### 5. Reopen if you need to
 
-If you ended the visit too soon, open the **⌄** and tap **Reopen encounter**. You can only reopen today's encounters.
+If you ended the visit too soon, tap **Reopen encounter** at the top right. You can only reopen today's encounters.
 
-You should see: **Reopen encounter** in the **⌄** menu.
+You should see: the date pill says **Active** again, and the top right shows **End encounter**.
 { .see }
-
-![The ⌄ menu on an ended encounter, showing Reopen encounter](../assets/finish-the-visit/05-ended-menu.webp)
 
 ### 6. End a visit early
 
 Use **End early…** when the visit didn't really happen, before you've recorded any care. It's only in the **⌄** menu until you start charting.
 
-1. Tap **⌄** beside **Finish encounter**, then **End early…**.
+1. Tap **⌄** beside **End encounter**, then **End early…**.
 2. Choose why: **Left before being seen**, **Referred or transferred** or **Declined care**.
 3. Add a note if you want, then tap **End early**. Tap **Keep** to go back without ending.
 
@@ -101,7 +99,7 @@ You should see: **End Encounter · *time* early?** with the reason list and your
 
 If you started an encounter for the wrong patient, or by accident, and nothing has been recorded in it, you can archive it.
 
-1. Tap **⌄** beside **Finish encounter**, then **Archive…**.
+1. Tap **⌄** beside **End encounter**, then **Archive…**.
 2. Choose the reason **Opened by mistake**. Add a note if you want.
 3. Tap **Archive encounter**, or tap **Keep** to leave it.
 
@@ -110,7 +108,7 @@ You should see: **Archive encounter** with the reason and the **Archive encounte
 
 ![The Archive encounter step: Opened by mistake chosen, a note box, and Keep and Archive encounter buttons](../assets/finish-the-visit/07-archive.webp)
 
-An archived encounter disappears from the patient's list of visits. You can bring it back from the **Patient Profile**.
+An archived encounter disappears from the patient's list of visits. To bring it back, open **Settings › Encounter**. Under **Archived encounters** (below **Sign-off**), find it with **Search patients** and tap **Restore**.
 
 ## Tips
 

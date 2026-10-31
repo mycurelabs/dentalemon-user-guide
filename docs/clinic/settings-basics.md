@@ -26,12 +26,12 @@ Settings opens on **Profile**. The list on the left has four groups: **Account**
 
 ### 2. Your profile
 
-In **Profile**, fill in your **Title** (for example *Dr.*), your name, **Professional role**, mobile number, PTR and S2 numbers, and your signature. Tap **Add photo** to add a profile photo.
+In **Profile**, fill in your **Title** (for example *Dr.*), your name, **Professional role** and **Mobile number**. Tap **Add photo** next to **Profile photo** to add a photo; it shows in the sidebar and the account menu.
 
 You should see: your name and email. Your **Display name** is how your name appears to patients.
 { .see }
 
-![The Profile settings: Title, First name Ana, Last name Santos, Suffix, Display name, Professional role, Email](../assets/settings-basics/02-profile.webp)
+![The Profile settings: Profile photo with Add photo, Title, First name Ana, Middle name, Last name Santos, Suffix, Display name and Professional role](../assets/settings-basics/02-profile.webp)
 
 ### 3. Your licence numbers and signature
 
@@ -56,9 +56,14 @@ Your signature is saved straight away and appears on new printed documents. Docu
 
 Tap **Clinic**. Fill in the **Clinic name**, **Address**, **Phone** and **Email**.
 
-Under **Operating hours**, switch each day on or off and set its opening and closing times. Appointments can only be booked inside these hours.
+Under **Operating hours**, switch each day on or off and set its opening and closing times. Appointments can only be booked inside these hours, and printed forms show them.
 
-![The Clinic settings: Clinic name, Address, Phone, Email, and Operating hours from Monday 9:00 AM to 5:00 PM](../assets/settings-basics/03-clinic.webp)
+Further down, under **Location**, **Country** sets the currency, time zone, tax fields and payment methods. **Time zone** and **Currency** follow from it.
+
+You should see: your clinic name, the address boxes (**Street**, **City**, **Province**, **ZIP code**), **Phone**, **Email** and the week's hours.
+{ .see }
+
+![The Clinic settings: Clinic name Lemon Tree Dental, Address with Street, City, Province and ZIP code, Phone, Email, and Operating hours from Monday 07:00 AM to 07:00 PM](../assets/settings-basics/03-clinic.webp)
 
 ### 5. Tooth notation and start page
 
@@ -68,7 +73,8 @@ Tap **General**.
 - **Chart row labels**: show or hide the Facial, Occlusal and Lingual labels on the chart.
 - **Care set**: **General dentistry** or **Pediatric dentistry**.
 - **Open after sign-in**: which page opens first (**Home**, **Appointments** or **Patients**).
-- **Formats**: how dates, times and amounts are written.
+- **Show updates at login**: opens **What's new** when you sign in. You can always open it from your account menu.
+- **Formats**: how the **Date**, **Time** and **Amounts** are written, and which day the **Week starts on**.
 
 ![The General settings: Tooth notation FDI, Universal, Palmer; Chart row labels; Care set; Open after sign-in; Show updates at login](../assets/settings-basics/05-general.webp)
 
@@ -80,19 +86,19 @@ Tap **Appearance**. Under **Theme**, pick the screen icon (follow your device), 
 
 ### 7. Your price list
 
-Tap **Services**. This is the list Dentalemon uses for **Charges** and the **Cashier**.
+Tap **Services**. This is the list Dentalemon uses for **Charges** and the **Cashier**. Use **Search**, the **Type** filter and **Sort** at the top to find a service.
 
 You should see: every service with its type, length and price.
 { .see }
 
-![The Services settings: Add service, then Amalgam restoration ₱1,500, Complete denture ₱25,000, Composite restoration ₱1,800, Consultation ₱500 and more](../assets/settings-basics/07-services.webp)
+![The Services settings: Search, Type All, Sort Name and Add service, then Amalgam restoration ₱1,500, Complete denture ₱25,000, Composite restoration ₱1,800, Consultation ₱500 and more](../assets/settings-basics/07-services.webp)
 
 To change a service, tap it, change what you need, and save. To add one:
 
 1. Tap **Add service**.
 2. Type the **Name**, for example *Night guard*.
 3. Choose the **Type** (for example a procedure or a consultation) and type the **Price**.
-4. Optional: switch on **Bookable online**; tick **General consent** or **Procedure consent** under **Consent forms** if the patient must sign one first; fill in **Details** such as **Category**, **Specialization** and **Usual length** (how long the visit takes).
+4. Optional: switch on **Bookable online**; tick **General consent** or **Procedure consent** under **Consent forms** if the patient must sign one first; fill in **Details** such as **Category**, **Specialization** and **Usual length** (how long the visit takes). Further down are the service's **Professional fees** and **Supplies**.
 5. Tap **Add service**. Tap **Cancel** to leave without saving.
 
 ![The New service form: Name, Type, Price, Bookable online, Consent forms General consent and Procedure consent, Details, and Cancel and Add service](../assets/settings-basics/07b-add-service.webp)
@@ -103,11 +109,15 @@ To stop offering a service, open it and tap **Archive service**. It no longer sh
 
 Tap **Billing**.
 
-- **Default payment method**: the method already chosen when you collect a payment.
-- **Payment methods**: switch on the ones you accept (**Cash**, **GCash**, **Card**, **Bank transfer**, **Maya**), or tap **Add payment method**. Only switched-on methods appear at the Cashier.
-- **Invoice numbers**: every invoice gets the next number in one series. This can't be turned off.
+- **Default payment method**: the method already chosen when you collect a payment. It always stays switched on.
+- **Show the receipt after payment**: saved for your clinic, but not used at checkout yet.
+- **Payment methods**: switch on the ones you accept (**Cash**, **GCash**, **Maya**, **Card**, **Bank transfer**), or tap **Add payment method**. Only switched-on methods appear at the Cashier.
+- **Invoice numbers**: off for a new clinic, so invoices are finalized without a number. A clinic admin can switch it on: tap the switch, then **Turn on invoice numbers**. From then on, every invoice you finalize gets the next number in one series. Invoices finalized before stay without a number, and numbering can't be turned off again.
 
-![The Billing settings: Default payment method Cash, Payment methods Cash, GCash, Card, Bank transfer, Maya, and Invoice numbers On](../assets/settings-basics/08-billing.webp)
+You should see: **Payments**, with **Default payment method**, **Show the receipt after payment**, the list of **Payment methods** and **Invoice numbers**.
+{ .see }
+
+![The Billing settings: Default payment method Cash, Show the receipt after payment, Payment methods Cash, GCash, Maya, Card and Bank transfer, and Invoice numbers switched off](../assets/settings-basics/08-billing.webp)
 
 To add a payment method your clinic accepts, for example another e-wallet:
 
@@ -126,11 +136,12 @@ Scroll down to **Tax**. Set **Tax registration** to **Non-VAT** or **VAT registe
 
 Tap **Encounter**.
 
-- **Close encounters at midnight**: ends visits left open from an earlier day.
-- **Require a diagnosis before closing**: blocks **End encounter** until a diagnosis is recorded.
-- **Confirm before closing an encounter**: asks before ending a visit.
+- **Workspace**: **Show patient history by default** opens the patient's earlier records with each encounter; **Auto-save drafts** keeps unsigned notes as you type.
+- **End of day**: **Close encounters at midnight** ends visits left open from an earlier day, as of that day's midnight.
+- **Sign-off**: **Require a diagnosis before closing** blocks **End encounter** until a diagnosis is recorded; **Confirm before closing an encounter** asks before ending a visit.
+- **Archived encounters**: below **Sign-off**, the encounters you archived. Search for one and tap **Restore** to bring it back (see step 13).
 
-![The Encounter settings: Show patient history by default, Auto-save drafts, Close encounters at midnight, Require a diagnosis before closing, Confirm before closing an encounter](../assets/settings-basics/09-encounter.webp)
+![The Encounter settings: Workspace with Show patient history by default and Auto-save drafts, End of day with Close encounters at midnight, and Sign-off with Require a diagnosis before closing and Confirm before closing an encounter](../assets/settings-basics/09-encounter.webp)
 
 ### 10. Notifications you want to see
 
@@ -160,7 +171,7 @@ Tap **Consents**. This is where you set how patients sign consents. See [Consent
 - **Patients can type their name to sign**: when off, patients draw their signature.
 - **Require a witness for procedure consents**: when on, a procedure consent can't be saved without a witness's name.
 - **Consent documents**: the wording patients read on the iPad. A document can only be signed on screen once its wording is entered. Until then it says **No wording yet — Sign on screen is off for this document.**
-- **Signing passcode**: the code you enter to take the iPad back after the patient signs. You're asked to set it the first time you hand the iPad to a patient.
+- **Signing passcode** (under **Patient signing screen**): the 4- to 8-digit code you enter to take the iPad back after the patient signs. It's kept on this iPad only. You're asked to set it the first time you hand the iPad to a patient.
 
 To enter a document's wording:
 
@@ -172,14 +183,33 @@ Saving creates a new version. Consents patients already signed keep the version 
 
 ![The Consents settings: Signing (Default signing method, Patients can type their name to sign, Require a witness), Consent documents with Add wording for Data privacy, General consent and Procedure consent, and Signing passcode with Set passcode](../assets/settings-basics/12-consents.webp)
 
+### 13. Bring back a patient or an encounter you archived
+
+Archived patients and encounters aren't deleted. You can restore them from Settings.
+
+- **A patient**: tap **Archived patients** (under **Practice**). Type in **Search patients** if the list is long, then tap **Restore** next to the patient.
+- **An encounter**: tap **Encounter** and scroll below **Sign-off** to **Archived encounters**. Type the patient's name in **Search patients**, then tap **Restore** next to the visit. A visit marked **Patient is archived** needs the patient restored too before you can see it.
+
+You should see: the patient or visit leaves the archived list and is back in **Patients** or on the patient's **Encounters** tab.
+{ .see }
+
+### 14. The other sections
+
+- **Users and Access**: who can use your clinic workspace. For now it's a preview kept on this iPad only (see Good to know).
+- **Records**: measurement units and your default record types.
+- **Orders**: whether new orders start as drafts, and where each kind of order goes by default.
+- **Partners**: who you refer patients to, and the HMOs, government programmes and companies you bill.
+- **Share Dentalemon**: your clinic's invite code for colleagues. It's marked **Coming soon**.
+- **Agreements**: Dentalemon's privacy notice, terms and policies.
+
 ## Tips
 
 !!! tip "Do these first"
     Before your first patient: **Clinic** (name, address, hours), **Services** (your prices) and **Billing** (payment methods and tax). Everything else can wait.
 
 !!! info "Good to know"
-    - Some settings are saved but not used yet, and the panel says so under them. For example, receipts don't print the business name, TIN or branch code yet, and a payment method's **Ask for a reference number** switch isn't used yet: the Cashier always asks for a reference number for e-wallets, cards and bank transfers.
-    - **Users and access** is a preview on this device only. Inviting someone there doesn't send an email or give them access.
+    - Some settings are saved but not used yet, and the panel says so under them. For example, receipts don't print the business name, TIN or branch code yet, and **Show the receipt after payment** and a payment method's **Ask for a reference number** switch aren't used at checkout yet. The Cashier asks for a reference number, approval code or check number by the method's type.
+    - **Users and Access** is a preview on this device only. Inviting someone there doesn't send an email or give them access.
     - Your email can't be changed in **Profile** yet.
 
 ## What's next

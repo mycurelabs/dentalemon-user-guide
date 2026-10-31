@@ -3,7 +3,7 @@ import { fixtures, settle, shot, signIn, toothEntry } from './helpers';
 import { patientWithEncounter, tapTooth } from './visits.lib';
 
 // Pictures added after the guide was checked against the app by hand:
-// the Finish encounter sheet before any charge is ticked, and the allergy warning when prescribing.
+// the End encounter sheet before any charge is ticked, and the allergy warning when prescribing.
 const expect = baseExpect.configure({ timeout: 60_000 });
 test.setTimeout(1_200_000);
 
@@ -17,13 +17,13 @@ test('finish sheet before ticking', async ({ page }) => {
     mobileNo: '0917 000 0041',
   }, { fresh: true });
   await fixtures.openChart(page, visit.url);
-  const main = page.getByTestId('encounter-actions-split').filter({ visible: true }).first().getByTestId('bill-button');
+  const main = page.getByTestId('encounter-actions-split').filter({ visible: true }).first().getByTestId('encounter-end');
   const sheet = page.getByTestId('charges-sheet');
 
   await tapTooth(page, 36);
   await toothEntry.recordTreatment(page, 'composite', 'done', ['O']);
   await page.goto(visit.url);
-  await expect(main).toContainText('Finish encounter', { timeout: 60_000 });
+  await expect(main).toContainText('End encounter', { timeout: 60_000 });
 
   await main.tap();
   await expect(sheet).toBeVisible();
@@ -82,7 +82,7 @@ for (const [name, testId, who] of [
     const visit = await patientWithEncounter(page, { ...who }, { fresh: true });
     await page.goto(visit.url);
     const split = page.getByTestId('encounter-actions-split').filter({ visible: true }).first();
-    await expect(split.getByTestId('bill-button')).toContainText('Finish encounter', { timeout: 60_000 });
+    await expect(split.getByTestId('encounter-end')).toContainText('End encounter', { timeout: 60_000 });
     const more = split.getByTestId('encounter-actions-more');
     await expect
       .poll(async () => {

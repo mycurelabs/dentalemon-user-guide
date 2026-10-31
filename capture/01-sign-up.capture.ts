@@ -3,6 +3,9 @@ import { dismissWhatsNew, settle, shot, showText } from './helpers';
 
 const P = 'sign-up-and-clinic-setup';
 
+// A new dentist arrives signed out, even when the run reuses a saved sign-in.
+test.use({ storageState: { cookies: [], origins: [] } });
+
 // Uses a fresh made-up account each run, so the screens are exactly what a new dentist sees.
 test('sign up and set up your clinic', async ({ page }) => {
   const stamp = Date.now().toString(36);

@@ -7,12 +7,24 @@ const { addItems, get, openChart, serviceByKey } = fixtures;
 const P = 'charges-and-cashier';
 
 // Back teeth, in the order re-runs extract them (FDI).
-const MOLARS_AND_PREMOLARS = ['46', '36', '47', '37', '26', '16', '45', '35', '44', '34', '25', '15', '24', '14', '17', '27'];
+const MOLARS_AND_PREMOLARS = [46, 36, 47, 37, 26, 16, 45, 35, 44, 34, 25, 15, 24, 14, 17, 27];
 
-/** The patient's chart record as text ('' before the first chart). */
-async function fetchChart(page: Page, patientId: string) {
+/** The teeth the patient's chart already shows as extracted (none before the first chart). */
+async function extractedTeeth(page: Page, patientId: string) {
   const res = await page.request.get(`/api/medical-records/dlchart-${patientId}`);
-  return res.ok() ? res.text() : '';
+  if (!res.ok()) return new Set<number>();
+  const teeth: { tooth: number; state?: string }[] = (await res.json())?.chart?.teeth ?? [];
+  return new Set(teeth.filter(t => t.state === 'extracted').map(t => Number(t.tooth)));
+}
+
+/** Waits for a toast to go, so it never covers the next picture. */
+async function toastGone(page: Page, text: string | RegExp) {
+  const toast = page.getByText(text).first();
+  await expect(toast)
+    .toBeHidden({ timeout: 20_000 })
+    .catch(async () => {
+      await page.locator('[data-sonner-toast] [data-close-button]').first().click().catch(() => {});
+    });
 }
 
 // Made-up patients for this page only.
@@ -35,13 +47,19 @@ const PILAR = {
   mobileNo: '0917 000 0022',
 };
 
+/*
+ * The demo clinic needs, once: the dental price list (Settings › Services › Add the dental
+ * price list) and PhilHealth as a partner (Settings › Partners) with Consultation covered
+ * up to ₱500 (Settings › Services › Consultation › Coverage). The first run turns on
+ * invoice numbers from the Cashier's notice.
+ */
 test('charges and the cashier', async ({ page }) => {
   test.setTimeout(1_200_000); // Many steps; the demo backend is slow while other pages capture.
   await signIn(page);
   const facility = await facilityOf(page);
   const dialog = page.getByRole('dialog');
 
-  // ── Charges: Mario's visit, an extraction done today on 46.
+  // ── Charges: Mario's visit, an extraction done today.
   const marioId = await patient(page, facility, MARIO);
   // Earlier runs left Mario's older bills waiting; open them at the desk (the app's own
   // fixture) so the Waiting list pictures him once.
@@ -52,14 +70,28 @@ test('charges and the cashier', async ({ page }) => {
   const { encounterId, invoiceId } = await openEncounter(page, facility, marioId);
   const url = `/patients/${marioId}/encounters/${encounterId}`;
   await openChart(page, url);
-  const inv0 = await get(page, `billing-invoices/${invoiceId}?$expand=items`);
-  // Each run is a new visit: extract a tooth his chart doesn't already show as extracted
-  // (an extracted tooth can't take an abscess, so the wizard would refuse it).
-  const chart = await fetchChart(page, marioId);
-  const extracted = new Set([...chart.matchAll(/"state":\s*"extracted",\s*"tooth":\s*(\d+)/g)].map(m => m[1]));
-  const tooth = MOLARS_AND_PREMOLARS.find(t => !extracted.has(t));
-  expect(tooth, 'Mario still has a tooth to extract; reset his chart in the demo data').toBeTruthy();
-  if (!(inv0.items ?? []).length) {
+
+  // The top bar: Charges (for the dentist, straight to the bill at the Cashier) and
+  // End encounter, which opens the End encounter sheet with this visit's charges.
+  const end = page.getByTestId('encounter-end').filter({ visible: true }).first();
+  const sheet = page.getByTestId('charges-sheet');
+  async function openEnd() {
+    await expect(end).toBeVisible({ timeout: 60_000 });
+    await end.click();
+    await expect(sheet).toBeVisible();
+    await expect(sheet.getByText('Loading the charges…')).toHaveCount(0, { timeout: 60_000 });
+  }
+  // Work done today shows in Charges before anything is on the invoice; record an
+  // extraction only when this visit has none yet, so a re-run doesn't add another.
+  await openEnd();
+  const doneToday = await sheet.locator('[data-charge^="treatment:"]').count();
+  await page.keyboard.press('Escape');
+  await expect(sheet).toBeHidden();
+  if (!doneToday) {
+    // An extracted tooth can't take an abscess, so pick one the chart still has.
+    const gone = await extractedTeeth(page, marioId);
+    const tooth = MOLARS_AND_PREMOLARS.find(t => !gone.has(t));
+    expect(tooth, 'Mario still has a tooth to extract; reset his chart in the demo data').toBeTruthy();
     await page.goto(`${url}?tooth=${tooth}`);
     await expect(page.getByTestId('tooth-create-record').filter({ visible: true }).last()).toBeVisible({
       timeout: 60_000,
@@ -69,13 +101,10 @@ test('charges and the cashier', async ({ page }) => {
   }
 
   await page.goto(url);
-  const charges = page.getByTestId('bill-button').filter({ visible: true }).first();
-  await expect(charges).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByTestId('bill-button').filter({ visible: true }).first()).toBeVisible({ timeout: 60_000 });
+  await expect(end).toBeVisible({ timeout: 60_000 });
   await shot(page, P, '01-encounter-top-bar');
-  await charges.click();
-  const sheet = page.getByTestId('charges-sheet');
-  await expect(sheet).toBeVisible();
-  await expect(sheet.getByText('Loading the charges…')).toHaveCount(0, { timeout: 60_000 });
+  await openEnd();
   await shot(page, P, '02-charges-unticked');
 
   // Tick the visit and the work done today.
@@ -87,21 +116,25 @@ test('charges and the cashier', async ({ page }) => {
   await settle(page);
   await shot(page, P, '03-charges-ticked');
 
-  // Add charge: search the price list.
+  // Add charge: search the price list (looked at, not added).
   await sheet.getByTestId('charges-add').click();
   const add = sheet.getByTestId('charges-add-view');
   await expect(add).toBeVisible();
   await add.getByRole('searchbox', { name: 'Search services' }).fill('certificate');
   await shot(page, P, '04-add-charge');
   await page.keyboard.press('Escape');
+  await expect(add).toBeHidden();
 
   // End and send to cashier.
   const send = sheet.getByTestId('finish-send');
-  if (await sheet.isVisible().catch(() => false)) {
-    await expect(send).toBeEnabled();
-    await send.click();
-    await expect(sheet).toBeHidden({ timeout: 120_000 });
-  }
+  await expect(send).toBeEnabled();
+  await send.click();
+  await expect(sheet).toBeHidden({ timeout: 120_000 });
+  // The dentist (who may collect) lands on the bill at the Cashier, which takes it out of
+  // Waiting; put it back so the Waiting list pictures it, as the front desk would see it.
+  await page.waitForURL(/\/cashier\//, { timeout: 30_000 }).catch(() => {});
+  console.log('after End and send to cashier:', new URL(page.url()).pathname);
+  await fixtures.backToWaiting(page, invoiceId);
 
   // ── The Cashier: Waiting list.
   await page.goto('/cashier');
@@ -112,27 +145,33 @@ test('charges and the cashier', async ({ page }) => {
   // The invoice.
   await row.click();
   await expect(page.getByTestId('invoice-title')).toBeVisible({ timeout: 180_000 });
+  // First run only: the clinic doesn't number its invoices yet; turn numbering on from the notice.
+  const numbering = page.getByTestId('invoice-numbering');
+  const turnOn = numbering.getByRole('button', { name: 'Turn on invoice numbers…' });
+  if (await turnOn.isVisible({ timeout: 10_000 }).catch(() => false)) {
+    await turnOn.click();
+    const confirm = page.getByRole('alertdialog').or(dialog).first();
+    await expect(confirm).toBeVisible();
+    await confirm.getByRole('button', { name: /Turn on/ }).click();
+    await expect(page.getByText('Invoice numbers turned on.')).toBeVisible({ timeout: 30_000 });
+    await toastGone(page, 'Invoice numbers turned on.');
+  }
+  await expect(numbering).toBeHidden({ timeout: 30_000 });
   await shot(page, P, '06-invoice');
 
-  // Senior Citizen discount (the ID on file fills in).
-  const discountBtn = page.getByTestId('invoice-discount-action');
-  if (await discountBtn.isVisible().catch(() => false)) {
-    await discountBtn.click();
-    await expect(dialog.getByTestId('discount-kinds')).toBeVisible();
-    const senior = dialog.getByTestId('discount-kind-Senior');
-    if (await senior.count()) await senior.click();
-    await expect(dialog.getByTestId('discount-id')).toHaveValue('SC-TEST-0001');
-    await shot(page, P, '07-apply-discount', { el: dialog.first() });
-    await dialog.getByTestId('discount-submit').click();
-    const toast = page.getByText('Senior Citizen discount applied');
-    await expect(toast).toBeVisible({ timeout: 30_000 });
-    await expect(dialog).toHaveCount(0, { timeout: 15_000 });
-    // Let the toast go before the next pictures (it would cover the footer).
-    await expect(toast).toBeHidden({ timeout: 20_000 }).catch(async () => {
-      await page.locator('[data-sonner-toast] [data-close-button]').first().click().catch(() => {});
-    });
-  }
-  await expect(page.getByText('Senior Citizen discount applied')).toBeHidden({ timeout: 10_000 });
+  // Collect asks about the Senior Citizen ID on file; Apply discount opens the Discount sheet.
+  await page.getByTestId('invoice-collect').click();
+  const ask = dialog.getByTestId('collect-ask-id');
+  await expect(ask).toBeVisible({ timeout: 30_000 });
+  await shot(page, P, '07a-collect-ask-id', { el: ask });
+  await ask.getByTestId('collect-apply-discount').click();
+  await expect(dialog.getByTestId('discount-kinds')).toBeVisible({ timeout: 15_000 });
+  await expect(dialog.getByTestId('discount-id')).toHaveValue('SC-TEST-0001');
+  await shot(page, P, '07-apply-discount', { el: dialog.first() });
+  await dialog.getByTestId('discount-submit').click();
+  await expect(page.getByText('Senior Citizen discount applied')).toBeVisible({ timeout: 30_000 });
+  await expect(dialog).toHaveCount(0, { timeout: 15_000 });
+  await toastGone(page, 'Senior Citizen discount applied');
   await shot(page, P, '08-invoice-discounted', {
     at: page.getByTestId('cashier-invoice').getByTestId('invoice-breakdown').first(),
   });
@@ -144,6 +183,7 @@ test('charges and the cashier', async ({ page }) => {
   await expect(dialog.getByTestId('collect-tendered')).toBeVisible();
   await dialog.getByTestId('collect-quick').getByRole('button').nth(1).click();
   await expect(dialog.getByTestId('collect-change')).toBeVisible();
+  await dialog.getByTestId('collect-methods').evaluate(el => el.scrollIntoView({ block: 'start' }));
   await shot(page, P, '09-collect-cash');
   await dialog.getByTestId('collect-submit').click();
   await expect(dialog.getByTestId('collect-receipt')).toHaveCount(1, { timeout: 60_000 });
@@ -159,20 +199,12 @@ test('charges and the cashier', async ({ page }) => {
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0, { timeout: 15_000 });
 
-  // More: Void…, Duplicate as new sale.
+  // More: Send receipt (coming soon), Duplicate as new sale, Void….
   await page.getByTestId('invoice-more').click();
   await expect(page.getByTestId('invoice-more-duplicate')).toBeVisible();
   await shot(page, P, '12-more-menu');
 
-  // Send receipt: shown, never sent (Send only hands off to Mail or Messages).
-  await page.getByTestId('invoice-more-send').click();
-  await expect(dialog.getByTestId('send-to')).toBeVisible({ timeout: 15_000 });
-  await shot(page, P, '15-send-receipt', { el: dialog.first() });
-  await dialog.getByTestId('send-cancel').click();
-  await expect(dialog).toHaveCount(0, { timeout: 15_000 });
-
   // Void…: the sheet with a reason typed, then Cancel. Nothing is voided.
-  await page.getByTestId('invoice-more').click();
   await page.getByTestId('invoice-more-void').click();
   await expect(dialog.getByTestId('void-sheet')).toBeVisible({ timeout: 15_000 });
   await dialog.getByTestId('void-reason').fill('Charged the wrong patient');
@@ -196,7 +228,12 @@ test('charges and the cashier', async ({ page }) => {
   }
   await page.goto(`/cashier/${pilar.invoiceId}`);
   await expect(page.getByTestId('invoice-title')).toBeVisible({ timeout: 60_000 });
-  await page.getByTestId('invoice-coverage-action').click();
+  // The Consultation line's ⋮ › Coverage….
+  const consultRow = page.getByTestId('cashier-invoice').locator('tr', { hasText: 'Consultation' }).first();
+  await consultRow.getByTestId('invoice-line-actions').click();
+  await expect(page.getByTestId('invoice-line-coverage')).toBeVisible();
+  await shot(page, P, '13a-line-menu');
+  await page.getByTestId('invoice-line-coverage').click();
   await expect(dialog.getByTestId('coverage-payers')).toBeVisible();
   await dialog.getByTestId('coverage-payer-PhilHealth').click();
   await expect(dialog.getByTestId('coverage-line').first()).toBeVisible();

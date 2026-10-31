@@ -16,19 +16,19 @@ Book patients, see your day and week at a glance, and check patients in when the
 
 Tap **Appointments** in the sidebar. Switch between **List** and **Calendar** at the top left.
 
-In **Calendar**, choose **Day**, **Week** or **Month** from **View**. Tap **Today** to come back to today, and **‹ ›** to move between days or weeks.
+In **Calendar**, choose **Day**, **Week** or **Month** from **View**. Tap **‹ ›** to move between days or weeks, and the calendar button with a tick (**Today**) to come back to today. Tap the date range to jump to another date.
 
 You should see: your appointments in the calendar, with today's date circled. Each appointment shows the patient and its status, such as **Confirmed** or **Pending**. A blue line marks the time now.
 { .see }
 
-![The Appointments calendar in Week view: appointments for each day, today circled, with Today, the date range, View: Week and New appointment](../assets/appointments/01-calendar-week.webp)
+![The Appointments calendar in Week view for Nov 2 – 8: Confirmed and Pending appointments on each weekday, Closed on the weekend, with the Today button, ‹ ›, the date range, View: Week and New appointment](../assets/appointments/01-calendar-week.webp)
 
 - **Day** shows one day hour by hour. Use it on a busy day: each block is one patient. Walk-ins (patients seen without a booking) appear as grey blocks.
 - **Month** shows the whole month. Each day lists its first appointments, then **+N more**. Tap **+N more** to open that day. Days the clinic is closed say **Closed**.
 
-![The Day view for Fri, Oct 30: appointment blocks laid out by hour from 7 AM](../assets/appointments/01b-calendar-day.webp)
+![The Day view for Mon, Nov 2: one block per appointment, laid out by hour, each with the patient, Confirmed and the time](../assets/appointments/01b-calendar-day.webp)
 
-![The Month view for October 2026: each day lists appointments with their time and status, +N more, and Closed on Sundays](../assets/appointments/01c-calendar-month.webp)
+![The Month view for November 2026: today circled with grey walk-ins, each day listing appointments with their time and status, +N more, and Closed on the weekend](../assets/appointments/01c-calendar-month.webp)
 
 !!! tip "Choose the view that opens first"
     In **Settings › Appointments**, set **Default view** to **Day**, **Week**, **Month** or **List**. See [Settings basics](../clinic/settings-basics.md).
@@ -42,6 +42,9 @@ You should see: a table with **Date**, **Time**, **Patient**, **Reason** and **S
 { .see }
 
 ![The Appointments list: four summary cards, then a table of upcoming appointments with their status](../assets/appointments/02-list.webp)
+
+!!! tip "Quick actions from the list"
+    Tap **⋮** at the end of a row for that appointment's actions, such as **View details**, **Confirm**, **Reschedule**, **Check in**, **Mark no-show** or **Cancel appointment**, without opening it first. Only the actions that fit the appointment are shown.
 
 ### 3. Book a new appointment
 
@@ -57,7 +60,7 @@ You should see: the patient's name, and the visit reason with its length.
 
 ### 4. Pick a day and time, then book
 
-Scroll to **Date and time**. Tap a day, then one of the times shown. Only free times appear, and the line above them says how many, for example **Fri, Oct 30 · 8 times available**.
+Scroll to **Date and time**. Tap a day, then one of the times shown. Only free times appear, and the line above them says how many, for example **Mon, Nov 2 · 21 times available**.
 
 Under **Status**, choose **Confirmed** if the patient has agreed to the time, or **Not yet confirmed** if you still need to check with them. Tap **Book**.
 
@@ -68,7 +71,7 @@ You should see: your chosen day circled and the time highlighted in yellow.
 
 ### 5. Check the booking
 
-A message confirms the booking with the patient, day and time, for example **Booked Ferrer, Paula · Fri, Oct 30 · 12:00 – 12:30 PM**. Tap **View** on it to open the appointment.
+A message confirms the booking with the patient, day and time, for example **Booked Ferrer, Paula · Mon, Nov 2 · 7:00 – 7:30 AM**. Tap **View** on it to open the appointment.
 
 You should see: the new appointment in the list.
 { .see }
@@ -79,10 +82,10 @@ You should see: the new appointment in the list.
 
 Tap any appointment to open it.
 
-You should see: **When**, **Status**, **Booked** and **Note**, with **View profile**. At the bottom are **Check in**, **Reschedule** and **Cancel appointment**.
+You should see: the patient and the visit at the top, then **When**, **Status**, **Booked** and **Note**, with **View profile**. At the bottom are **Reschedule** and **Cancel appointment**. On the day of the appointment, **Check in** appears above them.
 { .see }
 
-![An appointment opened: When, Status Confirmed, Booked and Note, with View profile, Check in, Reschedule and Cancel appointment](../assets/appointments/05-appointment-sheet.webp)
+![A confirmed appointment for a later day opened: When, Status Confirmed, Booked and Note, with View profile, Reschedule and Cancel appointment](../assets/appointments/05-appointment-sheet.webp)
 
 !!! note
     The big yellow button changes with the appointment: **Confirm** for one that isn't confirmed yet, **Check in** on the day, then **Open encounter** once the patient is checked in.
@@ -127,7 +130,7 @@ An appointment booked as **Not yet confirmed** shows the status **Pending**. Whe
 You should see: **Status · Pending** and a yellow **Confirm** button. After you tap it, the status changes to **Confirmed**.
 { .see }
 
-![A pending appointment opened: Status Pending, with Confirm, Reschedule, Check in and Cancel appointment](../assets/appointments/09-confirm.webp)
+![A pending appointment opened: Status Pending, with a yellow Confirm button, then Reschedule and Cancel appointment](../assets/appointments/09-confirm.webp)
 
 !!! tip "Find the ones to call"
     The **Awaiting confirmation** card at the top of the list counts every upcoming pending appointment. Use **Status** in the list to show only those.

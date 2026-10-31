@@ -53,6 +53,9 @@ test('treatment plan and Estimate', async ({ page }) => {
   await extraction.getByTestId('record-menu').tap();
   await page.getByTestId('record-action-declined').tap();
   await expect(rows('declined')).toHaveCount(1);
+  // Put the Undo message away so it doesn't cover the Declined row.
+  await page.getByTestId('undo-bar-dismiss').tap();
+  await expect(page.getByTestId('undo-bar')).toBeHidden();
   await page.waitForTimeout(800);
   await shot(page, P, '03-done-and-declined', { el: list });
 

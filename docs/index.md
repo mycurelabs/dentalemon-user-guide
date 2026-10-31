@@ -50,7 +50,7 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 2. [Start an encounter](visits/start-an-encounter.md), the record of today's visit.
 3. [Chart the teeth](visits/chart-teeth.md) and [plan the treatment](visits/treatment-plan-and-estimate.md).
 4. [Write notes, prescribe and order](visits/notes-prescriptions-orders-attachments.md) as needed.
-5. [Finish the visit](visits/finish-the-visit.md) and send the bill to the Cashier.
+5. [Finish the visit](visits/finish-the-visit.md) and send the bill to the Cashier. The bill opens there, ready to collect.
 6. [Take the payment](payments/charges-and-cashier.md).
 7. [Book the next appointment](schedule/appointments.md).
 
@@ -145,9 +145,9 @@ Do these in order. Each one takes a few minutes, and together they get you from 
 We'd rather tell you now than have you look for it:
 
 - **Insurance claims** are tracked by hand. You mark a claim submitted or paid yourself. Dentalemon doesn't send claims to PhilHealth or HMOs.
-- **Sending an invoice or receipt** opens your iPad's Mail or Messages app. Dentalemon doesn't send it for you.
+- **Sending an invoice or receipt** isn't available yet: **Send receipt** is marked **Coming soon**. Print it instead.
 - **Orders**: you can add lab and imaging orders. Other order types can be read on older visits but not created.
 - **Finished records stay final.** Undoing **End encounter**, or reopening a visit, doesn't unlock records that were already finalized. Use **Amend…** to correct one.
-- **Users and access** in Settings is a preview. It doesn't yet change who can sign in or what they can do.
+- **Users and Access** in Settings is a preview. It doesn't yet change who can sign in or what they can do.
 
 Something not working the way this guide says? Tell your Dentalemon contact, and mention the page and step number.

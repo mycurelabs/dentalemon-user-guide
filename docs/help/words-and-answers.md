@@ -8,8 +8,11 @@ What the words in Dentalemon mean, and answers to questions beta users often ask
 **Encounter**
 : One visit by one patient. It holds that day's dental chart, notes, prescriptions, orders and charges. You start an encounter when the patient is seen, and finish it when they leave. See [Start an encounter](../visits/start-an-encounter.md).
 
-**Active, Pending, Ended, Closed**
-: An open visit shows as **Active** or **Pending**. A finished one shows as **Ended** or **Closed**, and is view only.
+**Active, Pending, Closed**
+: How a visit shows in the **Encounters** list. An open visit is **Pending** until it has a record, then **Active**. A finished one is **Closed**.
+
+**Ended, Ended early, View only, Archived**
+: The status next to the patient's name inside a visit. **Ended** is a visit finished today (it can still be reopened). **Ended early** was finished with a reason. **View only** is an older finished visit. **Archived** was put away; see **Archive** below.
 
 **Chart**
 : The drawing of the patient's teeth. Each tooth is shown from three sides, with its number underneath. See [Chart teeth](../visits/chart-teeth.md).
@@ -39,7 +42,7 @@ What the words in Dentalemon mean, and answers to questions beta users often ask
 : Where the bill is paid. Charges are decided in the encounter; money is taken at the **Cashier**. See [Charges and the Cashier](../payments/charges-and-cashier.md).
 
 **Invoice**
-: The bill for a visit or a sale. It gets its own number once it's issued.
+: The bill for a visit or a sale. If your clinic has turned on invoice numbers in **Settings › Billing**, it gets the next number in your series when it's finalized.
 
 **Official receipt**
 : The receipt for a payment. Its number is the next in your clinic's series.
@@ -63,7 +66,7 @@ What the words in Dentalemon mean, and answers to questions beta users often ask
 : When a visit ends, its notes and records become final. To correct one later, open it and use **Amend…**.
 
 **Archive**
-: Takes a patient off your patient list without deleting their records.
+: Takes a patient or a visit out of your lists without deleting their records. Archived patients are listed in **Settings › Archived patients**, and archived visits in **Settings › Encounter**, where you can **Restore** them.
 
 **Sync**
 : Keeping the app's data up to date with your clinic's data. The cloud icon at the top right shows the sync status.
@@ -86,7 +89,7 @@ Most changes show a message at the bottom with an **Undo** button for a few seco
 
 - Search by the last name, the first name or the patient number in **Patients**, or in the **Search…** box at the top of the sidebar.
 - Check the spelling. Search also matches middle names, so a common name can bring up many patients.
-- Archived patients don't appear in the list, and there's no list of archived patients in the app yet. Ask your Dentalemon contact if you need one back.
+- Archived patients don't appear in the list. Find them in **Settings › Archived patients** and tap **Restore** to bring one back. See [Settings basics](../clinic/settings-basics.md).
 
 ### How do I print?
 
@@ -106,7 +109,7 @@ A greyed-out button is waiting for something. Usually a required box is still em
 
 ### Does Dentalemon send messages to patients?
 
-No. Dentalemon doesn't send appointment reminders, confirmations or receipts by itself. **Send receipt** and **Send reminder** open your iPad's own apps, such as Mail or Messages, so you can send them yourself.
+No. Dentalemon doesn't send appointment reminders, confirmations or receipts by itself. **Send reminder** (in **Billing › Payments due**) writes a message you can edit and then share through your iPad's own apps, such as Mail or Messages. **Send receipt** at the Cashier is marked **Coming soon**; print the receipt instead.
 
 ### Something doesn't work the way this guide says.
 

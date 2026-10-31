@@ -1,8 +1,8 @@
 import { expect, test, type Page } from '@playwright/test';
 import { shot, signIn } from './helpers';
+import { ensureRoster, juanDelaCruz } from './patients.lib';
 
 const P = 'patient-page-and-profile';
-const JUAN = 'ej-p11';
 
 const tab = (page: Page, name: string) =>
   page.locator('header, nav, [role="tablist"]').getByRole('tab', { name, exact: true })
@@ -12,8 +12,14 @@ const tab = (page: Page, name: string) =>
 test('the patient page and profile', async ({ page }) => {
   test.setTimeout(600_000); // slow when several captures share the machine
   await signIn(page);
-  await page.goto(`/patients/${JUAN}`);
+  // Juan M. Dela Cruz (made up): history, allergies, two past visits and a part-paid bill.
+  await ensureRoster(page);
+  const juan = await juanDelaCruz(page);
+  await page.goto(`/patients/${juan}`);
   await expect(page.getByTestId('patient-switcher')).toBeVisible({ timeout: 30_000 });
+  // A patient opens on Encounters; the guide reads the Summary first.
+  await tab(page, 'Summary').click();
+  await expect(page.getByText('Record logs').first()).toBeVisible({ timeout: 30_000 });
   await shot(page, P, '01-summary');
 
   await tab(page, 'Encounters').click();
@@ -74,6 +80,8 @@ test('the patient page and profile', async ({ page }) => {
   await editTomas.getByRole('button', { name: 'Save changes' }).click();
   await updated;
   await shot(page, P, '09-patient-updated');
+  // Let the message go, so it doesn't sit over the booking form's buttons.
+  await expect(page.getByText('Patient updated')).toBeHidden({ timeout: 30_000 });
 
   // Book appointment from the patient menu: the booking form opens with the patient filled in.
   await page.getByTestId('patient-switcher').click();

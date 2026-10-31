@@ -15,15 +15,18 @@ test('chart teeth', async ({ page }) => {
     { fresh: true },
   );
 
-  // 1. A first visit has no chart yet: pick how to start.
+  // 1–2. A first visit opens straight on a blank adult chart.
   await page.goto(visit.url);
-  await expect(page.getByTestId('start-chart')).toBeVisible({ timeout: 60_000 });
-  await page.locator('[data-start-option="permanent"] input').check();
-
-  // 2. The blank chart.
-  await page.getByTestId('start-chart').tap();
   await expect(tooth(page, 36)).toBeVisible({ timeout: 60_000 });
   await shot(page, P, '02-blank-chart');
+
+  // 2b. Quadrant and visit share one menu on the patient row.
+  await page.getByTestId('chart-scope-menu').filter({ visible: true }).first().tap();
+  const scope = page.getByRole('menu').filter({ visible: true }).last();
+  await expect(scope.getByRole('menuitemradio', { name: 'Q4 · Lower right' })).toBeVisible();
+  await shot(page, P, '02b-quadrant-visit-menu');
+  await page.keyboard.press('Escape');
+  await expect(scope).toBeHidden();
 
   // 3. Tap a tooth: the tooth panel.
   await tapTooth(page, 36);

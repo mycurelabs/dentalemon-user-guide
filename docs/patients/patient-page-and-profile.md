@@ -8,7 +8,7 @@ Everything about one patient lives on their page: past visits, a summary, the tr
 
 ## Before you start
 
-- Open the patient: tap **Patients** in the sidebar, then tap their folder.
+- Open the patient: tap **Patients** in the sidebar, then tap their folder. The patient's page opens on **Encounters**.
 
 ## Steps
 
@@ -41,10 +41,12 @@ You should see: the latest visit in the middle, marked **Latest**.
 
 Tap **Billing**.
 
-You should see: **Balance due** (what the patient owes), **Owed by payers** (what HMOs or PhilHealth owe for this patient) and **Last payment**. Use **View** to switch between due invoices, the statement, invoices and claims.
+You should see: **Balance due** (what the patient owes), **Owed by payers** (what HMOs or PhilHealth owe for this patient) and **Last payment**. Use **View** to switch between due invoices, the statement, invoices and claims. **Record payment** takes a payment for this patient.
 { .see }
 
-![The Billing tab: Balance due, Owed by payers and Last payment, with a View selector and "No open invoices"](../assets/patient-page-and-profile/03-billing.webp)
+![The Billing tab: Balance due ₱1,400 with 1 open invoice, Owed by payers, Last payment ₱300 GCash, Record payment, and the Due view listing the open invoice](../assets/patient-page-and-profile/03-billing.webp)
+
+A patient who has never been billed shows **No bills yet** instead.
 
 More on payments in [Billing and balances](../payments/billing-and-payment-plans.md).
 
@@ -69,21 +71,23 @@ You should see: the menu under the patient's name.
 
 Tap **Switch patient…**.
 
-You should see: **Switch patient**, with **Today** (today's booked patients and their status) and **All patients**. Search by name or number, or tap a patient to go to their page.
+You should see: **Switch patient**, with a search box and **All patients**. When patients are booked for today, a **Today** list (with their times and status) comes first. Search by name or number, or tap a patient to go to their page.
 { .see }
 
-![The Switch patient window: a search box, today's patients with their times and status, then All patients](../assets/patient-page-and-profile/05-switch-patient.webp)
+![The Switch patient window: a search box, then All patients, with the patient you're on marked Current](../assets/patient-page-and-profile/05-switch-patient.webp)
 
 ### 6. View the full profile
 
 From the patient menu, tap **View profile**. You can also tap **View profile** on the Summary.
 
-You should see: the **Patient card** with your clinic's name, the patient's allergies, PhilHealth number, Senior Citizen and PWD IDs, and emergency contact. The list on the left jumps to **Personal**, **Contact**, **Family & emergency**, **Insurance & benefits**, **Medical**, **Records** and **Policies and consents**.
+You should see: the **Patient card** with your clinic's name, the patient's allergies, PhilHealth number, Senior Citizen and PWD IDs, and emergency contact. The list on the left jumps to **Overview**, **Personal**, **Contact**, **Family & emergency**, **Insurance & benefits**, **Medical**, **Records** and **Policies and consents**.
 { .see }
 
 ![The Patient profile window on Overview: the patient card with allergies, then Born, PhilHealth, SC ID, PWD ID and Emergency](../assets/patient-page-and-profile/06-profile.webp)
 
-The profile is for reading. To change anything, use **Edit details**.
+The profile is for reading. To change the patient's details, use **Edit details**.
+
+To record a signed consent from here, tap **Policies and consents**, then **Record consent** at the top, or **Record** next to the consent you need. See [Consents](../visits/consents.md).
 
 ### 7. Edit the patient's details
 

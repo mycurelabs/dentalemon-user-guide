@@ -108,7 +108,7 @@ Fill this in if the patient has an HMO or PhilHealth card, or a PWD or Senior Ci
 
 1. Tap **Insurance & Benefits** in the list on the left.
 2. Tap **Add insurance card**.
-3. Tap **Select insurer** and choose the HMO or PhilHealth. The list shows the payers your clinic works with.
+3. Tap **Select insurer** and choose the HMO or PhilHealth. The list shows the payers your clinic works with, which you add in **Settings › Partners**.
 4. Type the **Card number**. Choose the **Membership** (member or dependent) and **Valid until** date if you have them.
 5. For a second card, tap **Add another card**.
 6. Under **Benefits**, type the **PWD ID** if the patient has one, and the **Declared on** date (the day they showed it to you). For patients aged 60 or over, a **Senior Citizen ID (OSCA)** box appears here too.
@@ -122,10 +122,19 @@ You should see: **Insurance card 1** with the insurer and card number.
 
 Tap **Add patient**.
 
-You should see: a **Patient added** message, and the new patient's page opens on **Summary**. Allergies you added show in red under the name, and the insurer shows under **Insurance**.
+You should see: a **Patient added** message, and the new patient's page opens on **Encounters**. It says **No encounters yet**, with a **Start encounter** button for when the patient is ready to be seen.
 { .see }
 
-![The new patient's page on the Summary tab: Allergies Penicillin (severe) in red, Insurance Bayanihan Health, and a Patient added message](../assets/find-or-add-a-patient/06-patient-added.webp)
+![The new patient's page on the Encounters tab: No encounters yet, a Start encounter button, and a Patient added message](../assets/find-or-add-a-patient/06-patient-added.webp)
+
+### 9. Check the patient's details
+
+Tap **Summary** at the top.
+
+You should see: the allergies you added in red under the name, and the insurer under **Insurance**. Anything you didn't ask yet says **Not asked**.
+{ .see }
+
+![The new patient's Summary tab: Allergies Penicillin (severe) in red, Medical history and Dental history Not asked, and Insurance Bayanihan Health](../assets/find-or-add-a-patient/06b-summary.webp)
 
 ## Tips
 

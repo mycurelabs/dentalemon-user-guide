@@ -37,7 +37,8 @@ export const PASSWORD = process.env.E2E_PASSWORD;
 
 /** Waits for network quiet, running animations and fonts, so a capture never catches a half-drawn screen. */
 export async function settle(page: Page) {
-  await page.waitForLoadState('networkidle').catch(() => {});
+  // Bounded: a page that keeps polling never goes quiet, and a busy machine slows everything.
+  await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
   // A route change can replace the document mid-wait; try again on the new one.
   for (let attempt = 0; attempt < 3; attempt++) {
     try {

@@ -3,6 +3,7 @@
 // Delete those rows from the private demo database first, or lists show her twice.
 import { expect, test, type Page } from '@playwright/test';
 import { fixtures, shot, signIn } from './helpers';
+import { clinicOf, ensureRoster, findPatient } from './patients.lib';
 
 const P = 'appointments';
 
@@ -15,6 +16,64 @@ async function newPatient(page: Page, facility: string, first: string, last: str
     facility,
     personalDetails: { name: { firstName: first, lastName: last }, sex, dateOfBirth: '1985-07-02', mobileNo: '0917 000 0031' },
   });
+}
+
+/** Next Monday's date (Manila), as YYYY-MM-DD: a week that is always all in the future. */
+function nextMonday() {
+  const today = new Date(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Manila' }).format(new Date()) + 'T00:00:00Z');
+  const add = ((8 - today.getUTCDay()) % 7) || 7;
+  return new Date(today.getTime() + add * 86_400_000).toISOString().slice(0, 10);
+}
+
+/**
+ * A booked week for the calendar pictures: made-up patients on next week's
+ * weekdays, most confirmed and a few pending. The server books only future
+ * times, so the pictures show next week, whatever time the run starts.
+ * Skipped when that week already has bookings (a re-run).
+ */
+async function bookDemoWeek(page: Page, monday: string) {
+  const { facility } = await clinicOf(page);
+  const from = new Date(`${monday}T00:00:00+08:00`).getTime();
+  const to = from + 5 * 86_400_000;
+  const have = await fixtures.get(page, `booking/bookings?organization=${facility}&from=${new Date(from).toISOString()}&to=${new Date(to - 1).toISOString()}&$limit=200`);
+  if ((have.data ?? []).length >= 10) return;
+  const events = await fixtures.get(page, `booking/events?organization=${facility}&$limit=100`);
+  const event = (events.data ?? []).find((e: any) => (e.tags ?? []).includes('dentalemon-clinic-hours'));
+  expect(event, 'the clinic has opening hours (Settings › Clinic)').toBeTruthy();
+  await ensureRoster(page);
+  const people: Array<[string, string]> = [
+    ['Marco', 'Bernardo'], ['Rosario', 'Castillo'], ['Paolo', 'Domingo'], ['Bea', 'Estrada'],
+    ['Andres', 'Fernandez'], ['Liza', 'Garcia'], ['Jasmine', 'Aguilar'], ['Juan', 'Dela Cruz'],
+  ];
+  const ids: string[] = [];
+  for (const [first, last] of people) {
+    const p = await findPatient(page, facility, first, last);
+    if (p) ids.push(String(p.id));
+  }
+  const reasons = ['Consultation', 'Follow-up', 'Oral prophylaxis', 'Consultation', 'Procedure'];
+  const times = ['09:00', '10:00', '11:30', '14:00', '15:30'];
+  let n = 0;
+  for (let day = 0; day < 5; day++) {
+    for (let slot = 0; slot < 3 + (day % 2); slot++) {
+      const date = new Date(from + day * 86_400_000 + 8 * 3_600_000).toISOString().slice(0, 10);
+      const reason = reasons[(day + slot) % reasons.length];
+      const res = await page.request.post('/api/booking/bookings', {
+        data: {
+          event: event.id,
+          client: ids[n % ids.length],
+          scheduledAt: new Date(`${date}T${times[(slot + day) % times.length]}:00+08:00`).toISOString(),
+          durationMinutes: reason === 'Procedure' ? 60 : 30,
+          type: 'appointment',
+          reason,
+        },
+      });
+      n++;
+      if (!res.ok()) continue; // a taken or closed time: skip it
+      const booking = await res.json();
+      // Every fourth one stays pending, like a booking still to be confirmed.
+      if (n % 4 !== 0) await page.request.post(`/api/booking/bookings/${booking.id}/confirm`, { data: {} });
+    }
+  }
 }
 
 const toast = (page: Page, text: RegExp) => page.locator('[data-sonner-toast]').filter({ hasText: text }).first();
@@ -34,10 +93,12 @@ test('appointments', async ({ page }) => {
     if (!p.pxArchived) await fixtures.patch(page, `medical-patients/${p.id}`, { archive: true });
   }
   const paula = await newPatient(page, facility, 'Paula', 'Ferrer', 'female');
+  const monday = nextMonday();
+  await bookDemoWeek(page, monday);
 
   // Wait for the real calendar and list, not a fixed time: under load the skeleton can stay a while.
   const skeleton = page.getByTestId('appointments-skeleton');
-  await page.goto('/appointments?view=week');
+  await page.goto(`/appointments?view=week&date=${monday}`);
   await expect(page.getByTestId('calendar-period')).toBeVisible({ timeout: 60_000 });
   await expect(skeleton).toHaveCount(0, { timeout: 60_000 });
   await shot(page, P, '01-calendar-week');
@@ -46,7 +107,7 @@ test('appointments', async ({ page }) => {
     ['day', '01b-calendar-day'],
     ['month', '01c-calendar-month'],
   ] as const) {
-    await page.goto(`/appointments?view=${view}`);
+    await page.goto(`/appointments?view=${view}&date=${monday}`);
     await expect(page.getByTestId('calendar-period')).toBeVisible({ timeout: 60_000 });
     await expect(skeleton).toHaveCount(0, { timeout: 60_000 });
     await shot(page, P, name);
@@ -102,10 +163,11 @@ test('appointments', async ({ page }) => {
   await shot(page, P, '07-cancel');
   await page.getByRole('button', { name: 'Keep appointment' }).click();
 
-  // Check in is offered only for today's appointments.
+  // Check in is offered only for today's appointments: a booking for a later day has no
+  // yellow button, and the Checked in picture is kept from a run made during clinic hours.
   const primary = sheet.getByTestId('primary-action');
-  await expect(primary).toBeVisible();
-  if (/Check in/.test(await primary.innerText())) {
+  await expect(sheet.getByRole('button', { name: 'Reschedule', exact: true })).toBeVisible();
+  if ((await primary.isVisible()) && /Check in/.test(await primary.innerText())) {
     await primary.click();
     const checkedIn = toast(page, /checked in/i);
     await expect(checkedIn).toBeVisible({ timeout: 30_000 });

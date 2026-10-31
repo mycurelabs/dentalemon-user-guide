@@ -73,6 +73,9 @@ When the wording is set up, tap **Hand to patient**. You choose a passcode, the 
 
 ## Tips
 
+!!! tip "A faster way"
+    On the patient's **Summary**, the **Consent** line shows the general treatment consent, for example **Not signed**. Tap it to go straight to **Policies and consents**.
+
 !!! tip "Photograph the whole page"
     Lay the form flat in good light so the signature and the document code are easy to read later.
 

@@ -21,18 +21,24 @@ The chart is at the top of the encounter, under the patient's name. The first ti
 
 Each tooth is drawn from three sides (**Facial**, **Occlusal**, **Lingual**), with its number underneath.
 
+Next to the patient's name:
+
+- **All quadrants · Any visit** is one menu with two choices. Under **Quadrant**, pick one, for example **Q4 · Lower right**, to zoom in so the teeth are bigger and easier to tap; choose **All quadrants** to see the whole mouth again. Under **Visit**, show marks from **This visit**, **Earlier** visits, or **Any visit**. These only change what you see; they never change the chart.
+- **Dentition** sets which teeth the chart draws: **Child**, **Mixed** or **Adult**. Unlike the menu beside it, this choice is saved to the patient's chart, with **Undo**.
+
 Above the chart:
 
 - The chips **All**, **Conditions**, **Existing**, **Planned**, **Done** and **Declined** show only that kind of mark, with a count of each.
-- **All quadrants** lets you zoom into one quadrant, for example **Q4 · Lower right**, so the teeth are bigger and easier to tap. Choose **All quadrants** again to see the whole mouth.
-- **Any visit** shows marks from this visit (**This visit**), earlier visits (**Earlier**), or both.
 - **Simple mode** shows only the biting surface of each tooth, without the side views. It's quicker to read; switch it off to see every surface. Your choice is remembered for you.
-- **Legend** explains every colour and code.
+
+Under the chart, the count of teeth seen (for example **0 of 32 seen**) sits next to **Legend ›**, which explains every colour and code.
 
 You should see: an empty chart with teeth 18 to 28 on top and 48 to 38 below.
 { .see }
 
-![An empty chart with the filter chips, All quadrants, Any visit, Simple mode and Legend above it](../assets/chart-teeth/02-blank-chart.webp)
+![An empty chart. Next to the patient's name are All quadrants · Any visit and Dentition Adult; above the chart are the filter chips and Simple mode; under it, 0 of 32 seen and Legend](../assets/chart-teeth/02-blank-chart.webp)
+
+![The All quadrants · Any visit menu open: Quadrant with All quadrants and Q1 to Q4, and Visit with Any visit, This visit and Earlier](../assets/chart-teeth/02b-quadrant-visit-menu.webp)
 
 ### 3. Tap a tooth
 
@@ -52,7 +58,7 @@ You should see: the tooth highlighted on the chart and its panel on the right, w
 
 Tap **Create record**. A short three-step record opens: **Condition**, **Treatment**, **Review**.
 
-1. Tap the surfaces that are affected on the tooth drawing, or use the letters under it (**M**, **O**, **D**, **B**, **L**). **All** means the whole tooth; **Cervical** is the neck of the tooth.
+1. Tap the surfaces that are affected on the tooth drawing, or use the letters under it (**M**, **O**, **D**, **B**, **L**; upper teeth show **P** instead of **L**). **All** means the whole tooth; **Cervical** is the neck of the tooth.
 2. Tap **Add condition**.
 3. Pick the condition from the list, for example **Caries**. Use **Search conditions** to find one quickly.
 
@@ -69,10 +75,10 @@ The condition is added to the record, with the surface it's on. You can add more
 
 Tap **Next**.
 
-You should see: **Caries** with **Occlusal** under it, and the surface coloured on the drawing.
+You should see: **Caries** with **Occlusal** under it. Until you save, the surface has a dashed outline on the drawing, and **Dashed outline: draft surfaces** under it reminds you it isn't saved yet.
 { .see }
 
-![The New record panel on the Condition step: the occlusal surface coloured orange, and Caries Occlusal listed under Add condition](../assets/chart-teeth/05-condition-added.webp)
+![The New record panel on the Condition step: the occlusal surface with a dashed outline, the words Dashed outline: draft surfaces, and Caries Occlusal listed under Add condition](../assets/chart-teeth/05-condition-added.webp)
 
 ### 6. Choose the treatment
 
@@ -141,7 +147,7 @@ You should see: the list of states, each with a short description. A choice that
 
 ### 11. Check the Legend
 
-Tap **Legend** above the chart to see what each mark means:
+Tap **Legend ›** under the chart, next to the count of teeth seen, to see what each mark means:
 
 - **Planned**: dashed blue outline
 - **Done**: solid green outline, tinted tooth
@@ -224,7 +230,7 @@ To throw it away instead, tap **Resume record**, go **Back** to the first step, 
 !!! info "Good to know"
     - Planned work goes to the patient's treatment plan. See [Treatment plan and Estimate](treatment-plan-and-estimate.md).
     - Work marked **Done today** can be added to the bill when you finish the visit.
-    - Once a visit is finished, its chart is view only.
+    - Once a visit has ended, its chart is view only.
 
 ## What's next
 

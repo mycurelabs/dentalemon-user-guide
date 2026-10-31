@@ -16,12 +16,12 @@ See what came in, who still owes you, and what HMOs and PhilHealth owe.
 
 Tap **Billing** in the sidebar.
 
-You should see: the tabs **Transactions**, **Total sales**, **Payments due** and **Accounts receivable**, with **Transactions** open. The cards at the top sum up the period: **Collected**, **Transactions**, **Average ticket** and **Voided**.
+You should see: the tabs **Transactions**, **Total sales**, **Payments due**, **Accounts receivable** and **Payment plans**, with **Transactions** open. The cards at the top sum up the period: **Collected**, **Transactions**, **Average ticket** and **Voided**.
 { .see }
 
 ![The Billing page on Transactions: summary cards, a search box, Status, Period and Method filters, and a table of invoices with Paid and Unpaid labels](../assets/billing-and-payment-plans/01-transactions.webp)
 
-Use the search box (**Patient or invoice**) and the **Status**, **Period** and **Method** filters to narrow the list. **List** and **Table** switch the layout.
+Use the search box (**Patient or invoice**) and the **Status**, **Period** and **Method** filters to narrow the list. **List** and **Table** switch the layout. Tap **⋮** at the end of a row for **View invoice**, **Record payment** (while something is unpaid) and **View patient**.
 
 ### 2. Check your sales
 
@@ -36,12 +36,12 @@ You should see: **Gross sales**, **Discounts**, **Net sales** and **Collection r
 
 Tap **Payments due**.
 
-You should see: each patient who owes you, how much is unpaid, how many invoices are open, and how long the oldest has waited. Overdue days show in orange.
+You should see: **Total unpaid**, **Patients owing**, **Overdue** and **Average balance** at the top, then each patient who owes you: how many invoices are open, what was billed and paid, the **Total unpaid**, the **Earliest unpaid date** and the **Last payment**.
 { .see }
 
 ![The Payments due tab: Total unpaid, Patients owing, Overdue, Average balance, then a list of patients with their unpaid amounts](../assets/billing-and-payment-plans/03-payments-due.webp)
 
-Tap **⋮** on a patient for **Record payment**, **Send reminder**, **View profile** and **View billing**.
+Use **Balance age** to show only the overdue balances. Tap **⋮** on a patient for **Record payment**, **Send reminder**, **View profile** and **View billing**.
 
 ![The row menu on a patient's balance: Record payment, Send reminder, View profile, View billing](../assets/billing-and-payment-plans/04-row-actions.webp)
 
@@ -103,6 +103,7 @@ You should see: **Balance due**, **Owed by payers** and **Last payment** at the 
 !!! info "Good to know"
     - Claims are tracked by hand. **Mark submitted** and **Mark paid** only record what you did with the payer. Dentalemon doesn't send claims to PhilHealth or HMOs, and there are no claim numbers yet.
     - **Send reminder** writes the message for you to check, then opens your device's share sheet (Messages, Mail, Viber and so on). Dentalemon doesn't send it itself.
+    - Payment plans are coming soon. The **Payment plans** tab says so, and invoices and payments work as usual.
 
 ## What's next
 

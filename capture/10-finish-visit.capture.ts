@@ -3,6 +3,13 @@ import { fixtures, settle, shot, signIn, toothEntry } from './helpers';
 import { patientWithEncounter, tapTooth } from './visits.lib';
 
 const P = 'finish-the-visit';
+
+/** Scrolls a sheet's body back to its top: ticking a charge scrolls it down. */
+async function toTop(el: import('@playwright/test').Locator) {
+  await el.evaluate(root => {
+    for (const n of [root, ...root.querySelectorAll('*')]) if (n.scrollTop > 0) n.scrollTop = 0;
+  });
+}
 // WebKit renders in software here and other runs share the machine: allow slow steps.
 const expect = baseExpect.configure({ timeout: 60_000 });
 test.setTimeout(1_200_000);
@@ -19,13 +26,13 @@ test('finish the visit', async ({ page }) => {
   await fixtures.openChart(page, visit.url);
 
   const split = page.getByTestId('encounter-actions-split').filter({ visible: true }).first();
-  const main = split.getByTestId('bill-button');
+  const main = split.getByTestId('encounter-end');
   const more = split.getByTestId('encounter-actions-more');
   const sheet = page.getByTestId('charges-sheet');
   const actionsMenu = page.locator('[role="menu"]:has([data-testid^="lifecycle-"])');
-  await expect(main).toContainText('Finish encounter', { timeout: 60_000 });
+  await expect(main).toContainText('End encounter', { timeout: 60_000 });
 
-  // 1. The ⌄ beside Finish encounter.
+  // 1. The ⌄ beside End encounter.
   await more.tap();
   await expect(actionsMenu).toBeVisible();
   await shot(page, P, '01-actions-menu');
@@ -38,9 +45,9 @@ test('finish the visit', async ({ page }) => {
   await tapTooth(page, 46);
   await toothEntry.recordTreatment(page, 'composite', 'planned', ['M', 'O']);
   await page.goto(visit.url);
-  await expect(main).toContainText('Finish encounter', { timeout: 60_000 });
+  await expect(main).toContainText('End encounter', { timeout: 60_000 });
 
-  // 2. Finish encounter: the sheet.
+  // 2. End encounter: the sheet.
   await main.tap();
   await expect(sheet).toBeVisible();
   await expect(sheet.getByText('Loading the charges…')).toHaveCount(0, { timeout: 60_000 });
@@ -53,6 +60,7 @@ test('finish the visit', async ({ page }) => {
     if (!(await box.isChecked())) await box.tap();
   }
   await expect(sheet.getByTestId('finish-send')).toBeVisible({ timeout: 30_000 });
+  await toTop(sheet);
   await settle(page);
   await shot(page, P, '02-finish-sheet', { el: sheet });
 
@@ -62,18 +70,13 @@ test('finish the visit', async ({ page }) => {
   await sheet.getByTestId('follow-up-card').scrollIntoViewIfNeeded();
   await shot(page, P, '03-follow-up', { el: sheet });
 
-  // 4. End and send to cashier.
-  await sheet.getByTestId('finish-send').tap();
+  // 4. End encounter. (End and send to cashier also ends it, then opens Billing: #5768.)
+  await sheet.getByTestId('finish-end').tap();
   await expect(sheet).toBeHidden({ timeout: 30_000 });
   await expect(page.locator('[data-testid="chart-sheet"][data-editable="false"]')).toBeVisible({ timeout: 30_000 });
+  // An ended encounter's step is Reopen encounter, in the top bar.
+  await expect(split.getByTestId('encounter-step-reopen')).toBeVisible({ timeout: 30_000 });
   await shot(page, P, '04-ended');
-
-  // 5. After it ends, the ⌄ offers Reopen encounter.
-  await page.waitForTimeout(6_000);
-  await more.tap();
-  await expect(actionsMenu).toBeVisible();
-  await shot(page, P, '05-ended-menu');
-  await page.keyboard.press('Escape');
 
   // 6. End early…: a visit that never really happened (the patient left, was referred, or declined).
   const early = await patientWithEncounter(page, {
@@ -84,7 +87,7 @@ test('finish the visit', async ({ page }) => {
     mobileNo: '0917 000 0027',
   }, { fresh: true });
   await page.goto(early.url);
-  await expect(main).toContainText('Finish encounter', { timeout: 60_000 });
+  await expect(main).toContainText('End encounter', { timeout: 60_000 });
   await expect
     .poll(async () => {
       await more.tap();
@@ -110,7 +113,7 @@ test('finish the visit', async ({ page }) => {
     mobileNo: '0917 000 0028',
   }, { fresh: true });
   await page.goto(oops.url);
-  await expect(main).toContainText('Finish encounter', { timeout: 60_000 });
+  await expect(main).toContainText('End encounter', { timeout: 60_000 });
   await expect
     .poll(async () => {
       await more.tap();
@@ -126,13 +129,13 @@ test('finish the visit', async ({ page }) => {
   await page.getByTestId('reason-keep').tap();
   await expect(step).toBeHidden();
 
-  // 8. A draft order: Finish encounter offers to send it.
+  // 8. A draft order: End encounter offers to send it.
   await page.goto(`${oops.url}?tab=orders`);
   await expect(page.getByTestId('views-add-order')).toBeVisible({ timeout: 60_000 });
   await page.getByTestId('views-add-order').tap();
   await page.getByRole('menuitem', { name: 'Lab order' }).tap();
   const dlg = page.getByRole('dialog').filter({ visible: true }).last();
-  await dlg.getByRole('button', { name: 'Complete blood count' }).tap();
+  await dlg.getByTestId('order-choices').getByRole('checkbox', { name: 'Complete blood count' }).tap();
   await dlg.getByRole('button', { name: 'Save' }).tap();
   await expect(page.getByRole('dialog').filter({ hasText: 'Add lab order' })).toHaveCount(0, { timeout: 30_000 });
   await main.tap();
